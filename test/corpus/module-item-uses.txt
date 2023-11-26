@@ -1,0 +1,61 @@
+===========
+Uses single
+===========
+
+module Example
+
+uses aLightObject
+
+---
+
+(source_file 
+  module_name: (type_identifier)
+  (declaration_statement
+    (use_declaration
+      (type_identifier)
+	)
+  )
+)
+
+
+=============
+Uses multiple
+=============
+
+module Example
+
+uses aLightObject, aFullObject, aListOfInstances
+
+---
+
+(source_file 
+  module_name: (type_identifier)
+  (declaration_statement
+    (use_declaration
+      (type_identifier)
+      (type_identifier)
+      (type_identifier)
+	)
+  )
+)
+
+
+===================
+Uses trailing comma
+===================
+
+module Example
+
+uses WF, WFCom, 
+
+---
+
+(source_file 
+  module_name: (type_identifier)
+  (declaration_statement
+    (use_declaration
+      (type_identifier)
+      (type_identifier)
+	)
+  )
+)
