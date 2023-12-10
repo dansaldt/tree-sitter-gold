@@ -13,7 +13,7 @@ end
 ---
 
 (source_file
-  module_name: (type_identifier)
+  module_name: (identifier)
   (declaration_statement
     (function_declaration
       (function_definition
@@ -44,7 +44,7 @@ endFunc
 ---
 
 (source_file
-  module_name: (type_identifier)
+  module_name: (identifier)
   (declaration_statement
     (function_declaration
       (function_definition
@@ -71,7 +71,7 @@ function MyForwardFunction return Boolean forward
 ---
 
 (source_file
-  module_name: (type_identifier)
+  module_name: (identifier)
   (declaration_statement
     (function_declaration
       (function_forward_declaration

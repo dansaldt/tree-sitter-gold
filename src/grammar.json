@@ -16,7 +16,7 @@
           "name": "module_name",
           "content": {
             "type": "SYMBOL",
-            "name": "_type_identifier"
+            "name": "identifier"
           }
         },
         {

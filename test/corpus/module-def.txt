@@ -7,5 +7,5 @@ module Example
 ---
 
 (source_file
-  module_name: (type_identifier)
+  module_name: (identifier)
 )

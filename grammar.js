@@ -4,7 +4,7 @@ module.exports = grammar({
 	rules: {
 		source_file: $ => seq(
 			token('module'),
-			field('module_name', $._type_identifier),
+			field('module_name', $.identifier),
 			repeat($.declaration_statement),
 		),
 

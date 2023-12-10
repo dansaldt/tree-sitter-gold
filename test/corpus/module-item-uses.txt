@@ -9,7 +9,7 @@ uses aLightObject
 ---
 
 (source_file 
-  module_name: (type_identifier)
+  module_name: (identifier)
   (declaration_statement
     (use_declaration
       (type_identifier)
@@ -29,7 +29,7 @@ uses aLightObject, aFullObject, aListOfInstances
 ---
 
 (source_file 
-  module_name: (type_identifier)
+  module_name: (identifier)
   (declaration_statement
     (use_declaration
       (type_identifier)
@@ -51,7 +51,7 @@ uses WF, WFCom,
 ---
 
 (source_file 
-  module_name: (type_identifier)
+  module_name: (identifier)
   (declaration_statement
     (use_declaration
       (type_identifier)
