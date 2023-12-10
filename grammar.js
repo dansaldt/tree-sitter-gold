@@ -50,9 +50,9 @@ module.exports = grammar({
 			$.function_token_end,
 		),
 
-		function_token_begin: $ => token(choice('function', 'func', 'procedure', 'proc')),
+		function_token_begin: _ => token(choice('function', 'func', 'procedure', 'proc')),
 
-		function_token_end: $ => token(choice('end', 'endFunc', 'endProc')),
+		function_token_end: _ => token(choice('end', 'endFunc', 'endProc')),
 
 		function_parameters: $ => seq(
 			token('('),
