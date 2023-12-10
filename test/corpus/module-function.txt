@@ -1,0 +1,81 @@
+=====================
+Function - non-parsed
+=====================
+
+module Example
+
+proc MyFunction1
+end
+
+func MyFunction2 return Boolean
+end
+
+---
+
+(source_file
+  module_name: (type_identifier)
+  (declaration_statement
+    (function_declaration
+      (function_definition
+        (function_token_begin)
+        function_name: (identifier)
+        (function_token_end))))
+  (declaration_statement
+    (function_declaration
+      (function_definition
+        (function_token_begin)
+        function_name: (identifier)
+        (function_return_type (type_identifier))
+        (function_token_end))))
+)
+
+==========================
+Function - parsed-fn-empty
+==========================
+
+module Example
+
+procedure MyFunction1
+endProc
+
+function MyFunction2 return Boolean
+endFunc
+
+---
+
+(source_file
+  module_name: (type_identifier)
+  (declaration_statement
+    (function_declaration
+      (function_definition
+        (function_token_begin)
+        function_name: (identifier)
+        (function_token_end))))
+  (declaration_statement
+    (function_declaration
+      (function_definition
+        (function_token_begin)
+        function_name: (identifier)
+        (function_return_type (type_identifier))
+        (function_token_end))))
+)
+
+==================
+Function - forward
+==================
+
+module Example
+
+function MyForwardFunction return Boolean forward
+
+---
+
+(source_file
+  module_name: (type_identifier)
+  (declaration_statement
+    (function_declaration
+      (function_forward_declaration
+        (function_token_begin)
+        function_name: (identifier)
+        (function_return_type
+          (type_identifier))))))
