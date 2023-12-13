@@ -59,7 +59,10 @@ module.exports = grammar({
 			token('\''),
 		),
 
-		kw_function_begin: _ => token(choice('function', 'func', 'procedure', 'proc')),
+		kw_function_begin: $ => choice(
+			$.kw_func, $.kw_function,
+			$.kw_proc, $.kw_procedure,
+		),
 
 		kw_function_end: $ => choice(
 			token('endFunc'),
@@ -75,7 +78,7 @@ module.exports = grammar({
 		),
 
 		function_parameter_declaration: $ => seq(
-			optional(choice('inOut', 'var', 'const')),
+			optional(choice($.kw_inOut, $.kw_var, $.kw_const)),
 			field('parameter_name', $.identifier),
 			token(':'),
 			field('parameter_type', $._type_identifier),
@@ -91,7 +94,7 @@ module.exports = grammar({
 		),
 
 		variable_declaration: $ => seq(
-			token('var'),
+			$.kw_var,
 			field('variable_name', $.identifier),
 			token(':'),
 			field('variable_type', $._type_identifier),
@@ -117,6 +120,13 @@ module.exports = grammar({
 			$.kw_protected,
 		),
 
+		kw_var: _ => token('var'),
+		kw_inOut: _ => token('inOut'),
+		kw_const: _ => token('const'),
+		kw_func: _ => token('func'),
+		kw_function: _ => token('function'),
+		kw_proc: _ => token('proc'),
+		kw_procedure: _ => token('procedure'),
 		kw_return: _ => token('return'),
 		kw_end: _ => token('end'),
 		kw_external: _ => token('external'),
