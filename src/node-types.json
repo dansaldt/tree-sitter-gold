@@ -248,7 +248,7 @@
           "named": true
         },
         {
-          "type": "kw_inOut",
+          "type": "kw_inout",
           "named": true
         },
         {
@@ -564,7 +564,7 @@
     "named": true
   },
   {
-    "type": "kw_inOut",
+    "type": "kw_inout",
     "named": true
   },
   {

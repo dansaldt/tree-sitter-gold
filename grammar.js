@@ -78,7 +78,7 @@ module.exports = grammar({
 		),
 
 		function_parameter_declaration: $ => seq(
-			optional(choice($.kw_inOut, $.kw_var, $.kw_const)),
+			optional(choice($.kw_inout, $.kw_var, $.kw_const)),
 			field('parameter_name', $.identifier),
 			token(':'),
 			field('parameter_type', $._type_identifier),
@@ -123,7 +123,7 @@ module.exports = grammar({
 		kw_module: _ => token('module'),
 		kw_uses: _ => token('uses'),
 		kw_var: _ => token('var'),
-		kw_inOut: _ => token('inOut'),
+		kw_inout: _ => token('inOut'),
 		kw_const: _ => token('const'),
 		kw_func: _ => token('func'),
 		kw_function: _ => token('function'),

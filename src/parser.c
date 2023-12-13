@@ -27,7 +27,7 @@ enum {
   sym_kw_module = 8,
   sym_kw_uses = 9,
   sym_kw_var = 10,
-  sym_kw_inOut = 11,
+  sym_kw_inout = 11,
   sym_kw_const = 12,
   sym_kw_func = 13,
   sym_kw_function = 14,
@@ -86,7 +86,7 @@ static const char * const ts_symbol_names[] = {
   [sym_kw_module] = "kw_module",
   [sym_kw_uses] = "kw_uses",
   [sym_kw_var] = "kw_var",
-  [sym_kw_inOut] = "kw_inOut",
+  [sym_kw_inout] = "kw_inout",
   [sym_kw_const] = "kw_const",
   [sym_kw_func] = "kw_func",
   [sym_kw_function] = "kw_function",
@@ -145,7 +145,7 @@ static const TSSymbol ts_symbol_map[] = {
   [sym_kw_module] = sym_kw_module,
   [sym_kw_uses] = sym_kw_uses,
   [sym_kw_var] = sym_kw_var,
-  [sym_kw_inOut] = sym_kw_inOut,
+  [sym_kw_inout] = sym_kw_inout,
   [sym_kw_const] = sym_kw_const,
   [sym_kw_func] = sym_kw_func,
   [sym_kw_function] = sym_kw_function,
@@ -237,7 +237,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
-  [sym_kw_inOut] = {
+  [sym_kw_inout] = {
     .visible = true,
     .named = true,
   },
@@ -3978,10 +3978,10 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (sym_identifier_character_set_2(lookahead)) ADVANCE(120);
       END_STATE();
     case 132:
-      ACCEPT_TOKEN(sym_kw_inOut);
+      ACCEPT_TOKEN(sym_kw_inout);
       END_STATE();
     case 133:
-      ACCEPT_TOKEN(sym_kw_inOut);
+      ACCEPT_TOKEN(sym_kw_inout);
       if (sym_identifier_character_set_2(lookahead)) ADVANCE(120);
       END_STATE();
     case 134:
@@ -4216,7 +4216,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_kw_module] = ACTIONS(1),
     [sym_kw_uses] = ACTIONS(1),
     [sym_kw_var] = ACTIONS(1),
-    [sym_kw_inOut] = ACTIONS(1),
+    [sym_kw_inout] = ACTIONS(1),
     [sym_kw_const] = ACTIONS(1),
     [sym_kw_func] = ACTIONS(1),
     [sym_kw_function] = ACTIONS(1),
@@ -5413,7 +5413,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_function_parameter_declaration,
     ACTIONS(220), 3,
       sym_kw_var,
-      sym_kw_inOut,
+      sym_kw_inout,
       sym_kw_const,
   [1518] = 2,
     ACTIONS(162), 1,
@@ -5451,7 +5451,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_function_parameter_declaration,
     ACTIONS(220), 3,
       sym_kw_var,
-      sym_kw_inOut,
+      sym_kw_inout,
       sym_kw_const,
   [1566] = 2,
     ACTIONS(230), 1,
@@ -5496,7 +5496,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_function_parameter_declaration,
     ACTIONS(220), 3,
       sym_kw_var,
-      sym_kw_inOut,
+      sym_kw_inout,
       sym_kw_const,
   [1622] = 3,
     ACTIONS(216), 1,
@@ -5505,7 +5505,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_function_parameter_declaration,
     ACTIONS(220), 3,
       sym_kw_var,
-      sym_kw_inOut,
+      sym_kw_inout,
       sym_kw_const,
   [1634] = 4,
     ACTIONS(232), 1,

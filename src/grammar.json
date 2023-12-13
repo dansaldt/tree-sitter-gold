@@ -380,7 +380,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "kw_inOut"
+                  "name": "kw_inout"
                 },
                 {
                   "type": "SYMBOL",
@@ -539,7 +539,7 @@
         "value": "var"
       }
     },
-    "kw_inOut": {
+    "kw_inout": {
       "type": "TOKEN",
       "content": {
         "type": "STRING",
