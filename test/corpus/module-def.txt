@@ -7,5 +7,6 @@ module Example
 ---
 
 (source_file
+  (kw_module)
   module_name: (identifier)
 )

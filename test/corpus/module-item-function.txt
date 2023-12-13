@@ -13,6 +13,7 @@ end
 ---
 
 (source_file
+  (kw_module)
   module_name: (identifier)
   (module_item_declaration
     (function_declaration
@@ -51,6 +52,7 @@ endFunc
 ---
 
 (source_file
+  (kw_module)
   module_name: (identifier)
   (module_item_declaration
     (function_declaration
@@ -85,6 +87,7 @@ function MyForwardFunction return Boolean forward
 ---
 
 (source_file
+  (kw_module)
   module_name: (identifier)
   (module_item_declaration
     (function_declaration
@@ -115,6 +118,7 @@ endProc
 ---
 
 (source_file
+  (kw_module)
   module_name: (identifier)
   (module_item_declaration
     (function_declaration
@@ -153,6 +157,7 @@ endProc
 ---
 
 (source_file
+  (kw_module)
   module_name: (identifier)
   (module_item_declaration
     (function_declaration
@@ -186,6 +191,7 @@ procedure MyExternalDllFunction external 'DllName.DllFunctionName'
 ---
 
 (source_file
+  (kw_module)
   module_name: (identifier)
   (module_item_declaration
     (function_declaration

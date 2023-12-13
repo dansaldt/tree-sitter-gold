@@ -382,8 +382,12 @@
     },
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "kw_module",
+          "named": true
+        },
         {
           "type": "module_item_declaration",
           "named": true
@@ -564,6 +568,10 @@
     "named": true
   },
   {
+    "type": "kw_module",
+    "named": true
+  },
+  {
     "type": "kw_override",
     "named": true
   },
@@ -594,10 +602,6 @@
   {
     "type": "kw_var",
     "named": true
-  },
-  {
-    "type": "module",
-    "named": false
   },
   {
     "type": "type",

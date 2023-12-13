@@ -2,7 +2,7 @@ module.exports = grammar({
 	name: 'gold',
 	rules: {
 		source_file: $ => seq(
-			token('module'),
+			$.kw_module,
 			field('module_name', $.identifier),
 			repeat($.module_item_declaration),
 		),
@@ -120,6 +120,7 @@ module.exports = grammar({
 			$.kw_protected,
 		),
 
+		kw_module: _ => token('module'),
 		kw_uses: _ => token('uses'),
 		kw_var: _ => token('var'),
 		kw_inOut: _ => token('inOut'),

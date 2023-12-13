@@ -5,11 +5,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "module"
-          }
+          "type": "SYMBOL",
+          "name": "kw_module"
         },
         {
           "type": "FIELD",
@@ -520,6 +517,13 @@
           "name": "kw_protected"
         }
       ]
+    },
+    "kw_module": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "module"
+      }
     },
     "kw_uses": {
       "type": "TOKEN",

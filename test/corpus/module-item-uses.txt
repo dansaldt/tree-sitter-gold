@@ -8,7 +8,8 @@ uses aLightObject
 
 ---
 
-(source_file 
+(source_file
+  (kw_module)
   module_name: (identifier)
   (module_item_declaration
     (use_declaration
@@ -30,6 +31,7 @@ uses aLightObject, aFullObject, aListOfInstances
 ---
 
 (source_file 
+  (kw_module)
   module_name: (identifier)
   (module_item_declaration
     (use_declaration
@@ -53,6 +55,7 @@ uses WF, WFCom,
 ---
 
 (source_file 
+  (kw_module)
   module_name: (identifier)
   (module_item_declaration
     (use_declaration
