@@ -19,8 +19,9 @@ end
       (kw_function_begin)
       function_name: (identifier)
       (function_definition
-        (kw_function_end
-          (kw_end)))))
+        (kw_function_end (kw_end)))
+    )
+  )
   (module_item_declaration
     (function_declaration
       (kw_function_begin)
@@ -29,8 +30,9 @@ end
         (kw_return)
         (type_identifier))
       (function_definition
-        (kw_function_end
-          (kw_end)))))
+        (kw_function_end (kw_end)))
+    )
+  )
 )
 
 
@@ -55,7 +57,9 @@ endFunc
       (kw_function_begin)
       function_name: (identifier)
       (function_definition
-        (kw_function_end))))
+        (kw_function_end))
+    )
+  )
   (module_item_declaration
     (function_declaration
       (kw_function_begin)
@@ -64,7 +68,10 @@ endFunc
         (kw_return)
         (type_identifier))
       (function_definition
-        (kw_function_end)))))
+        (kw_function_end))
+    )
+  )
+)
 
 
 ==================
@@ -87,7 +94,10 @@ function MyForwardFunction return Boolean forward
         (kw_return)
         (type_identifier))
       (function_forward_declaration
-        (kw_forward)))))
+        (kw_forward))
+    )
+  )
+)
 
 
 ===================
@@ -112,7 +122,9 @@ endProc
       function_name: (identifier)
       (kw_override)
       (function_definition
-        (kw_function_end))))
+        (kw_function_end))
+    )
+  )
   (module_item_declaration
     (function_declaration
       (kw_function_begin)
@@ -120,7 +132,10 @@ endProc
       (kw_final)
       (kw_override)
       (function_definition
-        (kw_function_end)))))
+        (kw_function_end))
+    )
+  )
+)
 
 
 =====================
@@ -145,14 +160,19 @@ endProc
       function_name: (identifier)
       (visibility (kw_private))
       (function_definition
-        (kw_function_end))))
+        (kw_function_end))
+    )
+  )
   (module_item_declaration
     (function_declaration
       (kw_function_begin)
       function_name: (identifier)
       (visibility (kw_protected))
       (function_definition
-        (kw_function_end)))))
+        (kw_function_end))
+    )
+  )
+)
 
 
 ===================
@@ -174,4 +194,8 @@ procedure MyExternalDllFunction external 'DllName.DllFunctionName'
       (function_external
         (kw_external)
         dll_name: (identifier)
-        dll_function_name: (identifier)))))
+        dll_function_name: (identifier)
+      )
+    )
+  )
+)
