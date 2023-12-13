@@ -48,7 +48,7 @@ module.exports = grammar({
 			'override'
 		)),
 
-		function_forward_declaration: _ => 'forward',
+		function_forward_declaration: _ => seq('forward'),
 
 		function_definition: $ => seq(
 			optional($.function_body_statements),

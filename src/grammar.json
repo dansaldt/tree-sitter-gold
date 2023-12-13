@@ -226,8 +226,13 @@
       }
     },
     "function_forward_declaration": {
-      "type": "STRING",
-      "value": "forward"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "forward"
+        }
+      ]
     },
     "function_definition": {
       "type": "SEQ",

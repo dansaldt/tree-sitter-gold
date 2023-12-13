@@ -178,6 +178,11 @@
     }
   },
   {
+    "type": "function_forward_declaration",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "function_modifiers",
     "named": true,
     "fields": {}
@@ -427,16 +432,16 @@
     "named": false
   },
   {
+    "type": "forward",
+    "named": false
+  },
+  {
     "type": "func",
     "named": false
   },
   {
     "type": "function",
     "named": false
-  },
-  {
-    "type": "function_forward_declaration",
-    "named": true
   },
   {
     "type": "identifier",
