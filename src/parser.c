@@ -19,15 +19,15 @@
 enum {
   anon_sym_module = 1,
   sym_identifier = 2,
-  anon_sym_uses = 3,
-  anon_sym_COMMA = 4,
-  anon_sym_SQUOTE = 5,
-  anon_sym_DOT = 6,
-  anon_sym_endFunc = 7,
-  anon_sym_endProc = 8,
-  anon_sym_LPAREN = 9,
-  anon_sym_RPAREN = 10,
-  anon_sym_COLON = 11,
+  anon_sym_COMMA = 3,
+  anon_sym_SQUOTE = 4,
+  anon_sym_DOT = 5,
+  anon_sym_endFunc = 6,
+  anon_sym_endProc = 7,
+  anon_sym_LPAREN = 8,
+  anon_sym_RPAREN = 9,
+  anon_sym_COLON = 10,
+  sym_kw_uses = 11,
   sym_kw_var = 12,
   sym_kw_inOut = 13,
   sym_kw_const = 14,
@@ -78,7 +78,6 @@ static const char * const ts_symbol_names[] = {
   [ts_builtin_sym_end] = "end",
   [anon_sym_module] = "module",
   [sym_identifier] = "identifier",
-  [anon_sym_uses] = "uses",
   [anon_sym_COMMA] = ",",
   [anon_sym_SQUOTE] = "'",
   [anon_sym_DOT] = ".",
@@ -87,6 +86,7 @@ static const char * const ts_symbol_names[] = {
   [anon_sym_LPAREN] = "(",
   [anon_sym_RPAREN] = ")",
   [anon_sym_COLON] = ":",
+  [sym_kw_uses] = "kw_uses",
   [sym_kw_var] = "kw_var",
   [sym_kw_inOut] = "kw_inOut",
   [sym_kw_const] = "kw_const",
@@ -137,7 +137,6 @@ static const TSSymbol ts_symbol_map[] = {
   [ts_builtin_sym_end] = ts_builtin_sym_end,
   [anon_sym_module] = anon_sym_module,
   [sym_identifier] = sym_identifier,
-  [anon_sym_uses] = anon_sym_uses,
   [anon_sym_COMMA] = anon_sym_COMMA,
   [anon_sym_SQUOTE] = anon_sym_SQUOTE,
   [anon_sym_DOT] = anon_sym_DOT,
@@ -146,6 +145,7 @@ static const TSSymbol ts_symbol_map[] = {
   [anon_sym_LPAREN] = anon_sym_LPAREN,
   [anon_sym_RPAREN] = anon_sym_RPAREN,
   [anon_sym_COLON] = anon_sym_COLON,
+  [sym_kw_uses] = sym_kw_uses,
   [sym_kw_var] = sym_kw_var,
   [sym_kw_inOut] = sym_kw_inOut,
   [sym_kw_const] = sym_kw_const,
@@ -205,10 +205,6 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
-  [anon_sym_uses] = {
-    .visible = true,
-    .named = false,
-  },
   [anon_sym_COMMA] = {
     .visible = true,
     .named = false,
@@ -240,6 +236,10 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
   [anon_sym_COLON] = {
     .visible = true,
     .named = false,
+  },
+  [sym_kw_uses] = {
+    .visible = true,
+    .named = true,
   },
   [sym_kw_var] = {
     .visible = true,
@@ -3433,12 +3433,12 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
   switch (state) {
     case 0:
       if (eof) ADVANCE(82);
-      if (lookahead == '\'') ADVANCE(125);
-      if (lookahead == '(') ADVANCE(131);
-      if (lookahead == ')') ADVANCE(132);
-      if (lookahead == ',') ADVANCE(124);
-      if (lookahead == '.') ADVANCE(126);
-      if (lookahead == ':') ADVANCE(133);
+      if (lookahead == '\'') ADVANCE(123);
+      if (lookahead == '(') ADVANCE(129);
+      if (lookahead == ')') ADVANCE(130);
+      if (lookahead == ',') ADVANCE(122);
+      if (lookahead == '.') ADVANCE(124);
+      if (lookahead == ':') ADVANCE(131);
       if (lookahead == 'c') ADVANCE(48);
       if (lookahead == 'e') ADVANCE(39);
       if (lookahead == 'f') ADVANCE(33);
@@ -3456,7 +3456,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == ' ') SKIP(0)
       END_STATE();
     case 1:
-      if (lookahead == ')') ADVANCE(132);
+      if (lookahead == ')') ADVANCE(130);
       if (lookahead == 'c') ADVANCE(105);
       if (lookahead == 'i') ADVANCE(98);
       if (lookahead == 'v') ADVANCE(85);
@@ -3467,7 +3467,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (sym_identifier_character_set_1(lookahead)) ADVANCE(121);
       END_STATE();
     case 2:
-      if (lookahead == ')') ADVANCE(132);
+      if (lookahead == ')') ADVANCE(130);
       if (lookahead == '\t' ||
           lookahead == '\n' ||
           lookahead == '\r' ||
@@ -3500,10 +3500,10 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == 't') ADVANCE(26);
       END_STATE();
     case 11:
-      if (lookahead == 'c') ADVANCE(127);
+      if (lookahead == 'c') ADVANCE(125);
       END_STATE();
     case 12:
-      if (lookahead == 'c') ADVANCE(129);
+      if (lookahead == 'c') ADVANCE(127);
       END_STATE();
     case 13:
       if (lookahead == 'c') ADVANCE(70);
@@ -3668,7 +3668,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == 'r') ADVANCE(24);
       END_STATE();
     case 63:
-      if (lookahead == 's') ADVANCE(122);
+      if (lookahead == 's') ADVANCE(132);
       END_STATE();
     case 64:
       if (lookahead == 's') ADVANCE(27);
@@ -3761,12 +3761,12 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 88:
       ACCEPT_TOKEN(sym_identifier);
-      if (lookahead == 'c') ADVANCE(128);
+      if (lookahead == 'c') ADVANCE(126);
       if (sym_identifier_character_set_2(lookahead)) ADVANCE(121);
       END_STATE();
     case 89:
       ACCEPT_TOKEN(sym_identifier);
-      if (lookahead == 'c') ADVANCE(130);
+      if (lookahead == 'c') ADVANCE(128);
       if (sym_identifier_character_set_2(lookahead)) ADVANCE(121);
       END_STATE();
     case 90:
@@ -3881,7 +3881,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 112:
       ACCEPT_TOKEN(sym_identifier);
-      if (lookahead == 's') ADVANCE(123);
+      if (lookahead == 's') ADVANCE(133);
       if (sym_identifier_character_set_2(lookahead)) ADVANCE(121);
       END_STATE();
     case 113:
@@ -3929,43 +3929,43 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (sym_identifier_character_set_2(lookahead)) ADVANCE(121);
       END_STATE();
     case 122:
-      ACCEPT_TOKEN(anon_sym_uses);
-      END_STATE();
-    case 123:
-      ACCEPT_TOKEN(anon_sym_uses);
-      if (sym_identifier_character_set_2(lookahead)) ADVANCE(121);
-      END_STATE();
-    case 124:
       ACCEPT_TOKEN(anon_sym_COMMA);
       END_STATE();
-    case 125:
+    case 123:
       ACCEPT_TOKEN(anon_sym_SQUOTE);
       END_STATE();
-    case 126:
+    case 124:
       ACCEPT_TOKEN(anon_sym_DOT);
       END_STATE();
-    case 127:
+    case 125:
       ACCEPT_TOKEN(anon_sym_endFunc);
       END_STATE();
-    case 128:
+    case 126:
       ACCEPT_TOKEN(anon_sym_endFunc);
+      if (sym_identifier_character_set_2(lookahead)) ADVANCE(121);
+      END_STATE();
+    case 127:
+      ACCEPT_TOKEN(anon_sym_endProc);
+      END_STATE();
+    case 128:
+      ACCEPT_TOKEN(anon_sym_endProc);
       if (sym_identifier_character_set_2(lookahead)) ADVANCE(121);
       END_STATE();
     case 129:
-      ACCEPT_TOKEN(anon_sym_endProc);
-      END_STATE();
-    case 130:
-      ACCEPT_TOKEN(anon_sym_endProc);
-      if (sym_identifier_character_set_2(lookahead)) ADVANCE(121);
-      END_STATE();
-    case 131:
       ACCEPT_TOKEN(anon_sym_LPAREN);
       END_STATE();
-    case 132:
+    case 130:
       ACCEPT_TOKEN(anon_sym_RPAREN);
       END_STATE();
-    case 133:
+    case 131:
       ACCEPT_TOKEN(anon_sym_COLON);
+      END_STATE();
+    case 132:
+      ACCEPT_TOKEN(sym_kw_uses);
+      END_STATE();
+    case 133:
+      ACCEPT_TOKEN(sym_kw_uses);
+      if (sym_identifier_character_set_2(lookahead)) ADVANCE(121);
       END_STATE();
     case 134:
       ACCEPT_TOKEN(sym_kw_var);
@@ -4174,7 +4174,6 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   [0] = {
     [ts_builtin_sym_end] = ACTIONS(1),
     [anon_sym_module] = ACTIONS(1),
-    [anon_sym_uses] = ACTIONS(1),
     [anon_sym_COMMA] = ACTIONS(1),
     [anon_sym_SQUOTE] = ACTIONS(1),
     [anon_sym_DOT] = ACTIONS(1),
@@ -4183,6 +4182,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [anon_sym_LPAREN] = ACTIONS(1),
     [anon_sym_RPAREN] = ACTIONS(1),
     [anon_sym_COLON] = ACTIONS(1),
+    [sym_kw_uses] = ACTIONS(1),
     [sym_kw_var] = ACTIONS(1),
     [sym_kw_inOut] = ACTIONS(1),
     [sym_kw_const] = ACTIONS(1),
@@ -4220,10 +4220,10 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_visibility] = STATE(6),
     [sym_enum_item] = STATE(30),
     [aux_sym_function_body_statements_repeat1] = STATE(25),
-    [anon_sym_uses] = ACTIONS(5),
-    [anon_sym_endFunc] = ACTIONS(7),
-    [anon_sym_endProc] = ACTIONS(7),
-    [anon_sym_LPAREN] = ACTIONS(9),
+    [anon_sym_endFunc] = ACTIONS(5),
+    [anon_sym_endProc] = ACTIONS(5),
+    [anon_sym_LPAREN] = ACTIONS(7),
+    [sym_kw_uses] = ACTIONS(9),
     [sym_kw_var] = ACTIONS(11),
     [sym_kw_return] = ACTIONS(13),
     [sym_kw_end] = ACTIONS(15),
@@ -4239,8 +4239,8 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
 
 static const uint16_t ts_small_parse_table[] = {
   [0] = 20,
-    ACTIONS(5), 1,
-      anon_sym_uses,
+    ACTIONS(9), 1,
+      sym_kw_uses,
     ACTIONS(11), 1,
       sym_kw_var,
     ACTIONS(13), 1,
@@ -4269,7 +4269,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_declaration_statement,
     STATE(64), 1,
       sym_function_body_statements,
-    ACTIONS(7), 2,
+    ACTIONS(5), 2,
       anon_sym_endFunc,
       anon_sym_endProc,
     ACTIONS(21), 2,
@@ -4287,8 +4287,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_type_declaration,
       sym_variable_declaration,
   [68] = 18,
-    ACTIONS(5), 1,
-      anon_sym_uses,
+    ACTIONS(9), 1,
+      sym_kw_uses,
     ACTIONS(11), 1,
       sym_kw_var,
     ACTIONS(15), 1,
@@ -4313,7 +4313,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_declaration_statement,
     STATE(64), 1,
       sym_function_body_statements,
-    ACTIONS(7), 2,
+    ACTIONS(5), 2,
       anon_sym_endFunc,
       anon_sym_endProc,
     ACTIONS(21), 2,
@@ -4331,8 +4331,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_type_declaration,
       sym_variable_declaration,
   [130] = 18,
-    ACTIONS(5), 1,
-      anon_sym_uses,
+    ACTIONS(9), 1,
+      sym_kw_uses,
     ACTIONS(11), 1,
       sym_kw_var,
     ACTIONS(15), 1,
@@ -4357,7 +4357,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_declaration_statement,
     STATE(64), 1,
       sym_function_body_statements,
-    ACTIONS(7), 2,
+    ACTIONS(5), 2,
       anon_sym_endFunc,
       anon_sym_endProc,
     ACTIONS(21), 2,
@@ -4375,8 +4375,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_type_declaration,
       sym_variable_declaration,
   [192] = 16,
-    ACTIONS(5), 1,
-      anon_sym_uses,
+    ACTIONS(9), 1,
+      sym_kw_uses,
     ACTIONS(11), 1,
       sym_kw_var,
     ACTIONS(15), 1,
@@ -4399,7 +4399,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_declaration_statement,
     STATE(64), 1,
       sym_function_body_statements,
-    ACTIONS(7), 2,
+    ACTIONS(5), 2,
       anon_sym_endFunc,
       anon_sym_endProc,
     STATE(25), 2,
@@ -4414,8 +4414,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_type_declaration,
       sym_variable_declaration,
   [247] = 16,
-    ACTIONS(5), 1,
-      anon_sym_uses,
+    ACTIONS(9), 1,
+      sym_kw_uses,
     ACTIONS(11), 1,
       sym_kw_var,
     ACTIONS(15), 1,
@@ -4438,7 +4438,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_declaration_statement,
     STATE(64), 1,
       sym_function_body_statements,
-    ACTIONS(7), 2,
+    ACTIONS(5), 2,
       anon_sym_endFunc,
       anon_sym_endProc,
     STATE(25), 2,
@@ -4453,8 +4453,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_type_declaration,
       sym_variable_declaration,
   [302] = 16,
-    ACTIONS(5), 1,
-      anon_sym_uses,
+    ACTIONS(9), 1,
+      sym_kw_uses,
     ACTIONS(11), 1,
       sym_kw_var,
     ACTIONS(15), 1,
@@ -4477,7 +4477,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_declaration_statement,
     STATE(64), 1,
       sym_function_body_statements,
-    ACTIONS(7), 2,
+    ACTIONS(5), 2,
       anon_sym_endFunc,
       anon_sym_endProc,
     STATE(25), 2,
@@ -4492,8 +4492,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_type_declaration,
       sym_variable_declaration,
   [357] = 15,
-    ACTIONS(5), 1,
-      anon_sym_uses,
+    ACTIONS(9), 1,
+      sym_kw_uses,
     ACTIONS(11), 1,
       sym_kw_var,
     ACTIONS(15), 1,
@@ -4514,7 +4514,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_declaration_statement,
     STATE(64), 1,
       sym_function_body_statements,
-    ACTIONS(7), 2,
+    ACTIONS(5), 2,
       anon_sym_endFunc,
       anon_sym_endProc,
     STATE(25), 2,
@@ -4529,8 +4529,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_type_declaration,
       sym_variable_declaration,
   [409] = 15,
-    ACTIONS(5), 1,
-      anon_sym_uses,
+    ACTIONS(9), 1,
+      sym_kw_uses,
     ACTIONS(11), 1,
       sym_kw_var,
     ACTIONS(15), 1,
@@ -4551,7 +4551,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_declaration_statement,
     STATE(64), 1,
       sym_function_body_statements,
-    ACTIONS(7), 2,
+    ACTIONS(5), 2,
       anon_sym_endFunc,
       anon_sym_endProc,
     STATE(25), 2,
@@ -4566,8 +4566,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_type_declaration,
       sym_variable_declaration,
   [461] = 15,
-    ACTIONS(5), 1,
-      anon_sym_uses,
+    ACTIONS(9), 1,
+      sym_kw_uses,
     ACTIONS(11), 1,
       sym_kw_var,
     ACTIONS(15), 1,
@@ -4588,7 +4588,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_declaration_statement,
     STATE(64), 1,
       sym_function_body_statements,
-    ACTIONS(7), 2,
+    ACTIONS(5), 2,
       anon_sym_endFunc,
       anon_sym_endProc,
     STATE(25), 2,
@@ -4603,8 +4603,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_type_declaration,
       sym_variable_declaration,
   [513] = 15,
-    ACTIONS(5), 1,
-      anon_sym_uses,
+    ACTIONS(9), 1,
+      sym_kw_uses,
     ACTIONS(11), 1,
       sym_kw_var,
     ACTIONS(15), 1,
@@ -4625,7 +4625,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_declaration_statement,
     STATE(64), 1,
       sym_function_body_statements,
-    ACTIONS(7), 2,
+    ACTIONS(5), 2,
       anon_sym_endFunc,
       anon_sym_endProc,
     STATE(25), 2,
@@ -4640,8 +4640,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_type_declaration,
       sym_variable_declaration,
   [565] = 14,
-    ACTIONS(5), 1,
-      anon_sym_uses,
+    ACTIONS(9), 1,
+      sym_kw_uses,
     ACTIONS(11), 1,
       sym_kw_var,
     ACTIONS(15), 1,
@@ -4660,7 +4660,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_declaration_statement,
     STATE(64), 1,
       sym_function_body_statements,
-    ACTIONS(7), 2,
+    ACTIONS(5), 2,
       anon_sym_endFunc,
       anon_sym_endProc,
     STATE(25), 2,
@@ -4675,8 +4675,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_type_declaration,
       sym_variable_declaration,
   [614] = 14,
-    ACTIONS(5), 1,
-      anon_sym_uses,
+    ACTIONS(9), 1,
+      sym_kw_uses,
     ACTIONS(11), 1,
       sym_kw_var,
     ACTIONS(15), 1,
@@ -4695,7 +4695,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_declaration_statement,
     STATE(64), 1,
       sym_function_body_statements,
-    ACTIONS(7), 2,
+    ACTIONS(5), 2,
       anon_sym_endFunc,
       anon_sym_endProc,
     STATE(25), 2,
@@ -4710,8 +4710,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_type_declaration,
       sym_variable_declaration,
   [663] = 14,
-    ACTIONS(5), 1,
-      anon_sym_uses,
+    ACTIONS(9), 1,
+      sym_kw_uses,
     ACTIONS(11), 1,
       sym_kw_var,
     ACTIONS(15), 1,
@@ -4730,7 +4730,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_declaration_statement,
     STATE(64), 1,
       sym_function_body_statements,
-    ACTIONS(7), 2,
+    ACTIONS(5), 2,
       anon_sym_endFunc,
       anon_sym_endProc,
     STATE(25), 2,
@@ -4745,8 +4745,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_type_declaration,
       sym_variable_declaration,
   [712] = 14,
-    ACTIONS(5), 1,
-      anon_sym_uses,
+    ACTIONS(9), 1,
+      sym_kw_uses,
     ACTIONS(11), 1,
       sym_kw_var,
     ACTIONS(15), 1,
@@ -4765,7 +4765,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_declaration_statement,
     STATE(64), 1,
       sym_function_body_statements,
-    ACTIONS(7), 2,
+    ACTIONS(5), 2,
       anon_sym_endFunc,
       anon_sym_endProc,
     STATE(25), 2,
@@ -4786,12 +4786,12 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_end,
     ACTIONS(43), 17,
       ts_builtin_sym_end,
-      anon_sym_uses,
       anon_sym_COMMA,
       anon_sym_endFunc,
       anon_sym_endProc,
       anon_sym_RPAREN,
       anon_sym_COLON,
+      sym_kw_uses,
       sym_kw_var,
       sym_kw_function,
       sym_kw_procedure,
@@ -4803,8 +4803,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_override,
       anon_sym_type,
   [786] = 14,
-    ACTIONS(5), 1,
-      anon_sym_uses,
+    ACTIONS(9), 1,
+      sym_kw_uses,
     ACTIONS(11), 1,
       sym_kw_var,
     ACTIONS(15), 1,
@@ -4823,7 +4823,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_declaration_statement,
     STATE(64), 1,
       sym_function_body_statements,
-    ACTIONS(7), 2,
+    ACTIONS(5), 2,
       anon_sym_endFunc,
       anon_sym_endProc,
     STATE(25), 2,
@@ -4843,7 +4843,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(47), 1,
       ts_builtin_sym_end,
     ACTIONS(49), 1,
-      anon_sym_uses,
+      sym_kw_uses,
     STATE(30), 1,
       sym_enum_item,
     STATE(93), 1,
@@ -4865,7 +4865,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(27), 1,
       anon_sym_type,
     ACTIONS(49), 1,
-      anon_sym_uses,
+      sym_kw_uses,
     ACTIONS(55), 1,
       ts_builtin_sym_end,
     STATE(30), 1,
@@ -4889,7 +4889,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(57), 1,
       ts_builtin_sym_end,
     ACTIONS(59), 1,
-      anon_sym_uses,
+      sym_kw_uses,
     ACTIONS(68), 1,
       anon_sym_type,
     STATE(30), 1,
@@ -4913,9 +4913,9 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(73), 1,
       sym_kw_end,
     ACTIONS(71), 12,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       sym_kw_return,
       sym_kw_external,
@@ -4929,9 +4929,9 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(77), 1,
       sym_kw_end,
     ACTIONS(75), 12,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       sym_kw_return,
       sym_kw_external,
@@ -4952,16 +4952,16 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_end,
     ACTIONS(79), 8,
       ts_builtin_sym_end,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       sym_kw_function,
       sym_kw_procedure,
       anon_sym_type,
   [992] = 9,
-    ACTIONS(5), 1,
-      anon_sym_uses,
+    ACTIONS(9), 1,
+      sym_kw_uses,
     ACTIONS(11), 1,
       sym_kw_var,
     ACTIONS(27), 1,
@@ -4986,9 +4986,9 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(92), 1,
       sym_kw_end,
     ACTIONS(90), 12,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       sym_kw_return,
       sym_kw_external,
@@ -4999,8 +4999,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_override,
       anon_sym_type,
   [1042] = 9,
-    ACTIONS(94), 1,
-      anon_sym_uses,
+    ACTIONS(96), 1,
+      sym_kw_uses,
     ACTIONS(99), 1,
       sym_kw_var,
     ACTIONS(102), 1,
@@ -5011,7 +5011,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_enum_item,
     STATE(57), 1,
       sym_declaration_statement,
-    ACTIONS(97), 2,
+    ACTIONS(94), 2,
       anon_sym_endFunc,
       anon_sym_endProc,
     STATE(27), 2,
@@ -5028,10 +5028,10 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_end,
     ACTIONS(79), 9,
       ts_builtin_sym_end,
-      anon_sym_uses,
       anon_sym_COMMA,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       sym_kw_function,
       sym_kw_procedure,
@@ -5040,9 +5040,9 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(109), 1,
       sym_kw_end,
     ACTIONS(107), 11,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       sym_kw_external,
       sym_kw_forward,
@@ -5058,9 +5058,9 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_end,
     ACTIONS(111), 8,
       ts_builtin_sym_end,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       sym_kw_function,
       sym_kw_procedure,
@@ -5072,9 +5072,9 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_end,
     ACTIONS(115), 8,
       ts_builtin_sym_end,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       sym_kw_function,
       sym_kw_procedure,
@@ -5086,9 +5086,9 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_end,
     ACTIONS(119), 8,
       ts_builtin_sym_end,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       sym_kw_function,
       sym_kw_procedure,
@@ -5100,9 +5100,9 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_end,
     ACTIONS(123), 8,
       ts_builtin_sym_end,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       sym_kw_function,
       sym_kw_procedure,
@@ -5114,9 +5114,9 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_end,
     ACTIONS(127), 8,
       ts_builtin_sym_end,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       sym_kw_function,
       sym_kw_procedure,
@@ -5125,9 +5125,9 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(133), 1,
       sym_kw_end,
     ACTIONS(131), 9,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       sym_kw_external,
       sym_kw_forward,
@@ -5144,7 +5144,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_proc,
     ACTIONS(135), 5,
       ts_builtin_sym_end,
-      anon_sym_uses,
+      sym_kw_uses,
       sym_kw_function,
       sym_kw_procedure,
       anon_sym_type,
@@ -5158,7 +5158,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_proc,
     ACTIONS(141), 5,
       ts_builtin_sym_end,
-      anon_sym_uses,
+      sym_kw_uses,
       sym_kw_function,
       sym_kw_procedure,
       anon_sym_type,
@@ -5170,7 +5170,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(28), 1,
       sym__type_identifier,
     ACTIONS(151), 6,
-      anon_sym_uses,
+      sym_kw_uses,
       sym_kw_func,
       sym_kw_function,
       sym_kw_proc,
@@ -5184,7 +5184,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(28), 1,
       sym__type_identifier,
     ACTIONS(145), 6,
-      anon_sym_uses,
+      sym_kw_uses,
       sym_kw_func,
       sym_kw_function,
       sym_kw_proc,
@@ -5196,9 +5196,9 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(28), 1,
       sym__type_identifier,
     ACTIONS(145), 6,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       sym_kw_end,
       anon_sym_type,
@@ -5208,9 +5208,9 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(28), 1,
       sym__type_identifier,
     ACTIONS(151), 6,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       sym_kw_end,
       anon_sym_type,
@@ -5222,9 +5222,9 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(24), 1,
       aux_sym_use_declaration_repeat1,
     ACTIONS(141), 5,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       anon_sym_type,
   [1322] = 4,
@@ -5235,9 +5235,9 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(42), 1,
       aux_sym_use_declaration_repeat1,
     ACTIONS(135), 5,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       anon_sym_type,
   [1339] = 2,
@@ -5246,7 +5246,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_proc,
     ACTIONS(157), 5,
       ts_builtin_sym_end,
-      anon_sym_uses,
+      sym_kw_uses,
       sym_kw_function,
       sym_kw_procedure,
       anon_sym_type,
@@ -5256,7 +5256,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_proc,
     ACTIONS(161), 5,
       ts_builtin_sym_end,
-      anon_sym_uses,
+      sym_kw_uses,
       sym_kw_function,
       sym_kw_procedure,
       anon_sym_type,
@@ -5266,7 +5266,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_proc,
     ACTIONS(165), 5,
       ts_builtin_sym_end,
-      anon_sym_uses,
+      sym_kw_uses,
       sym_kw_function,
       sym_kw_procedure,
       anon_sym_type,
@@ -5276,7 +5276,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_proc,
     ACTIONS(169), 5,
       ts_builtin_sym_end,
-      anon_sym_uses,
+      sym_kw_uses,
       sym_kw_function,
       sym_kw_procedure,
       anon_sym_type,
@@ -5286,7 +5286,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_proc,
     ACTIONS(173), 5,
       ts_builtin_sym_end,
-      anon_sym_uses,
+      sym_kw_uses,
       sym_kw_function,
       sym_kw_procedure,
       anon_sym_type,
@@ -5296,7 +5296,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_proc,
     ACTIONS(177), 5,
       ts_builtin_sym_end,
-      anon_sym_uses,
+      sym_kw_uses,
       sym_kw_function,
       sym_kw_procedure,
       anon_sym_type,
@@ -5306,7 +5306,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_proc,
     ACTIONS(181), 5,
       ts_builtin_sym_end,
-      anon_sym_uses,
+      sym_kw_uses,
       sym_kw_function,
       sym_kw_procedure,
       anon_sym_type,
@@ -5316,7 +5316,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_proc,
     ACTIONS(185), 5,
       ts_builtin_sym_end,
-      anon_sym_uses,
+      sym_kw_uses,
       sym_kw_function,
       sym_kw_procedure,
       anon_sym_type,
@@ -5326,7 +5326,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_proc,
     ACTIONS(189), 5,
       ts_builtin_sym_end,
-      anon_sym_uses,
+      sym_kw_uses,
       sym_kw_function,
       sym_kw_procedure,
       anon_sym_type,
@@ -5336,7 +5336,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_proc,
     ACTIONS(193), 5,
       ts_builtin_sym_end,
-      anon_sym_uses,
+      sym_kw_uses,
       sym_kw_function,
       sym_kw_procedure,
       anon_sym_type,
@@ -5346,7 +5346,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_proc,
     ACTIONS(197), 5,
       ts_builtin_sym_end,
-      anon_sym_uses,
+      sym_kw_uses,
       sym_kw_function,
       sym_kw_procedure,
       anon_sym_type,
@@ -5356,7 +5356,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_proc,
     ACTIONS(201), 5,
       ts_builtin_sym_end,
-      anon_sym_uses,
+      sym_kw_uses,
       sym_kw_function,
       sym_kw_procedure,
       anon_sym_type,
@@ -5375,27 +5375,27 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(213), 1,
       sym_kw_end,
     ACTIONS(211), 5,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       anon_sym_type,
   [1509] = 2,
     ACTIONS(217), 1,
       sym_kw_end,
     ACTIONS(215), 5,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       anon_sym_type,
   [1520] = 2,
     ACTIONS(221), 1,
       sym_kw_end,
     ACTIONS(219), 5,
-      anon_sym_uses,
       anon_sym_endFunc,
       anon_sym_endProc,
+      sym_kw_uses,
       sym_kw_var,
       anon_sym_type,
   [1531] = 4,
@@ -5441,7 +5441,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_kw_end,
     STATE(54), 1,
       sym_kw_function_end,
-    ACTIONS(7), 2,
+    ACTIONS(5), 2,
       anon_sym_endFunc,
       anon_sym_endProc,
   [1594] = 4,
@@ -5728,9 +5728,9 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [0] = {.entry = {.count = 0, .reusable = false}},
   [1] = {.entry = {.count = 1, .reusable = false}}, RECOVER(),
   [3] = {.entry = {.count = 1, .reusable = true}}, SHIFT(94),
-  [5] = {.entry = {.count = 1, .reusable = true}}, SHIFT(79),
-  [7] = {.entry = {.count = 1, .reusable = true}}, SHIFT(53),
-  [9] = {.entry = {.count = 1, .reusable = true}}, SHIFT(62),
+  [5] = {.entry = {.count = 1, .reusable = true}}, SHIFT(53),
+  [7] = {.entry = {.count = 1, .reusable = true}}, SHIFT(62),
+  [9] = {.entry = {.count = 1, .reusable = true}}, SHIFT(79),
   [11] = {.entry = {.count = 1, .reusable = true}}, SHIFT(90),
   [13] = {.entry = {.count = 1, .reusable = true}}, SHIFT(81),
   [15] = {.entry = {.count = 1, .reusable = false}}, SHIFT(53),
@@ -5770,8 +5770,8 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [88] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_function_body_statements, 1),
   [90] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_function_parameters, 5),
   [92] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_function_parameters, 5),
-  [94] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_function_body_statements_repeat1, 2), SHIFT_REPEAT(79),
-  [97] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_function_body_statements_repeat1, 2),
+  [94] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_function_body_statements_repeat1, 2),
+  [96] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_function_body_statements_repeat1, 2), SHIFT_REPEAT(79),
   [99] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_function_body_statements_repeat1, 2), SHIFT_REPEAT(90),
   [102] = {.entry = {.count = 1, .reusable = false}}, REDUCE(aux_sym_function_body_statements_repeat1, 2),
   [104] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_function_body_statements_repeat1, 2), SHIFT_REPEAT(82),

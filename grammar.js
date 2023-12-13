@@ -18,7 +18,7 @@ module.exports = grammar({
 		),
 
 		use_declaration: $ => seq(
-			'uses',
+			$.kw_uses,
 			sepBy1(',', $._type_identifier),
 			optional(','),
 		),
@@ -120,6 +120,7 @@ module.exports = grammar({
 			$.kw_protected,
 		),
 
+		kw_uses: _ => token('uses'),
 		kw_var: _ => token('var'),
 		kw_inOut: _ => token('inOut'),
 		kw_const: _ => token('const'),

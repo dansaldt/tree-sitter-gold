@@ -62,8 +62,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "uses"
+          "type": "SYMBOL",
+          "name": "kw_uses"
         },
         {
           "type": "SEQ",
@@ -526,6 +526,13 @@
           "name": "kw_protected"
         }
       ]
+    },
+    "kw_uses": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "uses"
+      }
     },
     "kw_var": {
       "type": "TOKEN",

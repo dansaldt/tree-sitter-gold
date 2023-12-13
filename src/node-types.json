@@ -422,6 +422,10 @@
       "required": true,
       "types": [
         {
+          "type": "kw_uses",
+          "named": true
+        },
+        {
           "type": "type_identifier",
           "named": true
         }
@@ -576,6 +580,10 @@
     "named": true
   },
   {
+    "type": "kw_uses",
+    "named": true
+  },
+  {
     "type": "kw_var",
     "named": true
   },
@@ -590,9 +598,5 @@
   {
     "type": "type_identifier",
     "named": true
-  },
-  {
-    "type": "uses",
-    "named": false
   }
 ]

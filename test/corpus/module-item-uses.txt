@@ -12,6 +12,7 @@ uses aLightObject
   module_name: (identifier)
   (module_item_declaration
     (use_declaration
+      (kw_uses)
       (type_identifier)
 	)
   )
@@ -32,6 +33,7 @@ uses aLightObject, aFullObject, aListOfInstances
   module_name: (identifier)
   (module_item_declaration
     (use_declaration
+      (kw_uses)
       (type_identifier)
       (type_identifier)
       (type_identifier)
@@ -54,6 +56,7 @@ uses WF, WFCom,
   module_name: (identifier)
   (module_item_declaration
     (use_declaration
+      (kw_uses)
       (type_identifier)
       (type_identifier)
 	)
