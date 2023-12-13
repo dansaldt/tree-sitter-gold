@@ -219,6 +219,11 @@
     }
   },
   {
+    "type": "function_parameter_modifiers",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "function_parameters",
     "named": true,
     "fields": {},
@@ -398,6 +403,22 @@
     "named": false
   },
   {
+    "type": "const",
+    "named": false
+  },
+  {
+    "type": "end",
+    "named": false
+  },
+  {
+    "type": "endFunc",
+    "named": false
+  },
+  {
+    "type": "endProc",
+    "named": false
+  },
+  {
     "type": "external",
     "named": false
   },
@@ -406,16 +427,24 @@
     "named": false
   },
   {
-    "type": "function_forward_declaration",
-    "named": true
+    "type": "func",
+    "named": false
   },
   {
-    "type": "function_parameter_modifiers",
+    "type": "function",
+    "named": false
+  },
+  {
+    "type": "function_forward_declaration",
     "named": true
   },
   {
     "type": "identifier",
     "named": true
+  },
+  {
+    "type": "inOut",
+    "named": false
   },
   {
     "type": "module",
@@ -427,6 +456,14 @@
   },
   {
     "type": "private",
+    "named": false
+  },
+  {
+    "type": "proc",
+    "named": false
+  },
+  {
+    "type": "procedure",
     "named": false
   },
   {

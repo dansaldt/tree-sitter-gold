@@ -2,7 +2,7 @@ module.exports = grammar({
 	name: 'gold',
 	rules: {
 		source_file: $ => seq(
-			token('module'),
+			'module',
 			field('name', $.identifier),
 			repeat($.module_item_declaration),
 		),
@@ -18,7 +18,7 @@ module.exports = grammar({
 		),
 
 		use_declaration: $ => seq(
-			token('uses'),
+			'uses',
 			sepBy1(',', $._type_identifier),
 			optional(','),
 		),
@@ -29,7 +29,7 @@ module.exports = grammar({
 		),
 
 		function_declaration: $ => seq(
-			token(choice('func', 'function', 'proc', 'procedure')),
+			choice('func', 'function', 'proc', 'procedure'),
 			field('name', $.identifier),
 			optional($.function_parameters),
 			optional($.function_return_type),
@@ -48,42 +48,40 @@ module.exports = grammar({
 			'override'
 		)),
 
-		function_forward_declaration: _ => token('forward'),
+		function_forward_declaration: _ => 'forward',
 
 		function_definition: $ => seq(
 			optional($.function_body_statements),
-			token(choice('endFunc', 'endProc', 'end')),
+			choice('endFunc', 'endProc', 'end'),
 		),
 
 		function_external: $ => seq(
-			token('external'),
-			token('\''),
+			'external',
+			'\'',
 			field('dll_name', $.identifier),
-			token('.'),
+			'.',
 			field('dll_function_name', $.identifier),
-			token('\''),
+			'\'',
 		),
 
 		function_parameters: $ => seq(
-			token('('),
+			'(',
 			sepBy1(',', $.function_parameter_declaration),
 			optional(','),
-			token(')'),
+			')',
 		),
 
 		function_parameter_declaration: $ => seq(
 			optional($.function_parameter_modifiers),
 			field('name', $.identifier),
-			token(':'),
+			':',
 			field('type', $._type_identifier),
 		),
 
-		function_parameter_modifiers: _ => token(
-			choice('inOut', 'var', 'const')
-		),
+		function_parameter_modifiers: _ => choice('inOut', 'var', 'const'),
 
 		function_return_type: $ => seq(
-			token('return'),
+			'return',
 			$._type_identifier,
 		),
 
@@ -92,9 +90,9 @@ module.exports = grammar({
 		),
 
 		variable_declaration: $ => seq(
-			token('var'),
+			'var',
 			field('name', $.identifier),
-			token(':'),
+			':',
 			field('type', $._type_identifier),
 		),
 
@@ -114,8 +112,8 @@ module.exports = grammar({
 		//},
 
 		visibility_modifiers: $ => choice(
-			token('private'),
-			token('protected'),
+			'private',
+			'protected',
 		),
 
 		enum_item: $ => seq(
