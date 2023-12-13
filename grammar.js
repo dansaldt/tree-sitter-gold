@@ -65,8 +65,8 @@ module.exports = grammar({
 		),
 
 		kw_function_end: $ => choice(
-			token('endFunc'),
-			token('endProc'),
+			$.kw_endfunc,
+			$.kw_endproc,
 			$.kw_end,
 		),
 
@@ -126,8 +126,10 @@ module.exports = grammar({
 		kw_const: _ => token('const'),
 		kw_func: _ => token('func'),
 		kw_function: _ => token('function'),
+		kw_endfunc: _ => token('endFunc'),
 		kw_proc: _ => token('proc'),
 		kw_procedure: _ => token('procedure'),
+		kw_endproc: _ => token('endProc'),
 		kw_return: _ => token('return'),
 		kw_end: _ => token('end'),
 		kw_external: _ => token('external'),

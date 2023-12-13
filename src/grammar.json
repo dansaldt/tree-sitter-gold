@@ -303,18 +303,12 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "endFunc"
-          }
+          "type": "SYMBOL",
+          "name": "kw_endfunc"
         },
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "endProc"
-          }
+          "type": "SYMBOL",
+          "name": "kw_endproc"
         },
         {
           "type": "SYMBOL",
@@ -569,6 +563,13 @@
         "value": "function"
       }
     },
+    "kw_endfunc": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "endFunc"
+      }
+    },
     "kw_proc": {
       "type": "TOKEN",
       "content": {
@@ -581,6 +582,13 @@
       "content": {
         "type": "STRING",
         "value": "procedure"
+      }
+    },
+    "kw_endproc": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "endProc"
       }
     },
     "kw_return": {

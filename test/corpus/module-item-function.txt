@@ -57,7 +57,7 @@ endFunc
       (kw_function_begin (kw_procedure))
       function_name: (identifier)
       (function_definition
-        (kw_function_end))
+        (kw_function_end (kw_endproc)))
     )
   )
   (module_item_declaration
@@ -68,7 +68,7 @@ endFunc
         (kw_return)
         (type_identifier))
       (function_definition
-        (kw_function_end))
+        (kw_function_end (kw_endfunc)))
     )
   )
 )
@@ -122,7 +122,7 @@ endProc
       function_name: (identifier)
       (kw_override)
       (function_definition
-        (kw_function_end))
+        (kw_function_end (kw_endproc)))
     )
   )
   (module_item_declaration
@@ -132,7 +132,7 @@ endProc
       (kw_final)
       (kw_override)
       (function_definition
-        (kw_function_end))
+        (kw_function_end (kw_endproc)))
     )
   )
 )
@@ -160,7 +160,7 @@ endProc
       function_name: (identifier)
       (visibility (kw_private))
       (function_definition
-        (kw_function_end))
+        (kw_function_end (kw_endproc)))
     )
   )
   (module_item_declaration
@@ -169,7 +169,7 @@ endProc
       function_name: (identifier)
       (visibility (kw_protected))
       (function_definition
-        (kw_function_end))
+        (kw_function_end (kw_endproc)))
     )
   )
 )
