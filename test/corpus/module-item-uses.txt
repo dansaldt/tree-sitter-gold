@@ -9,11 +9,9 @@ uses aLightObject
 ---
 
 (source_file
-  (kw_module)
-  module_name: (identifier)
+  name: (identifier)
   (module_item_declaration
     (use_declaration
-      (kw_uses)
       (type_identifier)
 	)
   )
@@ -31,11 +29,9 @@ uses aLightObject, aFullObject, aListOfInstances
 ---
 
 (source_file 
-  (kw_module)
-  module_name: (identifier)
+  name: (identifier)
   (module_item_declaration
     (use_declaration
-      (kw_uses)
       (type_identifier)
       (type_identifier)
       (type_identifier)
@@ -55,11 +51,9 @@ uses WF, WFCom,
 ---
 
 (source_file 
-  (kw_module)
-  module_name: (identifier)
+  name: (identifier)
   (module_item_declaration
     (use_declaration
-      (kw_uses)
       (type_identifier)
       (type_identifier)
 	)

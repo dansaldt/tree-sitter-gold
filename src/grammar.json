@@ -5,12 +5,15 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "kw_module"
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "module"
+          }
         },
         {
           "type": "FIELD",
-          "name": "module_name",
+          "name": "name",
           "content": {
             "type": "SYMBOL",
             "name": "identifier"
@@ -59,8 +62,11 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "kw_uses"
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "uses"
+          }
         },
         {
           "type": "SEQ",
@@ -114,12 +120,32 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "kw_function_begin"
+          "type": "TOKEN",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "func"
+              },
+              {
+                "type": "STRING",
+                "value": "function"
+              },
+              {
+                "type": "STRING",
+                "value": "proc"
+              },
+              {
+                "type": "STRING",
+                "value": "procedure"
+              }
+            ]
+          }
         },
         {
           "type": "FIELD",
-          "name": "function_name",
+          "name": "name",
           "content": {
             "type": "SYMBOL",
             "name": "identifier"
@@ -154,7 +180,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "visibility"
+              "name": "visibility_modifiers"
             },
             {
               "type": "BLANK"
@@ -166,19 +192,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "kw_final"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "kw_override"
+              "name": "function_modifiers"
             },
             {
               "type": "BLANK"
@@ -204,9 +218,28 @@
         }
       ]
     },
+    "function_modifiers": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "final"
+          },
+          {
+            "type": "STRING",
+            "value": "override"
+          }
+        ]
+      }
+    },
     "function_forward_declaration": {
-      "type": "SYMBOL",
-      "name": "kw_forward"
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "forward"
+      }
     },
     "function_definition": {
       "type": "SEQ",
@@ -224,8 +257,24 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "kw_function_end"
+          "type": "TOKEN",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "endFunc"
+              },
+              {
+                "type": "STRING",
+                "value": "endProc"
+              },
+              {
+                "type": "STRING",
+                "value": "end"
+              }
+            ]
+          }
         }
       ]
     },
@@ -233,8 +282,11 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "kw_external"
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "external"
+          }
         },
         {
           "type": "TOKEN",
@@ -272,44 +324,6 @@
             "type": "STRING",
             "value": "'"
           }
-        }
-      ]
-    },
-    "kw_function_begin": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "kw_func"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "kw_function"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "kw_proc"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "kw_procedure"
-        }
-      ]
-    },
-    "kw_function_end": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "kw_endfunc"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "kw_endproc"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "kw_end"
         }
       ]
     },
@@ -376,21 +390,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "kw_inout"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "kw_var"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "kw_const"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "function_parameter_modifiers"
             },
             {
               "type": "BLANK"
@@ -399,7 +400,7 @@
         },
         {
           "type": "FIELD",
-          "name": "parameter_name",
+          "name": "name",
           "content": {
             "type": "SYMBOL",
             "name": "identifier"
@@ -414,7 +415,7 @@
         },
         {
           "type": "FIELD",
-          "name": "parameter_type",
+          "name": "type",
           "content": {
             "type": "SYMBOL",
             "name": "_type_identifier"
@@ -422,12 +423,35 @@
         }
       ]
     },
+    "function_parameter_modifiers": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "inOut"
+          },
+          {
+            "type": "STRING",
+            "value": "var"
+          },
+          {
+            "type": "STRING",
+            "value": "const"
+          }
+        ]
+      }
+    },
     "function_return_type": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "kw_return"
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "return"
+          }
         },
         {
           "type": "SYMBOL",
@@ -451,12 +475,15 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "kw_var"
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "var"
+          }
         },
         {
           "type": "FIELD",
-          "name": "variable_name",
+          "name": "name",
           "content": {
             "type": "SYMBOL",
             "name": "identifier"
@@ -471,7 +498,7 @@
         },
         {
           "type": "FIELD",
-          "name": "variable_type",
+          "name": "type",
           "content": {
             "type": "SYMBOL",
             "name": "_type_identifier"
@@ -505,151 +532,24 @@
         }
       ]
     },
-    "visibility": {
+    "visibility_modifiers": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "kw_private"
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "private"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "kw_protected"
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "protected"
+          }
         }
       ]
-    },
-    "kw_module": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "module"
-      }
-    },
-    "kw_uses": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "uses"
-      }
-    },
-    "kw_var": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "var"
-      }
-    },
-    "kw_inout": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "inOut"
-      }
-    },
-    "kw_const": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "const"
-      }
-    },
-    "kw_func": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "func"
-      }
-    },
-    "kw_function": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "function"
-      }
-    },
-    "kw_endfunc": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "endFunc"
-      }
-    },
-    "kw_proc": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "proc"
-      }
-    },
-    "kw_procedure": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "procedure"
-      }
-    },
-    "kw_endproc": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "endProc"
-      }
-    },
-    "kw_return": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "return"
-      }
-    },
-    "kw_end": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "end"
-      }
-    },
-    "kw_external": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "external"
-      }
-    },
-    "kw_forward": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "forward"
-      }
-    },
-    "kw_private": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "private"
-      }
-    },
-    "kw_protected": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "protected"
-      }
-    },
-    "kw_final": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "final"
-      }
-    },
-    "kw_override": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "override"
-      }
     },
     "enum_item": {
       "type": "SEQ",

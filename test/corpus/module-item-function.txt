@@ -13,25 +13,19 @@ end
 ---
 
 (source_file
-  (kw_module)
-  module_name: (identifier)
+  name: (identifier)
   (module_item_declaration
     (function_declaration
-      (kw_function_begin (kw_proc))
-      function_name: (identifier)
-      (function_definition
-        (kw_function_end (kw_end)))
+      name: (identifier)
+      (function_definition)
     )
   )
   (module_item_declaration
     (function_declaration
-      (kw_function_begin (kw_func))
-      function_name: (identifier)
+      name: (identifier)
       (function_return_type
-        (kw_return)
         (type_identifier))
-      (function_definition
-        (kw_function_end (kw_end)))
+      (function_definition)
     )
   )
 )
@@ -52,25 +46,19 @@ endFunc
 ---
 
 (source_file
-  (kw_module)
-  module_name: (identifier)
+  name: (identifier)
   (module_item_declaration
     (function_declaration
-      (kw_function_begin (kw_procedure))
-      function_name: (identifier)
-      (function_definition
-        (kw_function_end (kw_endproc)))
+      name: (identifier)
+      (function_definition)
     )
   )
   (module_item_declaration
     (function_declaration
-      (kw_function_begin (kw_function))
-      function_name: (identifier)
+      name: (identifier)
       (function_return_type
-        (kw_return)
         (type_identifier))
-      (function_definition
-        (kw_function_end (kw_endfunc)))
+      (function_definition)
     )
   )
 )
@@ -87,17 +75,13 @@ function MyForwardFunction return Boolean forward
 ---
 
 (source_file
-  (kw_module)
-  module_name: (identifier)
+  name: (identifier)
   (module_item_declaration
     (function_declaration
-      (kw_function_begin (kw_function))
-      function_name: (identifier)
+      name: (identifier)
       (function_return_type
-        (kw_return)
         (type_identifier))
-      (function_forward_declaration
-        (kw_forward))
+      (function_forward_declaration)
     )
   )
 )
@@ -118,25 +102,19 @@ endProc
 ---
 
 (source_file
-  (kw_module)
-  module_name: (identifier)
+  name: (identifier)
   (module_item_declaration
     (function_declaration
-      (kw_function_begin (kw_procedure))
-      function_name: (identifier)
-      (kw_override)
-      (function_definition
-        (kw_function_end (kw_endproc)))
+      name: (identifier)
+      (function_modifiers)
+      (function_definition)
     )
   )
   (module_item_declaration
     (function_declaration
-      (kw_function_begin (kw_procedure))
-      function_name: (identifier)
-      (kw_final)
-      (kw_override)
-      (function_definition
-        (kw_function_end (kw_endproc)))
+      name: (identifier)
+      (function_modifiers)
+      (function_definition)
     )
   )
 )
@@ -157,24 +135,19 @@ endProc
 ---
 
 (source_file
-  (kw_module)
-  module_name: (identifier)
+  name: (identifier)
   (module_item_declaration
     (function_declaration
-      (kw_function_begin (kw_procedure))
-      function_name: (identifier)
-      (visibility (kw_private))
-      (function_definition
-        (kw_function_end (kw_endproc)))
+      name: (identifier)
+      (visibility_modifiers)
+      (function_definition)
     )
   )
   (module_item_declaration
     (function_declaration
-      (kw_function_begin (kw_procedure))
-      function_name: (identifier)
-      (visibility (kw_protected))
-      (function_definition
-        (kw_function_end (kw_endproc)))
+      name: (identifier)
+      (visibility_modifiers)
+      (function_definition)
     )
   )
 )
@@ -191,14 +164,11 @@ procedure MyExternalDllFunction external 'DllName.DllFunctionName'
 ---
 
 (source_file
-  (kw_module)
-  module_name: (identifier)
+  name: (identifier)
   (module_item_declaration
     (function_declaration
-      (kw_function_begin (kw_procedure))
-      function_name: (identifier)
+      name: (identifier)
       (function_external
-        (kw_external)
         dll_name: (identifier)
         dll_function_name: (identifier)
       )

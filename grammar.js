@@ -2,8 +2,8 @@ module.exports = grammar({
 	name: 'gold',
 	rules: {
 		source_file: $ => seq(
-			$.kw_module,
-			field('module_name', $.identifier),
+			token('module'),
+			field('name', $.identifier),
 			repeat($.module_item_declaration),
 		),
 
@@ -18,7 +18,7 @@ module.exports = grammar({
 		),
 
 		use_declaration: $ => seq(
-			$.kw_uses,
+			token('uses'),
 			sepBy1(',', $._type_identifier),
 			optional(','),
 		),
@@ -29,13 +29,12 @@ module.exports = grammar({
 		),
 
 		function_declaration: $ => seq(
-			$.kw_function_begin,
-			field('function_name', $.identifier),
+			token(choice('func', 'function', 'proc', 'procedure')),
+			field('name', $.identifier),
 			optional($.function_parameters),
 			optional($.function_return_type),
-			optional($.visibility),
-			optional($.kw_final),
-			optional($.kw_override),
+			optional($.visibility_modifiers),
+			optional($.function_modifiers),
 			choice(
 				$.function_forward_declaration,
 				$.function_definition,
@@ -43,31 +42,26 @@ module.exports = grammar({
 			),
 		),
 
-		function_forward_declaration: $ => $.kw_forward,
+		// aside from 'forward' and 'external'
+		function_modifiers: _ => repeat1(choice(
+			'final',
+			'override'
+		)),
+
+		function_forward_declaration: _ => token('forward'),
 
 		function_definition: $ => seq(
 			optional($.function_body_statements),
-			$.kw_function_end,
+			token(choice('endFunc', 'endProc', 'end')),
 		),
 
 		function_external: $ => seq(
-			$.kw_external,
+			token('external'),
 			token('\''),
 			field('dll_name', $.identifier),
 			token('.'),
 			field('dll_function_name', $.identifier),
 			token('\''),
-		),
-
-		kw_function_begin: $ => choice(
-			$.kw_func, $.kw_function,
-			$.kw_proc, $.kw_procedure,
-		),
-
-		kw_function_end: $ => choice(
-			$.kw_endfunc,
-			$.kw_endproc,
-			$.kw_end,
 		),
 
 		function_parameters: $ => seq(
@@ -78,14 +72,18 @@ module.exports = grammar({
 		),
 
 		function_parameter_declaration: $ => seq(
-			optional(choice($.kw_inout, $.kw_var, $.kw_const)),
-			field('parameter_name', $.identifier),
+			optional($.function_parameter_modifiers),
+			field('name', $.identifier),
 			token(':'),
-			field('parameter_type', $._type_identifier),
+			field('type', $._type_identifier),
+		),
+
+		function_parameter_modifiers: _ => token(
+			choice('inOut', 'var', 'const')
 		),
 
 		function_return_type: $ => seq(
-			$.kw_return,
+			token('return'),
 			$._type_identifier,
 		),
 
@@ -94,10 +92,10 @@ module.exports = grammar({
 		),
 
 		variable_declaration: $ => seq(
-			$.kw_var,
-			field('variable_name', $.identifier),
+			token('var'),
+			field('name', $.identifier),
 			token(':'),
-			field('variable_type', $._type_identifier),
+			field('type', $._type_identifier),
 		),
 
 		statement: $ => choice(
@@ -115,30 +113,10 @@ module.exports = grammar({
 		//	// TODO: to be implemented
 		//},
 
-		visibility: $ => choice(
-			$.kw_private,
-			$.kw_protected,
+		visibility_modifiers: $ => choice(
+			token('private'),
+			token('protected'),
 		),
-
-		kw_module: _ => token('module'),
-		kw_uses: _ => token('uses'),
-		kw_var: _ => token('var'),
-		kw_inout: _ => token('inOut'),
-		kw_const: _ => token('const'),
-		kw_func: _ => token('func'),
-		kw_function: _ => token('function'),
-		kw_endfunc: _ => token('endFunc'),
-		kw_proc: _ => token('proc'),
-		kw_procedure: _ => token('procedure'),
-		kw_endproc: _ => token('endProc'),
-		kw_return: _ => token('return'),
-		kw_end: _ => token('end'),
-		kw_external: _ => token('external'),
-		kw_forward: _ => token('forward'),
-		kw_private: _ => token('private'),
-		kw_protected: _ => token('protected'),
-		kw_final: _ => token('final'),
-		kw_override: _ => token('override'),
 
 		enum_item: $ => seq(
 			'type',
