@@ -23,7 +23,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "declaration_statement"
+            "name": "module_item_declaration"
           }
         }
       ]
@@ -41,7 +41,7 @@
       "named": true,
       "value": "type_identifier"
     },
-    "declaration_statement": {
+    "module_item_declaration": {
       "type": "CHOICE",
       "members": [
         {
@@ -114,24 +114,11 @@
       ]
     },
     "function_declaration": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "function_forward_declaration"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "function_definition"
-        }
-      ]
-    },
-    "function_forward_declaration": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "function_token_begin"
+          "name": "kw_function_begin"
         },
         {
           "type": "FIELD",
@@ -166,60 +153,132 @@
           ]
         },
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "forward"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "visibility"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "kw_final"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "kw_override"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "function_forward_declaration"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function_definition"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function_external"
+            }
+          ]
         }
       ]
+    },
+    "function_forward_declaration": {
+      "type": "SYMBOL",
+      "name": "kw_forward"
     },
     "function_definition": {
       "type": "SEQ",
       "members": [
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "function_body_statements"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "SYMBOL",
-          "name": "function_token_begin"
+          "name": "kw_function_end"
+        }
+      ]
+    },
+    "function_external": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "kw_external"
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "'"
+          }
         },
         {
           "type": "FIELD",
-          "name": "function_name",
+          "name": "dll_name",
           "content": {
             "type": "SYMBOL",
             "name": "identifier"
           }
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "function_parameters"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "."
+          }
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "function_return_type"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "FIELD",
+          "name": "dll_function_name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "function_token_end"
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "'"
+          }
         }
       ]
     },
-    "function_token_begin": {
+    "kw_function_begin": {
       "type": "TOKEN",
       "content": {
         "type": "CHOICE",
@@ -243,25 +302,28 @@
         ]
       }
     },
-    "function_token_end": {
-      "type": "TOKEN",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "end"
-          },
-          {
+    "kw_function_end": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
             "type": "STRING",
             "value": "endFunc"
-          },
-          {
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
             "type": "STRING",
             "value": "endProc"
           }
-        ]
-      }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "kw_end"
+        }
+      ]
     },
     "function_parameters": {
       "type": "SEQ",
@@ -376,17 +438,156 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "return"
-          }
+          "type": "SYMBOL",
+          "name": "kw_return"
         },
         {
           "type": "SYMBOL",
           "name": "_type_identifier"
         }
       ]
+    },
+    "function_body_statements": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "statement"
+          }
+        }
+      ]
+    },
+    "variable_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "var"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "variable_name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": ":"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "variable_type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_type_identifier"
+          }
+        }
+      ]
+    },
+    "statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "declaration_statement"
+        }
+      ]
+    },
+    "declaration_statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "use_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "variable_declaration"
+        }
+      ]
+    },
+    "visibility": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "kw_private"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "kw_protected"
+        }
+      ]
+    },
+    "kw_return": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "return"
+      }
+    },
+    "kw_end": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "end"
+      }
+    },
+    "kw_external": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "external"
+      }
+    },
+    "kw_forward": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "forward"
+      }
+    },
+    "kw_private": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "private"
+      }
+    },
+    "kw_protected": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "protected"
+      }
+    },
+    "kw_final": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "final"
+      }
+    },
+    "kw_override": {
+      "type": "TOKEN",
+      "content": {
+        "type": "STRING",
+        "value": "override"
+      }
     },
     "enum_item": {
       "type": "SEQ",

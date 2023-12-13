@@ -14,20 +14,25 @@ end
 
 (source_file
   module_name: (identifier)
-  (declaration_statement
+  (module_item_declaration
     (function_declaration
+      (kw_function_begin)
+      function_name: (identifier)
       (function_definition
-        (function_token_begin)
-        function_name: (identifier)
-        (function_token_end))))
-  (declaration_statement
+        (kw_function_end
+          (kw_end)))))
+  (module_item_declaration
     (function_declaration
+      (kw_function_begin)
+      function_name: (identifier)
+      (function_return_type
+        (kw_return)
+        (type_identifier))
       (function_definition
-        (function_token_begin)
-        function_name: (identifier)
-        (function_return_type (type_identifier))
-        (function_token_end))))
+        (kw_function_end
+          (kw_end)))))
 )
+
 
 ==========================
 Function - parsed-fn-empty
@@ -45,20 +50,22 @@ endFunc
 
 (source_file
   module_name: (identifier)
-  (declaration_statement
+  (module_item_declaration
     (function_declaration
+      (kw_function_begin)
+      function_name: (identifier)
       (function_definition
-        (function_token_begin)
-        function_name: (identifier)
-        (function_token_end))))
-  (declaration_statement
+        (kw_function_end))))
+  (module_item_declaration
     (function_declaration
+      (kw_function_begin)
+      function_name: (identifier)
+      (function_return_type
+        (kw_return)
+        (type_identifier))
       (function_definition
-        (function_token_begin)
-        function_name: (identifier)
-        (function_return_type (type_identifier))
-        (function_token_end))))
-)
+        (kw_function_end)))))
+
 
 ==================
 Function - forward
@@ -72,10 +79,99 @@ function MyForwardFunction return Boolean forward
 
 (source_file
   module_name: (identifier)
-  (declaration_statement
+  (module_item_declaration
     (function_declaration
+      (kw_function_begin)
+      function_name: (identifier)
+      (function_return_type
+        (kw_return)
+        (type_identifier))
       (function_forward_declaration
-        (function_token_begin)
-        function_name: (identifier)
-        (function_return_type
-          (type_identifier))))))
+        (kw_forward)))))
+
+
+===================
+Function - override
+===================
+
+module Example
+
+procedure MyOverrideFunction override
+endProc
+
+procedure MyFinalOverrideFunction final override
+endProc
+
+---
+
+(source_file
+  module_name: (identifier)
+  (module_item_declaration
+    (function_declaration
+      (kw_function_begin)
+      function_name: (identifier)
+      (kw_override)
+      (function_definition
+        (kw_function_end))))
+  (module_item_declaration
+    (function_declaration
+      (kw_function_begin)
+      function_name: (identifier)
+      (kw_final)
+      (kw_override)
+      (function_definition
+        (kw_function_end)))))
+
+
+=====================
+Function - visibility
+=====================
+
+module Example
+
+procedure MyPrivateFunction private
+endProc
+
+procedure MyProtectedFunction protected
+endProc
+
+---
+
+(source_file
+  module_name: (identifier)
+  (module_item_declaration
+    (function_declaration
+      (kw_function_begin)
+      function_name: (identifier)
+      (visibility (kw_private))
+      (function_definition
+        (kw_function_end))))
+  (module_item_declaration
+    (function_declaration
+      (kw_function_begin)
+      function_name: (identifier)
+      (visibility (kw_protected))
+      (function_definition
+        (kw_function_end)))))
+
+
+===================
+Function - external
+===================
+
+module Example
+
+procedure MyExternalDllFunction external 'DllName.DllFunctionName'
+
+---
+
+(source_file
+  module_name: (identifier)
+  (module_item_declaration
+    (function_declaration
+      (kw_function_begin)
+      function_name: (identifier)
+      (function_external
+        (kw_external)
+        dll_name: (identifier)
+        dll_function_name: (identifier)))))

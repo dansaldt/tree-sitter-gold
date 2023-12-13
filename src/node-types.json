@@ -8,15 +8,15 @@
       "required": true,
       "types": [
         {
-          "type": "function_declaration",
-          "named": true
-        },
-        {
           "type": "type_declaration",
           "named": true
         },
         {
           "type": "use_declaration",
+          "named": true
+        },
+        {
+          "type": "variable_declaration",
           "named": true
         }
       ]
@@ -72,11 +72,37 @@
     }
   },
   {
-    "type": "function_declaration",
+    "type": "function_body_statements",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_declaration",
+    "named": true,
+    "fields": {
+      "function_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
       "required": true,
       "types": [
         {
@@ -84,7 +110,35 @@
           "named": true
         },
         {
+          "type": "function_external",
+          "named": true
+        },
+        {
           "type": "function_forward_declaration",
+          "named": true
+        },
+        {
+          "type": "function_parameters",
+          "named": true
+        },
+        {
+          "type": "function_return_type",
+          "named": true
+        },
+        {
+          "type": "kw_final",
+          "named": true
+        },
+        {
+          "type": "kw_function_begin",
+          "named": true
+        },
+        {
+          "type": "kw_override",
+          "named": true
+        },
+        {
+          "type": "visibility",
           "named": true
         }
       ]
@@ -93,8 +147,37 @@
   {
     "type": "function_definition",
     "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "function_body_statements",
+          "named": true
+        },
+        {
+          "type": "kw_function_end",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_external",
+    "named": true,
     "fields": {
-      "function_name": {
+      "dll_function_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "dll_name": {
         "multiple": false,
         "required": true,
         "types": [
@@ -106,23 +189,11 @@
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "function_parameters",
-          "named": true
-        },
-        {
-          "type": "function_return_type",
-          "named": true
-        },
-        {
-          "type": "function_token_begin",
-          "named": true
-        },
-        {
-          "type": "function_token_end",
+          "type": "kw_external",
           "named": true
         }
       ]
@@ -131,32 +202,13 @@
   {
     "type": "function_forward_declaration",
     "named": true,
-    "fields": {
-      "function_name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "function_parameters",
-          "named": true
-        },
-        {
-          "type": "function_return_type",
-          "named": true
-        },
-        {
-          "type": "function_token_begin",
+          "type": "kw_forward",
           "named": true
         }
       ]
@@ -208,11 +260,53 @@
     "named": true,
     "fields": {},
     "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "kw_return",
+          "named": true
+        },
+        {
+          "type": "type_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "kw_function_end",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "kw_end",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "module_item_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
       "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "type_identifier",
+          "type": "function_declaration",
+          "named": true
+        },
+        {
+          "type": "type_declaration",
+          "named": true
+        },
+        {
+          "type": "use_declaration",
           "named": true
         }
       ]
@@ -236,6 +330,21 @@
     "children": {
       "multiple": true,
       "required": false,
+      "types": [
+        {
+          "type": "module_item_declaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
       "types": [
         {
           "type": "declaration_statement",
@@ -275,6 +384,55 @@
     }
   },
   {
+    "type": "variable_declaration",
+    "named": true,
+    "fields": {
+      "variable_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "variable_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "visibility",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "kw_private",
+          "named": true
+        },
+        {
+          "type": "kw_protected",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "'",
+    "named": false
+  },
+  {
     "type": "(",
     "named": false
   },
@@ -287,6 +445,10 @@
     "named": false
   },
   {
+    "type": ".",
+    "named": false
+  },
+  {
     "type": ":",
     "named": false
   },
@@ -295,16 +457,12 @@
     "named": false
   },
   {
-    "type": "forward",
+    "type": "endFunc",
     "named": false
   },
   {
-    "type": "function_token_begin",
-    "named": true
-  },
-  {
-    "type": "function_token_end",
-    "named": true
+    "type": "endProc",
+    "named": false
   },
   {
     "type": "identifier",
@@ -315,11 +473,43 @@
     "named": false
   },
   {
-    "type": "module",
-    "named": false
+    "type": "kw_end",
+    "named": true
   },
   {
-    "type": "return",
+    "type": "kw_external",
+    "named": true
+  },
+  {
+    "type": "kw_final",
+    "named": true
+  },
+  {
+    "type": "kw_forward",
+    "named": true
+  },
+  {
+    "type": "kw_function_begin",
+    "named": true
+  },
+  {
+    "type": "kw_override",
+    "named": true
+  },
+  {
+    "type": "kw_private",
+    "named": true
+  },
+  {
+    "type": "kw_protected",
+    "named": true
+  },
+  {
+    "type": "kw_return",
+    "named": true
+  },
+  {
+    "type": "module",
     "named": false
   },
   {
