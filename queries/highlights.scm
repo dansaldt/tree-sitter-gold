@@ -3,7 +3,7 @@
 )
 
 
-(function_declaration
+(function_item
   (identifier) @function
 )
 
