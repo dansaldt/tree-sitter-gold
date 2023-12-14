@@ -1,0 +1,29 @@
+=======
+Comment
+=======
+
+; Example (Def Version:1) (Implem Version:1)
+
+; Comments for this module
+module Example
+
+; Comments for this function
+procedure MyFunction
+	; Comment in function body
+endProc
+
+---
+
+(source_file
+  (line_comment)
+  (line_comment)
+  name: (identifier)
+  (line_comment)
+  (module_item_declaration
+    (function_declaration
+	  name: (identifier)
+	  (line_comment)
+	  (function_definition)
+	)
+  )
+)

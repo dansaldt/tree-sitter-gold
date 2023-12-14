@@ -1,5 +1,11 @@
 module.exports = grammar({
 	name: 'gold',
+
+	extras: $ => [
+		/\s/,
+		$.line_comment,
+	],
+
 	rules: {
 		source_file: $ => seq(
 			'module',
@@ -10,6 +16,14 @@ module.exports = grammar({
 		identifier: _ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
 
 		_type_identifier: $ => alias($.identifier, $.type_identifier),
+
+		comment: $ => choice(
+			$.line_comment,
+		),
+
+		line_comment: _ => token(seq(
+			';', /.*/,
+		)),
 
 		module_item_declaration: $ => choice(
 			$.use_declaration,

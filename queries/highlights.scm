@@ -44,3 +44,5 @@
   "."
   ","
 ] @punctuation.delimiter
+
+(line_comment) @comment
