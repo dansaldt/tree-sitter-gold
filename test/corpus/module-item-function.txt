@@ -175,3 +175,97 @@ procedure MyExternalDllFunction external 'DllName.DllFunctionName'
     )
   )
 )
+
+
+====================
+Function - parameter
+====================
+
+module Example
+
+procedure FunctionWithSingleParam(
+  param0: Int1
+)
+endProc
+
+procedure FunctionWithMultiParam(
+  param0: Int1,
+  param1: Int4
+)
+endProc
+
+procedure FunctionTrailingParamComma(
+  param0: Int1,
+)
+endProc
+
+procedure FunctionWithModifiers(
+  var param0: Boolean,
+  param1: Int4,
+  const param2: Num,
+  inOut param3: String
+)
+endProc
+
+---
+
+(source_file
+  name: (identifier)
+  (module_item_declaration
+    (function_declaration
+      name: (identifier)
+      parameters: (function_parameters
+        (function_parameter_declaration
+          name: (identifier)
+          type: (type_identifier)))
+      (function_definition)
+    )
+  )
+  (module_item_declaration
+    (function_declaration
+      name: (identifier)
+      parameters: (function_parameters
+        (function_parameter_declaration
+          name: (identifier)
+          type: (type_identifier))
+        (function_parameter_declaration
+          name: (identifier)
+          type: (type_identifier))
+      )
+      (function_definition)
+    )
+  )
+  (module_item_declaration
+    (function_declaration
+      name: (identifier)
+      parameters: (function_parameters
+        (function_parameter_declaration
+          name: (identifier)
+          type: (type_identifier)))
+      (function_definition)
+    )
+  )
+  (module_item_declaration
+    (function_declaration
+      name: (identifier)
+      parameters: (function_parameters
+        (function_parameter_declaration
+          (function_parameter_modifiers)
+          name: (identifier)
+          type: (type_identifier))
+        (function_parameter_declaration
+          name: (identifier)
+          type: (type_identifier))
+        (function_parameter_declaration
+          (function_parameter_modifiers)
+          name: (identifier)
+          type: (type_identifier))
+        (function_parameter_declaration
+          (function_parameter_modifiers)
+          name: (identifier)
+          type: (type_identifier))
+      )
+      (function_definition)
+    )
+  )
+)
