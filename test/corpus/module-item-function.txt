@@ -14,19 +14,13 @@ end
 
 (source_file
   name: (identifier)
-  (module_item_declaration
-    (function_declaration
-      name: (identifier)
-      (function_definition)
-    )
+  (function_item
+    name: (identifier)
   )
-  (module_item_declaration
-    (function_declaration
-      name: (identifier)
-      (function_return_type
-        (type_identifier))
-      (function_definition)
-    )
+  (function_item
+    name: (identifier)
+    (function_return_type
+      (type_identifier))
   )
 )
 
@@ -47,19 +41,13 @@ endFunc
 
 (source_file
   name: (identifier)
-  (module_item_declaration
-    (function_declaration
-      name: (identifier)
-      (function_definition)
-    )
+  (function_item
+    name: (identifier)
   )
-  (module_item_declaration
-    (function_declaration
-      name: (identifier)
-      (function_return_type
-        (type_identifier))
-      (function_definition)
-    )
+  (function_item
+    name: (identifier)
+    (function_return_type
+      (type_identifier))
   )
 )
 
@@ -76,13 +64,11 @@ function MyForwardFunction return Boolean forward
 
 (source_file
   name: (identifier)
-  (module_item_declaration
-    (function_declaration
-      name: (identifier)
-      (function_return_type
-        (type_identifier))
-      (function_forward_declaration)
-    )
+  (function_item
+    name: (identifier)
+    (function_return_type
+      (type_identifier))
+    (function_modifiers_forward)
   )
 )
 
@@ -103,19 +89,13 @@ endProc
 
 (source_file
   name: (identifier)
-  (module_item_declaration
-    (function_declaration
-      name: (identifier)
-      (function_modifiers)
-      (function_definition)
-    )
+  (function_item
+    name: (identifier)
+    (function_modifiers)
   )
-  (module_item_declaration
-    (function_declaration
-      name: (identifier)
-      (function_modifiers)
-      (function_definition)
-    )
+  (function_item
+    name: (identifier)
+    (function_modifiers)
   )
 )
 
@@ -136,19 +116,13 @@ endProc
 
 (source_file
   name: (identifier)
-  (module_item_declaration
-    (function_declaration
-      name: (identifier)
-      (visibility_modifiers)
-      (function_definition)
-    )
+  (function_item
+    name: (identifier)
+    (visibility_modifiers)
   )
-  (module_item_declaration
-    (function_declaration
-      name: (identifier)
-      (visibility_modifiers)
-      (function_definition)
-    )
+  (function_item
+    name: (identifier)
+    (visibility_modifiers)
   )
 )
 
@@ -165,13 +139,11 @@ procedure MyExternalDllFunction external 'DllName.DllFunctionName'
 
 (source_file
   name: (identifier)
-  (module_item_declaration
-    (function_declaration
-      name: (identifier)
-      (function_external
-        dll_name: (identifier)
-        dll_function_name: (identifier)
-      )
+  (function_item
+    name: (identifier)
+    (function_modifiers_external
+      dll_name: (identifier)
+      dll_function_name: (identifier)
     )
   )
 )
@@ -211,61 +183,49 @@ endProc
 
 (source_file
   name: (identifier)
-  (module_item_declaration
-    (function_declaration
-      name: (identifier)
-      parameters: (function_parameters
-        (function_parameter_declaration
-          name: (identifier)
-          type: (type_identifier)))
-      (function_definition)
+  (function_item
+    name: (identifier)
+    parameters: (function_parameters
+      (function_parameter_declaration
+        name: (identifier)
+        type: (type_identifier)))
+  )
+  (function_item
+    name: (identifier)
+    parameters: (function_parameters
+      (function_parameter_declaration
+        name: (identifier)
+        type: (type_identifier))
+      (function_parameter_declaration
+        name: (identifier)
+        type: (type_identifier))
     )
   )
-  (module_item_declaration
-    (function_declaration
-      name: (identifier)
-      parameters: (function_parameters
-        (function_parameter_declaration
-          name: (identifier)
-          type: (type_identifier))
-        (function_parameter_declaration
-          name: (identifier)
-          type: (type_identifier))
-      )
-      (function_definition)
-    )
+  (function_item
+    name: (identifier)
+    parameters: (function_parameters
+      (function_parameter_declaration
+        name: (identifier)
+        type: (type_identifier)))
   )
-  (module_item_declaration
-    (function_declaration
-      name: (identifier)
-      parameters: (function_parameters
-        (function_parameter_declaration
-          name: (identifier)
-          type: (type_identifier)))
-      (function_definition)
-    )
-  )
-  (module_item_declaration
-    (function_declaration
-      name: (identifier)
-      parameters: (function_parameters
-        (function_parameter_declaration
-          (function_parameter_modifiers)
-          name: (identifier)
-          type: (type_identifier))
-        (function_parameter_declaration
-          name: (identifier)
-          type: (type_identifier))
-        (function_parameter_declaration
-          (function_parameter_modifiers)
-          name: (identifier)
-          type: (type_identifier))
-        (function_parameter_declaration
-          (function_parameter_modifiers)
-          name: (identifier)
-          type: (type_identifier))
-      )
-      (function_definition)
+  (function_item
+    name: (identifier)
+    parameters: (function_parameters
+      (function_parameter_declaration
+        (function_parameter_modifiers)
+        name: (identifier)
+        type: (type_identifier))
+      (function_parameter_declaration
+        name: (identifier)
+        type: (type_identifier))
+      (function_parameter_declaration
+        (function_parameter_modifiers)
+        name: (identifier)
+        type: (type_identifier))
+      (function_parameter_declaration
+        (function_parameter_modifiers)
+        name: (identifier)
+        type: (type_identifier))
     )
   )
 )

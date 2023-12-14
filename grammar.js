@@ -10,7 +10,7 @@ module.exports = grammar({
 		source_file: $ => seq(
 			'module',
 			field('name', $.identifier),
-			repeat($.module_item_declaration),
+			repeat($._module_item_declaration),
 		),
 
 		identifier: _ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
@@ -25,24 +25,24 @@ module.exports = grammar({
 			';', /.*/,
 		)),
 
-		module_item_declaration: $ => choice(
-			$.use_declaration,
-			$.type_declaration,
-			$.function_declaration,
+		_module_item_declaration: $ => choice(
+			$.uses_item,
+			$._type_item,
+			$.function_item,
 		),
 
-		use_declaration: $ => seq(
+		uses_item: $ => seq(
 			'uses',
 			sepBy1(',', $._type_identifier),
 			optional(','),
 		),
 
-		type_declaration: $ => choice(
+		_type_item: $ => choice(
 			$.enum_item,
 			// $.record_item,
 		),
 
-		function_declaration: $ => seq(
+		function_item: $ => seq(
 			choice('func', 'function', 'proc', 'procedure'),
 			field('name', $.identifier),
 			field('parameters', optional($.function_parameters)),
@@ -50,26 +50,26 @@ module.exports = grammar({
 			optional($.visibility_modifiers),
 			optional($.function_modifiers),
 			choice(
-				$.function_forward_declaration,
-				$.function_definition,
-				$.function_external,
+				$.function_modifiers_forward,
+				$.function_modifiers_external,
+				$._function_definition,
 			),
 		),
 
-		// aside from 'forward' and 'external'
+		// other modifiers except 'forward' and 'external'
 		function_modifiers: _ => repeat1(choice(
 			'final',
 			'override'
 		)),
 
-		function_forward_declaration: _ => seq('forward'),
+		function_modifiers_forward: _ => seq('forward'),
 
-		function_definition: $ => seq(
+		_function_definition: $ => seq(
 			optional($.function_body_statements),
 			choice('endFunc', 'endProc', 'end'),
 		),
 
-		function_external: $ => seq(
+		function_modifiers_external: $ => seq(
 			'external',
 			'\'',
 			field('dll_name', $.identifier),
@@ -116,8 +116,8 @@ module.exports = grammar({
 		),
 
 		declaration_statement: $ => choice(
-			$.use_declaration,
-			$.type_declaration,
+			$.uses_item,
+			$._type_item,
 			$.variable_declaration,
 		),
 

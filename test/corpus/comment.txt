@@ -19,11 +19,8 @@ endProc
   (line_comment)
   name: (identifier)
   (line_comment)
-  (module_item_declaration
-    (function_declaration
-	  name: (identifier)
-	  (line_comment)
-	  (function_definition)
-	)
+  (function_item
+    name: (identifier)
+    (line_comment)
   )
 )
