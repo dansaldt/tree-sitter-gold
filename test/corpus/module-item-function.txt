@@ -68,7 +68,7 @@ function MyForwardFunction return Boolean forward
     name: (identifier)
     (function_return_type
       (type_identifier))
-    (function_modifiers_forward)
+    (forward_modifiers)
   )
 )
 
@@ -118,11 +118,11 @@ endProc
   name: (identifier)
   (function_item
     name: (identifier)
-    (visibility_modifiers)
+    (function_modifiers (visibility_modifiers))
   )
   (function_item
     name: (identifier)
-    (visibility_modifiers)
+    (function_modifiers (visibility_modifiers))
   )
 )
 
