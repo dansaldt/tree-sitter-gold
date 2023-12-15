@@ -197,7 +197,8 @@ module.exports = grammar({
 			token.immediate('\''),
 		),
 
-		integer_literal: _ => token(seq(/-?[0-9][0-9]*/)),
+		_integer_literal: _ => token(seq(/-?[0-9][0-9]*/)),
+		integer_literal: $ => $._integer_literal,
 
 		boolean_literal: _ => choice('true', 'True', 'false', 'False'),
 
