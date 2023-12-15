@@ -75,7 +75,7 @@ module.exports = grammar({
 		// other modifiers except 'forward' and 'external'
 		function_modifiers: $ => repeat1(choice(
 			$.visibility_modifiers,
-			$.override_modifiers,
+			$._override_modifiers,
 		)),
 
 		function_modifiers_forward: _ => seq('forward'),
@@ -141,11 +141,9 @@ module.exports = grammar({
 		//	// TODO: to be implemented
 		//},
 
-		override_modifiers: _ => choice(
-			// There's no permutation in tree-sitter
-			// but this grammar is simple enough that we can write it
-			seq('final', 'override'),
-			seq('override', 'final'),
+		_override_modifiers: _ => choice(
+			'final',
+			'override',
 		),
 
 		visibility_modifiers: $ => choice(
