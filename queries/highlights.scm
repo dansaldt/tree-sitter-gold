@@ -63,3 +63,5 @@
 
 (boolean_literal) @constant.builtin
 (integer_literal) @constant.builtin
+
+(annotation) @attribute
