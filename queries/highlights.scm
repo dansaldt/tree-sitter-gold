@@ -2,16 +2,16 @@
   name: (identifier) @module
 )
 
-
 (function_item
   (identifier) @function
 )
 
 (function_parameter_declaration
   name: (identifier) @variable
-  type: (type_identifier) @type
 )
- 
+
+(type_identifier) @type
+
 [
   "module"
   "uses"
