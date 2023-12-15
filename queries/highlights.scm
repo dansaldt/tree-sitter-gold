@@ -37,6 +37,7 @@
   "final"
   "override"
   "multiLang"
+  "type"
 ] @keyword
 
 [
