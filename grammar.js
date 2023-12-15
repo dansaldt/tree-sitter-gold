@@ -179,8 +179,12 @@ module.exports = grammar({
 		enum_variant: $ => seq(
 			// TODO: optional($.annotation),
 			field('name', $.identifier),
-			// optional($.enum_variant_assign_value) // TODO: to be implemented
-			// example `[model(..)] variant1 = 1`
+			optional($.enum_variant_redefine_value),
+		),
+
+		enum_variant_redefine_value: $ => seq(
+			'=',
+			$._integer_literal,
 		),
 
 		_literal: $ => choice(
