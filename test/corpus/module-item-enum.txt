@@ -1,0 +1,79 @@
+=============
+Enum - base
+=============
+
+module Example
+
+type BaseEnum : (
+	meVariant1,
+	meVariant2,
+)
+
+---
+
+(source_file
+  name: (identifier)
+  (enum_item
+    name: (type_identifier)
+    body: (enum_variant_list
+      (enum_variant
+        name: (identifier))
+      (enum_variant
+        name: (identifier))
+    )
+  )
+)
+
+
+==============
+Enum - derived
+==============
+
+module DerivedExample
+
+type ChildEnum : BaseEnum + (
+	meVariant3,
+	meVariant4
+)
+
+---
+
+(source_file
+  name: (identifier)
+  (enum_item
+    name: (type_identifier)
+	derived: (enum_derived
+      type: (type_identifier))
+    body: (enum_variant_list
+      (enum_variant
+        name: (identifier))
+      (enum_variant
+        name: (identifier))
+    )
+  )
+)
+
+
+================
+Enum - modifiers
+================
+
+module ModifiersExample
+
+type ModEnum : (
+	meTheOnlyVariant
+) multiLang
+
+---
+
+(source_file
+  name: (identifier)
+  (enum_item
+    name: (type_identifier)
+    body: (enum_variant_list
+      (enum_variant
+        name: (identifier))
+    )
+    (enum_modifiers)
+  )
+)
