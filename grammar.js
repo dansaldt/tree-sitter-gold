@@ -51,7 +51,6 @@ module.exports = grammar({
 			field('name', $.identifier),
 			field('parameters', optional($.function_parameters)),
 			optional($.function_return_type),
-			optional($.visibility_modifiers),
 			optional($.function_modifiers),
 			choice(
 				$.function_modifiers_forward,
@@ -61,9 +60,9 @@ module.exports = grammar({
 		),
 
 		// other modifiers except 'forward' and 'external'
-		function_modifiers: _ => repeat1(choice(
-			'final',
-			'override'
+		function_modifiers: $ => repeat1(choice(
+			$.visibility_modifiers,
+			$.override_modifiers,
 		)),
 
 		function_modifiers_forward: _ => seq('forward'),
@@ -128,6 +127,13 @@ module.exports = grammar({
 		// expression_statement: $ => {
 		//	// TODO: to be implemented
 		//},
+
+		override_modifiers: _ => choice(
+			// There's no permutation in tree-sitter
+			// but this grammar is simple enough that we can write it
+			seq('final', 'override'),
+			seq('override', 'final'),
+		),
 
 		visibility_modifiers: $ => choice(
 			'private',
