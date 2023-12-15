@@ -31,6 +31,7 @@ module.exports = grammar({
 
 		_module_item_declaration: $ => choice(
 			$.uses_item,
+			$.const_item,
 			$._type_item,
 			$.function_item,
 		),
@@ -39,6 +40,18 @@ module.exports = grammar({
 			'uses',
 			sepBy1(',', $._type_identifier),
 			optional(','),
+		),
+
+		const_item: $ => seq(
+			'const',
+			field('name', $.identifier),
+			'=',
+			$._literal,
+			optional($.const_modifiers),
+		),
+
+		const_modifiers: _ => seq(
+			'multiLang',
 		),
 
 		_type_item: $ => choice(
