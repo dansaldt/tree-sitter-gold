@@ -36,6 +36,7 @@
   "protected"
   "final"
   "override"
+  "multiLang"
 ] @keyword
 
 [
