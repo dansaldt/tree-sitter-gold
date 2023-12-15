@@ -66,7 +66,7 @@ module.exports = grammar({
 			optional($.function_return_type),
 			optional($.function_modifiers),
 			choice(
-				$.function_modifiers_forward,
+				$.forward_modifiers,
 				$.function_modifiers_external,
 				$._function_definition,
 			),
@@ -78,7 +78,7 @@ module.exports = grammar({
 			$._override_modifiers,
 		)),
 
-		function_modifiers_forward: _ => seq('forward'),
+		forward_modifiers: _ => seq('forward'),
 
 		_function_definition: $ => seq(
 			optional($.function_body_statements),
