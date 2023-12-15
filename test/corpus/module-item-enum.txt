@@ -77,3 +77,28 @@ type ModEnum : (
     (enum_modifiers)
   )
 )
+
+
+============
+Enum - value
+============
+
+module RedefineValueExample
+
+type ReDefEnumValue : (
+	evTheVariant = 10
+)
+
+---
+
+(source_file
+  name: (identifier)
+  (enum_item
+    name: (type_identifier)
+    body: (enum_variant_list
+      (enum_variant
+        name: (identifier)
+        (enum_variant_redefine_value))
+    )
+  )
+)
