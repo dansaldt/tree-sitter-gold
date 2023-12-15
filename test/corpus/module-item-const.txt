@@ -1,0 +1,37 @@
+=====
+Const
+=====
+
+module Example
+
+const INT1_MAX = 127
+const INT1_MIN = -128
+const SOME_STRING = 'abc'
+const MESSAGE = 'This is a test message' multiLang
+const TRUE = true
+const FALSE = false
+
+---
+
+(source_file
+  name: (identifier)
+  (const_item
+    name: (identifier)
+	(integer_literal))
+  (const_item
+    name: (identifier)
+    (integer_literal))
+  (const_item
+    name: (identifier)
+    (string_literal))
+  (const_item
+    name: (identifier)
+    (string_literal)
+    (const_modifiers))
+  (const_item
+    name: (identifier)
+    (boolean_literal))
+  (const_item
+    name: (identifier)
+    (boolean_literal))
+)
