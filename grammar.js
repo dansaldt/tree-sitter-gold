@@ -153,12 +153,23 @@ module.exports = grammar({
 
 		enum_item: $ => seq(
 			'type',
-			$._type_identifier,
+			field('name', $._type_identifier),
 			':',
-			$.enum_definition,
+			optional(field('derived', $.enum_item_derived)),
+			field('body', $.enum_variant_list),
+			optional($.enum_item_modifiers),
 		),
 
-		enum_definition: $ => seq(
+		enum_item_derived: $ => seq(
+			field('type', $._type_identifier),
+			'+',
+		),
+
+		enum_item_modifiers: _ => choice(
+			'multiLang',
+		),
+
+		enum_variant_list: $ => seq(
 			'(',
 			sepBy1(',', $.enum_variant),
 			optional(','),
@@ -166,7 +177,10 @@ module.exports = grammar({
 		),
 
 		enum_variant: $ => seq(
+			// TODO: optional($.annotation),
 			$._type_identifier,
+			// optional($.enum_variant_assign_value) // TODO: to be implemented
+			// example `[model(..)] variant1 = 1`
 		),
 
 		_literal: $ => choice(
