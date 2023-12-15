@@ -10,6 +10,8 @@
   name: (identifier) @variable
 )
 
+(function_modifiers_external) @string
+
 (const_item
   name: (identifier) @constant
 )
