@@ -177,7 +177,7 @@ module.exports = grammar({
 		),
 
 		enum_variant: $ => seq(
-			// TODO: optional($.annotation),
+			optional($.annotation),
 			field('name', $.identifier),
 			optional($.enum_variant_redefine_value),
 		),
@@ -185,6 +185,31 @@ module.exports = grammar({
 		enum_variant_redefine_value: $ => seq(
 			'=',
 			$._integer_literal,
+		),
+
+		annotation: $ => seq(
+			'[',
+			'model',
+			$.annotation_attribute_list,
+			token.immediate(']'),
+		),
+
+		annotation_attribute_list: $ => seq(
+			'(',
+			repeat1($.annotation_attribute),
+			')',
+		),
+
+		annotation_attribute: $ => seq(
+			field('name', $.identifier),
+			':',
+			$._inner_annotation,
+		),
+
+		_inner_annotation: $ => choice(
+			$._literal,
+			$._type_identifier,
+			$.annotation_attribute_list,
 		),
 
 		_literal: $ => choice(
