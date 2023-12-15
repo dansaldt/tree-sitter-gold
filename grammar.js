@@ -6,6 +6,10 @@ module.exports = grammar({
 		$.line_comment,
 	],
 
+	supertypes: $ => [
+		$._literal,
+	],
+
 	rules: {
 		source_file: $ => seq(
 			'module',
@@ -147,6 +151,25 @@ module.exports = grammar({
 		enum_variant: $ => seq(
 			$._type_identifier,
 		),
+
+		_literal: $ => choice(
+			$.string_literal,
+			$.integer_literal,
+			$.boolean_literal,
+			// TODO: to be added
+		),
+
+		string_literal: $ => seq(
+			'\'',
+			// TODO: should probably use external scanner, since there's an error with comment highlight inside string
+			repeat(/[\u0020-\u007E\u00A0-\u00FF]/),
+			token.immediate('\''),
+		),
+
+		integer_literal: _ => token(seq(/-?[0-9][0-9]*/)),
+
+		boolean_literal: _ => choice('true', 'false'),
+
 	},
 });
 
