@@ -10,6 +10,10 @@
   name: (identifier) @variable
 )
 
+(const_item
+  name: (identifier) @constant
+)
+
 (type_identifier) @type
 
 [
