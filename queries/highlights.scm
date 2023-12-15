@@ -51,6 +51,10 @@
   ","
 ] @punctuation.delimiter
 
+[
+  "+"
+] @operator
+
 (line_comment) @comment
 
 (string_literal) @string
