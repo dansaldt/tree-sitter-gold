@@ -155,17 +155,17 @@ module.exports = grammar({
 			'type',
 			field('name', $._type_identifier),
 			':',
-			optional(field('derived', $.enum_item_derived)),
+			optional(field('derived', $.enum_derived)),
 			field('body', $.enum_variant_list),
-			optional($.enum_item_modifiers),
+			optional($.enum_modifiers),
 		),
 
-		enum_item_derived: $ => seq(
+		enum_derived: $ => seq(
 			field('type', $._type_identifier),
 			'+',
 		),
 
-		enum_item_modifiers: _ => choice(
+		enum_modifiers: _ => choice(
 			'multiLang',
 		),
 
