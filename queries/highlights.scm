@@ -1,5 +1,9 @@
-(source_file
-  name: (identifier) @module
+(module
+  name: (identifier) @class
+)
+
+(class
+  name: (identifier) @class
 )
 
 (function_item
@@ -19,7 +23,10 @@
 (type_identifier) @type
 
 [
+  "class"
+  "endClass"
   "module"
+  "endModule"
   "uses"
   "var"
   "inOut"
