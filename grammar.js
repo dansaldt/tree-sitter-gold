@@ -56,6 +56,7 @@ module.exports = grammar({
 
 		_type_item: $ => choice(
 			$.enum_item,
+			$.set_item,
 			$.pointer_type_item,
 			// $.record_item,
 		),
@@ -186,6 +187,15 @@ module.exports = grammar({
 		enum_variant_redefine_value: $ => seq(
 			'=',
 			$._integer_literal,
+		),
+
+		set_item: $ => seq(
+			'type',
+			field('name', $._type_identifier),
+			':',
+			'[',
+			field('enum_type', $._type_identifier),
+			']',
 		),
 
 		pointer_type_item: $ => seq(
