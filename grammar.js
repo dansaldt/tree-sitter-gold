@@ -11,10 +11,9 @@ module.exports = grammar({
 	],
 
 	rules: {
-		source_file: $ => seq(
-			'module',
-			field('name', $.identifier),
-			repeat($._module_item_declaration),
+		source_file: $ => choice(
+			$.module,
+			$.class,
 		),
 
 		identifier: _ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
@@ -29,7 +28,46 @@ module.exports = grammar({
 			';', /.*/,
 		)),
 
+		module: $ => seq(
+			optional($.annotation),
+			'module',
+			field('name', $.identifier),
+			repeat($._module_item_declaration),
+			optional('endModule'),
+		),
+
+		class: $ => seq(
+			$._class,
+			optional('endClass'),
+		),
+
+		class_item: $ => seq(
+			$._class,
+			'endClass',
+		),
+
+		_class: $ => seq(
+			optional($.annotation),
+			'class',
+			field('name', $.identifier),
+			field('derived', seq(
+				'(',
+				$.identifier,
+				')',
+			)),
+			repeat($._class_item_declaration),
+		),
+
 		_module_item_declaration: $ => choice(
+			$.class_item,
+			$._item_declaration,
+		),
+
+		_class_item_declaration: $ => choice(
+			$._item_declaration,
+		),
+
+		_item_declaration: $ => choice(
 			$.uses_item,
 			$.const_item,
 			$._type_item,
