@@ -102,3 +102,33 @@ type ReDefEnumValue : (
     )
   )
 )
+
+
+================
+Enum - annotated
+================
+
+module AnnotatedEnumExample
+
+type AnnotatedEnum : (
+  [model(Text:'Variant 1')] aeVariant1
+)
+
+---
+
+(source_file
+  name: (identifier)
+  (enum_item
+    name: (type_identifier)
+    body: (enum_variant_list
+      (enum_variant
+        (annotation
+          (annotation_attribute_list
+            (annotation_attribute
+              name: (identifier)
+              (string_literal))
+          )
+        )
+        name: (identifier)))
+  )
+)
