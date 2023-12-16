@@ -1,0 +1,16 @@
+============
+Pointer type
+============
+
+module PointerTypeExample
+
+type tpSomeType : .tSomeType
+
+---
+
+(source_file
+  name: (identifier)
+  (pointer_type_item
+    name: (type_identifier)
+    type: (type_identifier))
+)
