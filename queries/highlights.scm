@@ -66,4 +66,5 @@
 (boolean_literal) @constant.builtin
 (integer_literal) @constant.builtin
 
-(annotation) @attribute
+(annotation "model" @attribute)
+(annotation_attribute name: (identifier) @attribute)
