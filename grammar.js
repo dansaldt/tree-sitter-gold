@@ -227,7 +227,7 @@ module.exports = grammar({
 
 		_inner_annotation: $ => choice(
 			$._literal,
-			$._type_identifier,
+			$.identifier,
 			$.annotation_attribute_list,
 		),
 
