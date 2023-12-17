@@ -1,5 +1,5 @@
 ============
-Empty module
+Module empty
 ============
 
 module Example
@@ -7,5 +7,32 @@ module Example
 ---
 
 (source_file
-  name: (identifier)
+  (module
+    name: (identifier))
+)
+
+
+==============
+Module classes
+==============
+
+module WithClassExample
+
+class BaseClass
+endClass
+
+class ChildClass(BaseClass)
+endClass
+
+---
+
+(source_file
+  (module
+    name: (identifier)
+    (class_item
+      name: (identifier))
+    (class_item
+      name: (identifier)
+      derived: (identifier)) 
+  )
 )
