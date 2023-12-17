@@ -101,18 +101,27 @@ module.exports = grammar({
 			// $.record_item,
 		),
 
-		variable_item: $ => seq(
+		_type: $ => choice(
+			$._type_identifier,
+			$.enum_type,
+			$.set_type,
+			$.pointer_type,
+		),
+
+		_variable_item: $ => seq(
 			optional($.annotation),
 			optional($.memory_modifiers),
 			field('name', $.identifier),
 			':',
-			field('type', $.variable_instance_type),
+			field('type', $._variable_type),
 			optional($.variable_modifiers),
 		),
 
-		variable_instance_type: $ => seq(
-			optional($.reference),
-			$._type_identifier
+		variable_item: $ => $._variable_item,
+
+		_variable_type: $ => choice(
+			$._type,
+			$.reference,
 		),
 
 		// all modifiers except `memory`
@@ -127,6 +136,7 @@ module.exports = grammar({
 		reference: $ => seq(
 			choice('refTo', 'listOf'),
 			optional($.reference_modifiers),
+			$._type_identifier,
 		),
 
 		reference_modifiers: $ => seq(
@@ -240,13 +250,18 @@ module.exports = grammar({
 			'protected',
 		),
 
+		_enum_type: $ => seq(
+			optional(field('derived', $.enum_derived)),
+			field('body', $.enum_variant_list),
+			optional($.enum_modifiers),
+		),
+		enum_type: $ => $._enum_type,
+
 		enum_item: $ => seq(
 			'type',
 			field('name', $._type_identifier),
 			':',
-			optional(field('derived', $.enum_derived)),
-			field('body', $.enum_variant_list),
-			optional($.enum_modifiers),
+			$._enum_type,
 		),
 
 		enum_derived: $ => seq(
@@ -276,21 +291,31 @@ module.exports = grammar({
 			$._integer_literal,
 		),
 
-		set_item: $ => seq(
-			'type',
-			field('name', $._type_identifier),
-			':',
+		_set_type: $ => seq(
 			'[',
 			field('enum_type', $._type_identifier),
 			']',
 		),
+		set_type: $ => $._set_type,
+
+		set_item: $ => seq(
+			'type',
+			field('name', $._type_identifier),
+			':',
+			$._set_type,
+		),
+
+		_pointer_type: $ => seq(
+			'.',
+			field('type', $._type_identifier),
+		),
+		pointer_type: $ => $._pointer_type,
 
 		pointer_type_item: $ => seq(
 			'type',
 			field('name', $._type_identifier),
 			':',
-			'.',
-			field('type', $._type_identifier),
+			$._pointer_type,
 		),
 
 		annotation: $ => seq(
