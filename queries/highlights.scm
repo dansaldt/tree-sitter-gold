@@ -20,6 +20,10 @@
   name: (identifier) @constant
 )
 
+(variable_item
+  name: (identifier) @variable
+)
+
 (type_identifier) @type
 
 [
@@ -47,6 +51,10 @@
   "override"
   "multiLang"
   "type"
+  "memory"
+  "refTo"
+  "listOf"
+  "inverse"
 ] @keyword
 
 [
@@ -78,3 +86,4 @@
 
 (annotation "model" @attribute)
 (annotation_attribute name: (identifier) @attribute)
+(reference_modifiers) @attribute
