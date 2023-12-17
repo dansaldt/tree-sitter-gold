@@ -71,6 +71,7 @@ module.exports = grammar({
 			$.uses_item,
 			$.const_item,
 			$._type_item,
+			$.variable_item,
 			$.function_item,
 		),
 
@@ -97,6 +98,48 @@ module.exports = grammar({
 			$.set_item,
 			$.pointer_type_item,
 			// $.record_item,
+		),
+
+		variable_item: $ => seq(
+			optional($.annotation),
+			optional($.memory_modifiers),
+			field('name', $.identifier),
+			':',
+			field('type', $.variable_instance_type),
+			optional($.variable_modifiers),
+		),
+
+		variable_instance_type: $ => seq(
+			optional($.reference),
+			$._type_identifier
+		),
+
+		// all modifiers except `memory`
+		variable_modifiers: $ => repeat1(choice(
+			$.inverse_modifiers,
+			$.visibility_modifiers,
+			$._override_modifiers,
+		)),
+
+		memory_modifiers: _ => seq('memory'),
+
+		reference: $ => seq(
+			choice('refTo', 'listOf'),
+			optional($.reference_modifiers),
+		),
+
+		reference_modifiers: $ => seq(
+			'[',
+			sepBy1(',', token(choice(
+				'V', 'isVersioned', 'Versioned',
+				'T', 'inTransaction',
+				'O', 'isOwner',
+				'P', 'isCurProject',
+				'I', 'isIntegral',
+				'A', 'isActive',
+			))),
+			optional(','),
+			']',
 		),
 
 		function_item: $ => seq(
@@ -181,6 +224,11 @@ module.exports = grammar({
 		//	// TODO: to be implemented
 		//},
 
+		inverse_modifiers: $ => seq(
+			'inverse',
+			field('backref', $.identifier),
+		),
+
 		_override_modifiers: _ => choice(
 			'final',
 			'override',
@@ -246,6 +294,7 @@ module.exports = grammar({
 
 		annotation: $ => seq(
 			'[',
+			optional(seq('type', ':')), // on annotating variable_item in module/class
 			'model',
 			$.annotation_attribute_list,
 			token.immediate(']'),
