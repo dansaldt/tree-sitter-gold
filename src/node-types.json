@@ -1,5 +1,275 @@
 [
   {
+    "type": "_literal",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "boolean_literal",
+        "named": true
+      },
+      {
+        "type": "integer_literal",
+        "named": true
+      },
+      {
+        "type": "string_literal",
+        "named": true
+      },
+      {
+        "type": "text_literal",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "annotation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "annotation_attribute_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "annotation_attribute",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "_literal",
+          "named": true
+        },
+        {
+          "type": "annotation_attribute_list",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "annotation_attribute_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "annotation_attribute",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "boolean_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "class",
+    "named": true,
+    "fields": {
+      "derived": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "annotation",
+          "named": true
+        },
+        {
+          "type": "const_item",
+          "named": true
+        },
+        {
+          "type": "enum_item",
+          "named": true
+        },
+        {
+          "type": "function_item",
+          "named": true
+        },
+        {
+          "type": "pointer_type_item",
+          "named": true
+        },
+        {
+          "type": "set_item",
+          "named": true
+        },
+        {
+          "type": "uses_item",
+          "named": true
+        },
+        {
+          "type": "variable_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "class_item",
+    "named": true,
+    "fields": {
+      "derived": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "annotation",
+          "named": true
+        },
+        {
+          "type": "const_item",
+          "named": true
+        },
+        {
+          "type": "enum_item",
+          "named": true
+        },
+        {
+          "type": "function_item",
+          "named": true
+        },
+        {
+          "type": "pointer_type_item",
+          "named": true
+        },
+        {
+          "type": "set_item",
+          "named": true
+        },
+        {
+          "type": "uses_item",
+          "named": true
+        },
+        {
+          "type": "variable_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "const_item",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_literal",
+          "named": true
+        },
+        {
+          "type": "const_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "const_modifiers",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "declaration_statement",
     "named": true,
     "fields": {},
@@ -12,18 +282,123 @@
           "named": true
         },
         {
-          "type": "local_variable_declaration",
+          "type": "pointer_type_item",
+          "named": true
+        },
+        {
+          "type": "set_item",
           "named": true
         },
         {
           "type": "uses_item",
+          "named": true
+        },
+        {
+          "type": "variable_declaration",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "enum_definition",
+    "type": "enum_derived",
+    "named": true,
+    "fields": {
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "enum_item",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "enum_variant_list",
+            "named": true
+          }
+        ]
+      },
+      "derived": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "enum_derived",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "enum_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum_modifiers",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "enum_variant",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "annotation",
+          "named": true
+        },
+        {
+          "type": "enum_variant_redefine_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum_variant_list",
     "named": true,
     "fields": {},
     "children": {
@@ -38,38 +413,14 @@
     }
   },
   {
-    "type": "enum_item",
+    "type": "enum_variant_redefine_value",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "enum_definition",
-          "named": true
-        },
-        {
-          "type": "type_identifier",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
-    "type": "enum_variant",
+    "type": "forward_modifiers",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "type_identifier",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "function_body_statements",
@@ -116,6 +467,10 @@
       "required": false,
       "types": [
         {
+          "type": "forward_modifiers",
+          "named": true
+        },
+        {
           "type": "function_body_statements",
           "named": true
         },
@@ -128,15 +483,7 @@
           "named": true
         },
         {
-          "type": "function_modifiers_forward",
-          "named": true
-        },
-        {
           "type": "function_return_type",
-          "named": true
-        },
-        {
-          "type": "visibility_modifiers",
           "named": true
         }
       ]
@@ -145,7 +492,17 @@
   {
     "type": "function_modifiers",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "visibility_modifiers",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "function_modifiers_external",
@@ -172,11 +529,6 @@
         ]
       }
     }
-  },
-  {
-    "type": "function_modifiers_forward",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "function_parameter_declaration",
@@ -250,7 +602,222 @@
     }
   },
   {
-    "type": "local_variable_declaration",
+    "type": "integer_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "inverse_modifiers",
+    "named": true,
+    "fields": {
+      "backref": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "memory_modifiers",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "module",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "annotation",
+          "named": true
+        },
+        {
+          "type": "class_item",
+          "named": true
+        },
+        {
+          "type": "const_item",
+          "named": true
+        },
+        {
+          "type": "enum_item",
+          "named": true
+        },
+        {
+          "type": "function_item",
+          "named": true
+        },
+        {
+          "type": "pointer_type_item",
+          "named": true
+        },
+        {
+          "type": "set_item",
+          "named": true
+        },
+        {
+          "type": "uses_item",
+          "named": true
+        },
+        {
+          "type": "variable_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pointer_type_item",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "reference",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "reference_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "reference_modifiers",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "set_item",
+    "named": true,
+    "fields": {
+      "enum_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "class",
+          "named": true
+        },
+        {
+          "type": "module",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "declaration_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "text_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "uses_item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "variable_declaration",
     "named": true,
     "fields": {
       "name": {
@@ -276,7 +843,26 @@
     }
   },
   {
-    "type": "source_file",
+    "type": "variable_instance_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "reference",
+          "named": true
+        },
+        {
+          "type": "type_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "variable_item",
     "named": true,
     "fields": {
       "name": {
@@ -288,6 +874,16 @@
             "named": true
           }
         ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "variable_instance_type",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
@@ -295,45 +891,34 @@
       "required": false,
       "types": [
         {
-          "type": "enum_item",
+          "type": "annotation",
           "named": true
         },
         {
-          "type": "function_item",
+          "type": "memory_modifiers",
           "named": true
         },
         {
-          "type": "uses_item",
+          "type": "variable_modifiers",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "declaration_statement",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "uses_item",
+    "type": "variable_modifiers",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "type_identifier",
+          "type": "inverse_modifiers",
+          "named": true
+        },
+        {
+          "type": "visibility_modifiers",
           "named": true
         }
       ]
@@ -357,6 +942,10 @@
     "named": false
   },
   {
+    "type": "+",
+    "named": false
+  },
+  {
     "type": ",",
     "named": false
   },
@@ -369,6 +958,30 @@
     "named": false
   },
   {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "False",
+    "named": false
+  },
+  {
+    "type": "True",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "class",
+    "named": false
+  },
+  {
     "type": "const",
     "named": false
   },
@@ -377,7 +990,15 @@
     "named": false
   },
   {
+    "type": "endClass",
+    "named": false
+  },
+  {
     "type": "endFunc",
+    "named": false
+  },
+  {
+    "type": "endModule",
     "named": false
   },
   {
@@ -386,6 +1007,10 @@
   },
   {
     "type": "external",
+    "named": false
+  },
+  {
+    "type": "false",
     "named": false
   },
   {
@@ -413,11 +1038,31 @@
     "named": false
   },
   {
+    "type": "inverse",
+    "named": false
+  },
+  {
     "type": "line_comment",
     "named": true
   },
   {
+    "type": "listOf",
+    "named": false
+  },
+  {
+    "type": "memory",
+    "named": false
+  },
+  {
+    "type": "model",
+    "named": false
+  },
+  {
     "type": "module",
+    "named": false
+  },
+  {
+    "type": "multiLang",
     "named": false
   },
   {
@@ -441,7 +1086,15 @@
     "named": false
   },
   {
+    "type": "refTo",
+    "named": false
+  },
+  {
     "type": "return",
+    "named": false
+  },
+  {
+    "type": "true",
     "named": false
   },
   {
@@ -458,6 +1111,14 @@
   },
   {
     "type": "var",
+    "named": false
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
     "named": false
   }
 ]
