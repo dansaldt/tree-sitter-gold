@@ -83,6 +83,7 @@ module.exports = grammar({
 		),
 
 		const_item: $ => seq(
+			optional($.annotation),
 			'const',
 			field('name', $.identifier),
 			'=',
