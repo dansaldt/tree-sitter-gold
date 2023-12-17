@@ -38,24 +38,3 @@ uses aLightObject, aFullObject, aListOfInstances
     )
   ) 
 )
-
-
-===================
-Uses trailing comma
-===================
-
-module Example
-
-uses WF, WFCom, 
-
----
-
-(source_file
-  (module
-    name: (identifier)
-    (uses_item
-      (identifier)
-      (identifier)
-    )  
-  ) 
-)

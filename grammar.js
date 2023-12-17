@@ -78,7 +78,8 @@ module.exports = grammar({
 		uses_item: $ => seq(
 			'uses',
 			sepBy1(',', $.identifier),
-			optional(','),
+			// optional(','), 
+			// TODO: cannot use trailing comma because it will conflict with with variable_item
 		),
 
 		const_item: $ => seq(
