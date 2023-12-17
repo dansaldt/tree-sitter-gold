@@ -1,0 +1,111 @@
+=====
+Class
+=====
+
+; class ExampleClass (BaseClass)
+
+; Contains any items similarly defined in a module
+class ExampleClass (BaseClass)
+
+uses OtherClass, AnotherClass, MaybeSomeModule
+
+const SOME_CONST = 1
+
+type tMaybeAStatusType : (
+	[model(Text:'Status A')] esStatusA,
+	[model(Text:'Status B')] esStatusB,
+)
+
+
+function ThisFunction return Int4
+endFunc
+
+---
+
+(source_file
+    (line_comment)
+    (line_comment)
+    (class
+        name: (identifier)
+        derived: (identifier)
+        (uses_item
+            (identifier)
+            (identifier)
+            (identifier)
+        )
+        (const_item
+            name: (identifier)
+            (integer_literal)
+        )
+        (enum_item
+            name: (type_identifier)
+            body: (enum_variant_list
+                (enum_variant
+                    (annotation
+                        (annotation_attribute_list
+                            (annotation_attribute
+                                name: (identifier)
+                                (string_literal))
+                        )
+                    )
+                    name: (identifier)
+                )
+                (enum_variant
+                    (annotation
+                        (annotation_attribute_list
+                            (annotation_attribute
+                                name: (identifier)
+                                (string_literal))
+                        )
+                    )
+                    name: (identifier)
+                )
+            )
+        )
+        (function_item
+            name: (identifier)
+            (function_return_type (type_identifier))
+        )
+    )
+)
+
+
+==================
+Class - annotation
+==================
+
+[model(
+	Text: 'Example Class',
+	DefaultModifyScenario: ExampleClassModificationScen,
+	DefaultCreateScenario: ExampleClassCreationScen,
+	DefaultConsultScenario: ExampleClassConsultationScen,
+	DefaultPickerClass: ExampleClassPicker,
+)]
+class AnnotatedClassExample
+
+---
+
+(source_file
+    (class
+        (annotation
+            (annotation_attribute_list
+                (annotation_attribute
+                    name: (identifier)
+                    (string_literal))
+                (annotation_attribute
+                    name: (identifier)
+                    (identifier))
+                (annotation_attribute
+                    name: (identifier)
+                    (identifier))
+                (annotation_attribute
+                    name: (identifier)
+                    (identifier))
+                (annotation_attribute
+                    name: (identifier)
+                    (identifier))
+            )
+        )
+        name: (identifier)
+    )
+)
