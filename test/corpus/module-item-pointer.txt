@@ -9,8 +9,10 @@ type tpSomeType : .tSomeType
 ---
 
 (source_file
-  name: (identifier)
-  (pointer_type_item
-    name: (type_identifier)
-    type: (type_identifier))
+  (module
+    name: (identifier)
+    (pointer_type_item
+      name: (type_identifier)
+      type: (type_identifier))
+  )
 )

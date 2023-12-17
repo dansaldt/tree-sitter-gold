@@ -14,24 +14,26 @@ const FALSE = false
 ---
 
 (source_file
-  name: (identifier)
-  (const_item
+  (module
     name: (identifier)
-	(integer_literal))
-  (const_item
-    name: (identifier)
-    (integer_literal))
-  (const_item
-    name: (identifier)
-    (string_literal))
-  (const_item
-    name: (identifier)
-    (string_literal)
-    (const_modifiers))
-  (const_item
-    name: (identifier)
-    (boolean_literal))
-  (const_item
-    name: (identifier)
-    (boolean_literal))
+    (const_item
+      name: (identifier)
+  	(integer_literal))
+    (const_item
+      name: (identifier)
+      (integer_literal))
+    (const_item
+      name: (identifier)
+      (string_literal))
+    (const_item
+      name: (identifier)
+      (string_literal)
+      (const_modifiers))
+    (const_item
+      name: (identifier)
+      (boolean_literal))
+    (const_item
+      name: (identifier)
+      (boolean_literal))
+  )
 )

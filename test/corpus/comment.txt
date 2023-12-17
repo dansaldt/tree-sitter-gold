@@ -17,10 +17,12 @@ endProc
 (source_file
   (line_comment)
   (line_comment)
-  name: (identifier)
-  (line_comment)
-  (function_item
+  (module
     name: (identifier)
     (line_comment)
+    (function_item
+      name: (identifier)
+      (line_comment)
+    )
   )
 )

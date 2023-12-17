@@ -9,9 +9,11 @@ type tSomeTypeSet : [tSomeType]
 ---
 
 (source_file
-  name: (identifier)
-  (set_item
-    name: (type_identifier)
-    enum_type: (type_identifier)
+  (module
+    name: (identifier)
+    (set_item
+      name: (type_identifier)
+      enum_type: (type_identifier)
+    )
   )
 )

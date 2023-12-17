@@ -12,14 +12,16 @@ type BaseEnum : (
 ---
 
 (source_file
-  name: (identifier)
-  (enum_item
-    name: (type_identifier)
-    body: (enum_variant_list
-      (enum_variant
-        name: (identifier))
-      (enum_variant
-        name: (identifier))
+  (module
+    name: (identifier)
+    (enum_item
+      name: (type_identifier)
+      body: (enum_variant_list
+        (enum_variant
+          name: (identifier))
+        (enum_variant
+          name: (identifier))
+      )
     )
   )
 )
@@ -39,16 +41,18 @@ type ChildEnum : BaseEnum + (
 ---
 
 (source_file
-  name: (identifier)
-  (enum_item
-    name: (type_identifier)
-	derived: (enum_derived
-      type: (type_identifier))
-    body: (enum_variant_list
-      (enum_variant
-        name: (identifier))
-      (enum_variant
-        name: (identifier))
+  (module
+    name: (identifier)
+    (enum_item
+      name: (type_identifier)
+      derived: (enum_derived
+        type: (type_identifier))
+      body: (enum_variant_list
+        (enum_variant
+          name: (identifier))
+        (enum_variant
+          name: (identifier))
+      )
     )
   )
 )
@@ -67,14 +71,16 @@ type ModEnum : (
 ---
 
 (source_file
-  name: (identifier)
-  (enum_item
-    name: (type_identifier)
-    body: (enum_variant_list
-      (enum_variant
-        name: (identifier))
+  (module
+    name: (identifier)
+    (enum_item
+      name: (type_identifier)
+      body: (enum_variant_list
+        (enum_variant
+          name: (identifier))
+      )
+      (enum_modifiers)
     )
-    (enum_modifiers)
   )
 )
 
@@ -92,13 +98,15 @@ type ReDefEnumValue : (
 ---
 
 (source_file
-  name: (identifier)
-  (enum_item
-    name: (type_identifier)
-    body: (enum_variant_list
-      (enum_variant
-        name: (identifier)
-        (enum_variant_redefine_value))
+  (module
+    name: (identifier)
+    (enum_item
+      name: (type_identifier)
+      body: (enum_variant_list
+        (enum_variant
+          name: (identifier)
+          (enum_variant_redefine_value))
+      )
     )
   )
 )
@@ -117,18 +125,20 @@ type AnnotatedEnum : (
 ---
 
 (source_file
-  name: (identifier)
-  (enum_item
-    name: (type_identifier)
-    body: (enum_variant_list
-      (enum_variant
-        (annotation
-          (annotation_attribute_list
-            (annotation_attribute
-              name: (identifier)
-              (string_literal))
+  (module
+    name: (identifier)
+    (enum_item
+      name: (type_identifier)
+      body: (enum_variant_list
+        (enum_variant
+          (annotation
+            (annotation_attribute_list
+              (annotation_attribute
+                name: (identifier)
+                (string_literal))
+            )
           )
-        )
-        name: (identifier)))
+          name: (identifier)))
+    )
   )
 )

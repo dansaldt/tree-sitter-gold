@@ -9,9 +9,11 @@ uses aLightObject
 ---
 
 (source_file
-  name: (identifier)
-  (uses_item
-    (type_identifier)
+  (module
+    name: (identifier)
+    (uses_item
+      (type_identifier)
+    )
   )
 )
 
@@ -26,13 +28,15 @@ uses aLightObject, aFullObject, aListOfInstances
 
 ---
 
-(source_file 
-  name: (identifier)
-  (uses_item
-    (type_identifier)
-    (type_identifier)
-    (type_identifier)
-  )
+(source_file
+  (module
+    name: (identifier)
+    (uses_item
+      (type_identifier)
+      (type_identifier)
+      (type_identifier)
+    )
+  ) 
 )
 
 
@@ -46,10 +50,12 @@ uses WF, WFCom,
 
 ---
 
-(source_file 
-  name: (identifier)
-  (uses_item
-    (type_identifier)
-    (type_identifier)
-  )
+(source_file
+  (module
+    name: (identifier)
+    (uses_item
+      (type_identifier)
+      (type_identifier)
+    )  
+  ) 
 )
