@@ -276,12 +276,13 @@ module.exports = grammar({
 			// TODO: to be added
 		),
 
-		string_literal: $ => seq(
+		_string_literal: $ => seq(
 			'\'',
 			// TODO: should probably use external scanner, since there's an error with comment highlight inside string
 			repeat(/[\u0020-\u007E\u00A0-\u00FF]/),
 			token.immediate('\''),
 		),
+		string_literal: $ => $._string_literal,
 
 		_integer_literal: _ => token(seq(/-?[0-9][0-9]*/)),
 		integer_literal: $ => $._integer_literal,
