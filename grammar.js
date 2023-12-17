@@ -50,11 +50,11 @@ module.exports = grammar({
 			optional($.annotation),
 			'class',
 			field('name', $.identifier),
-			field('derived', seq(
+			optional(field('derived', seq(
 				'(',
 				$.identifier,
 				')',
-			)),
+			))),
 			repeat($._class_item_declaration),
 		),
 
