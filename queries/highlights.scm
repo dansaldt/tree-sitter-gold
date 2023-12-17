@@ -69,6 +69,7 @@
 (line_comment) @comment
 
 (string_literal) @string
+(text_literal) @string
 
 (boolean_literal) @constant.builtin
 (integer_literal) @constant.builtin

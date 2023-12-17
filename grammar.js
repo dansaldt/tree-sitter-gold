@@ -271,6 +271,7 @@ module.exports = grammar({
 
 		_literal: $ => choice(
 			$.string_literal,
+			$.text_literal,
 			$.integer_literal,
 			$.boolean_literal,
 			// TODO: to be added
@@ -283,6 +284,13 @@ module.exports = grammar({
 			token.immediate('\''),
 		),
 		string_literal: $ => $._string_literal,
+
+		text_literal: $ => seq(
+			'{',
+			sepBy1(',', $._string_literal),
+			optional(','),
+			'}',
+		),
 
 		_integer_literal: _ => token(seq(/-?[0-9][0-9]*/)),
 		integer_literal: $ => $._integer_literal,
