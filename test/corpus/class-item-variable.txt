@@ -1,0 +1,64 @@
+================
+Class - variable
+================
+
+class ClassVariableExample
+
+simpleVarPrimitive : Int4
+simpleVarRefto: refTo OtherClass
+simpleVarListof: listOf AnotherClass
+withRefMod : refTo [V, T, O, P, I, A] OtherClass
+withRefModFullName : refTo [isVersioned, inTransaction, isOwner, isCurProject, isIntegral, isActive] OtherClass
+withBackRef : refTo OtherClass inverse myExample
+memory memVar : refTo OtherClass
+
+---
+
+(source_file
+  (class
+    name: (identifier)
+    (variable_item
+      name: (identifier)
+      type: (variable_instance_type (type_identifier))
+    )
+    (variable_item
+      name: (identifier)
+      type: (variable_instance_type 
+        (reference)
+        (type_identifier))
+    )
+    (variable_item
+      name: (identifier)
+      type: (variable_instance_type
+        (reference)
+        (type_identifier))
+    )
+    (variable_item
+      name: (identifier)
+      type: (variable_instance_type
+        (reference (reference_modifiers))
+        (type_identifier))
+    )
+    (variable_item
+      name: (identifier)
+      type: (variable_instance_type
+        (reference (reference_modifiers))
+        (type_identifier))
+    )
+    (variable_item
+      name: (identifier)
+      type: (variable_instance_type
+        (reference)
+        (type_identifier))
+      (variable_modifiers
+        (inverse_modifiers backref: (identifier)))
+    )
+    (variable_item
+      (memory_modifiers)
+      name: (identifier)
+      type: (variable_instance_type
+        (reference)
+        (type_identifier))
+    )
+  )
+)
