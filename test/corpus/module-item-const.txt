@@ -10,6 +10,10 @@ const SOME_STRING = 'abc'
 const MESSAGE = 'This is a test message' multiLang
 const TRUE = true
 const FALSE = false
+const SOME_TEXT = {
+  'abc',
+  'def',
+}
 
 ---
 
@@ -35,5 +39,8 @@ const FALSE = false
     (const_item
       name: (identifier)
       (boolean_literal))
+    (const_item
+      name: (identifier)
+      (text_literal))
   )
 )
