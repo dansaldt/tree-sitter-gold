@@ -76,7 +76,7 @@ module.exports = grammar({
 
 		uses_item: $ => seq(
 			'uses',
-			sepBy1(',', $._type_identifier),
+			sepBy1(',', $.identifier),
 			optional(','),
 		),
 
