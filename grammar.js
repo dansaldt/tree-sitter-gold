@@ -254,6 +254,7 @@ module.exports = grammar({
 		annotation_attribute_list: $ => seq(
 			'(',
 			sepBy1(',', $.annotation_attribute),
+			optional(','),
 			')',
 		),
 
