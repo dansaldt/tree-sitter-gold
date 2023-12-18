@@ -207,7 +207,7 @@ module.exports = grammar({
 
 		_function_type: $ => seq(
 			choice('func', 'function', 'proc', 'procedure'),
-			field('parameters', optional($.function_parameters)),
+			optional($.parameter_list),
 			optional($.function_return_type),
 			// TODO: there shouldn't be anymore modifiers or definition here. to be checked.
 		),
@@ -225,7 +225,7 @@ module.exports = grammar({
 			optional($.annotation),
 			choice('func', 'function', 'proc', 'procedure'),
 			field('name', $.identifier),
-			field('parameters', optional($.function_parameters)),
+			optional($.parameter_list),
 			optional($.function_return_type),
 			optional($.function_modifiers),
 			choice(
@@ -239,7 +239,7 @@ module.exports = grammar({
 			optional($.annotation),
 			choice('func', 'function', 'proc', 'procedure'),
 			field('name', $.identifier),
-			field('parameters', optional($.function_parameters)),
+			optional($.parameter_list),
 			optional($.function_return_type),
 			optional($.function_modifiers),
 		),
@@ -266,32 +266,32 @@ module.exports = grammar({
 			'\'',
 		),
 
-		function_parameters: $ => seq(
+		parameter_list: $ => seq(
 			'(',
-			sepBy1(',', $.function_parameter_declaration),
+			sepBy1(',', $.parameter),
 			optional(','),
 			')',
 		),
 
-		function_parameter_declaration: $ =>
+		parameter: $ =>
 			choice(
-				$._function_parameter_untyped,
-				$._function_parameter_typed,
+				$._parameter_untyped,
+				$._parameter_typed,
 			),
 
-		_function_parameter_typed: $ => seq(
-			optional($.function_parameter_modifiers),
+		_parameter_typed: $ => seq(
+			optional($.parameter_modifiers),
 			field('name', $.identifier),
 			':',
 			field('type', $._type_identifier),
 		),
 
-		_function_parameter_untyped: $ => seq(
-			$.function_parameter_modifiers,
+		_parameter_untyped: $ => seq(
+			$.parameter_modifiers,
 			field('name', $.identifier),
 		),
 
-		function_parameter_modifiers: _ => choice('inOut', 'var', 'const'),
+		parameter_modifiers: _ => choice('inOut', 'var', 'const'),
 
 		function_return_type: $ => seq(
 			'return',

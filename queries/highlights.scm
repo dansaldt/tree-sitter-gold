@@ -10,7 +10,7 @@
   (identifier) @function
 )
 
-(function_parameter_declaration
+(parameter
   name: (identifier) @variable
 )
 
