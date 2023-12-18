@@ -248,6 +248,10 @@
           "named": true
         },
         {
+          "type": "function_signature_item",
+          "named": true
+        },
+        {
           "type": "function_type_item",
           "named": true
         },
@@ -337,6 +341,10 @@
         },
         {
           "type": "function_item",
+          "named": true
+        },
+        {
+          "type": "function_signature_item",
           "named": true
         },
         {
@@ -654,16 +662,6 @@
             "named": true
           }
         ]
-      },
-      "parameters": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "function_parameters",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
@@ -692,6 +690,10 @@
         },
         {
           "type": "function_return_type",
+          "named": true
+        },
+        {
+          "type": "parameter_list",
           "named": true
         }
       ]
@@ -739,62 +741,6 @@
     }
   },
   {
-    "type": "function_parameter_declaration",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "type": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "type_identifier",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "function_parameter_modifiers",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "function_parameter_modifiers",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "function_parameters",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "function_parameter_declaration",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "function_return_type",
     "named": true,
     "fields": {},
@@ -810,26 +756,57 @@
     }
   },
   {
-    "type": "function_type",
+    "type": "function_signature_item",
     "named": true,
     "fields": {
-      "parameters": {
+      "name": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
-            "type": "function_parameters",
+            "type": "identifier",
             "named": true
           }
         ]
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "annotation",
+          "named": true
+        },
+        {
+          "type": "function_modifiers",
+          "named": true
+        },
+        {
+          "type": "function_return_type",
+          "named": true
+        },
+        {
+          "type": "parameter_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "function_return_type",
+          "named": true
+        },
+        {
+          "type": "parameter_list",
           "named": true
         }
       ]
@@ -848,16 +825,6 @@
             "named": true
           }
         ]
-      },
-      "parameters": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "function_parameters",
-            "named": true
-          }
-        ]
       }
     },
     "children": {
@@ -870,6 +837,10 @@
         },
         {
           "type": "function_return_type",
+          "named": true
+        },
+        {
+          "type": "parameter_list",
           "named": true
         }
       ]
@@ -945,6 +916,10 @@
           "named": true
         },
         {
+          "type": "function_signature_item",
+          "named": true
+        },
+        {
           "type": "function_type_item",
           "named": true
         },
@@ -978,6 +953,62 @@
         }
       ]
     }
+  },
+  {
+    "type": "parameter",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "parameter_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parameter_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "parameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parameter_modifiers",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "pointer_type",
