@@ -1,0 +1,211 @@
+=============
+Record - base
+=============
+
+module BaseRecordExample
+
+type tBaseRecord : record
+    data0: Int1
+    data1: Boolean
+endRecord
+
+type tNativeRecord : nativeRecord
+    data0: ULONG
+endNativeRecord
+
+---
+
+(source_file
+  (module
+    name: (identifier)
+    (record_item
+      name: (type_identifier)
+      (record_variable_list
+        (record_variable
+          name: (identifier)
+          type: (type_identifier))
+        (record_variable
+          name: (identifier)
+          type: (type_identifier))
+      )
+    )
+    (record_item
+      name: (type_identifier)
+      (record_variable_list
+        (record_variable
+          name: (identifier)
+          type: (type_identifier))
+      )
+    )
+  )
+)
+
+
+================
+Record - derived
+================
+
+module DerivedRecordExample
+
+type tDerivedRecord : record (tBaseRecord)
+    data2: Int4
+endRecord
+
+---
+
+(source_file
+  (module
+    name: (identifier)
+    (record_item
+      name: (type_identifier)
+      (record_derived
+        type: (type_identifier))
+      (record_variable_list
+        (record_variable
+          name: (identifier)
+          type: (type_identifier))
+      )
+    )
+  )
+)
+
+
+===================
+Record - annotation
+===================
+
+module AnnotatedRecordExample
+
+[model(Text:'Annotated Record')]
+type tAnnotatedRecord : record
+    [model(Text:'Data 0')]
+    data0: Int1
+    [model(Text:'Data 1')]
+    data1: Boolean
+endRecord
+
+---
+
+(source_file
+  (module
+    name: (identifier)
+    (record_item
+      (annotation
+        (annotation_attribute_list
+          (annotation_attribute
+            name: (identifier)
+            (string_literal))))
+      name: (type_identifier)
+      (record_variable_list
+        (record_variable
+          (annotation
+            (annotation_attribute_list
+              (annotation_attribute
+                name: (identifier)
+                (string_literal))))
+          name: (identifier)
+          type: (type_identifier))
+        (record_variable
+          (annotation
+            (annotation_attribute_list
+              (annotation_attribute
+                name: (identifier)
+                (string_literal))))
+          name: (identifier)
+          type: (type_identifier))
+      )
+    )
+  )
+)
+
+
+=====================
+Record - inner record
+=====================
+
+module WithInnerRecordTypeExample
+
+type OuterRecord : record
+    inner_record: record
+        data01: Int1
+        data02: Boolean
+    endRecord
+    other_data: Int4
+endRecord
+
+---
+
+(source_file
+  (module
+    name: (identifier)
+    (record_item
+      name: (type_identifier)
+      (record_variable_list
+        (record_variable
+          name: (identifier)
+          type: (record_type
+            (record_variable_list
+              (record_variable
+                name: (identifier)
+                type: (type_identifier))
+              (record_variable
+                name: (identifier)
+                type: (type_identifier))
+            )
+          )
+        )
+        (record_variable
+          name: (identifier)
+          type: (type_identifier))
+      )
+    )
+  )
+)
+
+
+================================
+Record - variable with modifiers
+================================
+
+module RecordVariableWithModifiersExample
+
+type UnionDataRecord : record
+    data_i8: Int8
+    data_i4x2: record
+        _0: Int4
+        _1: Int4
+    endRecord absolute data_i8
+endRecord
+
+---
+
+(source_file
+  (module
+    name: (identifier)
+    (record_item
+      name: (type_identifier)
+      (record_variable_list
+        (record_variable
+          name: (identifier)
+          type: (type_identifier)
+        )
+        (record_variable
+          name: (identifier)
+          type: (record_type
+            (record_variable_list
+              (record_variable
+                name: (identifier)
+                type: (type_identifier)
+              )
+              (record_variable
+                name: (identifier)
+                type: (type_identifier)
+              )))
+          (variable_modifiers
+            (absolute_modifiers
+              variable: (identifier)))
+        )
+      )
+    )
+  )
+)
