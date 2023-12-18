@@ -1,0 +1,23 @@
+=======
+Retyped
+=======
+
+module Example
+
+type Text : Pointer
+type Int8 : int(8)
+
+---
+
+(source_file
+  (module
+    name: (identifier)
+    (retyped_item
+      name: (type_identifier)
+      (type_identifier))
+    (retyped_item
+      name: (type_identifier)
+      (type_primitive)
+      (sized))
+  )
+)

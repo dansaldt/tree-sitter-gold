@@ -120,6 +120,7 @@ module.exports = grammar({
 			$.function_type_item,
 			$.record_item,
 			$.range_item,
+			$.retyped_item,
 		),
 
 		_type: $ => choice(
@@ -144,6 +145,14 @@ module.exports = grammar({
 			'(',
 			$._integer_literal,
 			')',
+		),
+
+		retyped_item: $ => seq(
+			optional($.annotation),
+			'type',
+			field('name', $._type_identifier),
+			':',
+			$._type_identifier_or_primitive,
 		),
 
 		_variable_item: $ => seq(
