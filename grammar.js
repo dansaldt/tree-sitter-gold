@@ -179,6 +179,7 @@ module.exports = grammar({
 		),
 
 		function_item: $ => seq(
+			optional($.annotation),
 			choice('func', 'function', 'proc', 'procedure'),
 			field('name', $.identifier),
 			field('parameters', optional($.function_parameters)),
