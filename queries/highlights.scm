@@ -60,6 +60,7 @@
   "refTo"
   "listOf"
   "inverse"
+  "to"
 ] @keyword
 
 [
