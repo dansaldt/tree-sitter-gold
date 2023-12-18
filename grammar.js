@@ -121,6 +121,7 @@ module.exports = grammar({
 			$.record_item,
 			$.range_item,
 			$.retyped_item,
+			$.array_item,
 		),
 
 		_type: $ => choice(
@@ -131,6 +132,7 @@ module.exports = grammar({
 			$.function_type,
 			$.record_type,
 			$.range_type,
+			$.array_type,
 		),
 
 		_type_identifier_or_primitive: $ => seq(
@@ -444,6 +446,24 @@ module.exports = grammar({
 			field('name', $._type_identifier),
 			':',
 			$._range_type,
+		),
+
+		_array_type: $ => seq(
+			'array',
+			'[',
+			field('size', choice($.range_type, $._type_identifier)),
+			']',
+			'of',
+			field('type', $._type_identifier),
+		),
+		array_type: $ => $._array_type,
+
+		array_item: $ => seq(
+			optional($.annotation),
+			'type',
+			field('name', $._type_identifier),
+			':',
+			$._array_type,
 		),
 
 		annotation: $ => seq(

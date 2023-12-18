@@ -61,7 +61,9 @@
   "refTo"
   "listOf"
   "inverse"
+  "array"
   "to"
+  "of"
 ] @keyword
 
 [
