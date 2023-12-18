@@ -105,6 +105,7 @@ module.exports = grammar({
 			$.pointer_type_item,
 			$.function_type_item,
 			$.record_item,
+			$.range_item,
 		),
 
 		_type: $ => choice(
@@ -114,6 +115,7 @@ module.exports = grammar({
 			$.pointer_type,
 			$.function_type,
 			$.record_type,
+			$.range_type,
 		),
 
 		_variable_item: $ => seq(
@@ -384,6 +386,27 @@ module.exports = grammar({
 			':',
 			field('type', $._type),
 			optional($.variable_modifiers),
+		),
+
+		_range_type: $ => seq(
+			field('begin', $._range_value),
+			'to',
+			field('end', $._range_value),
+		),
+		range_type: $ => $._range_type,
+
+		_range_value: $ => choice(
+			$.identifier,
+			$.integer_literal,
+			$.string_literal,
+		),
+
+		range_item: $ => seq(
+			optional($.annotation),
+			'type',
+			field('name', $._type_identifier),
+			':',
+			$._range_type,
 		),
 
 		annotation: $ => seq(
