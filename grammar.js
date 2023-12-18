@@ -104,6 +104,7 @@ module.exports = grammar({
 			$.set_item,
 			$.pointer_type_item,
 			$.function_type_item,
+			$.record_item,
 		),
 
 		_type: $ => choice(
@@ -112,6 +113,7 @@ module.exports = grammar({
 			$.set_type,
 			$.pointer_type,
 			$.function_type,
+			$.record_type,
 		),
 
 		_variable_item: $ => seq(
@@ -344,6 +346,40 @@ module.exports = grammar({
 			field('name', $._type_identifier),
 			':',
 			$._pointer_type,
+		),
+
+		_record_type: $ => seq(
+			choice('record', 'nativeRecord'),
+			optional($.record_derived),
+			optional($.record_variable_list),
+			choice('end', 'endRecord', 'endNativeRecord'),
+		),
+		record_type: $ => $._record_type,
+
+		record_item: $ => seq(
+			optional($.annotation),
+			'type',
+			field('name', $._type_identifier),
+			':',
+			$._record_type,
+		),
+
+		record_derived: $ => seq(
+			'(',
+			field('type', $._type_identifier),
+			')',
+		),
+
+		record_variable_list: $ => seq(
+			repeat1($.record_variable),
+		),
+
+		record_variable: $ => seq(
+			optional($.annotation),
+			field('name', $.identifier),
+			':',
+			field('type', $._type),
+			optional($.variable_modifiers),
 		),
 
 		annotation: $ => seq(
