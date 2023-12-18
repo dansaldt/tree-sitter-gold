@@ -14,6 +14,7 @@ const SOME_TEXT = {
   'abc',
   'def',
 }
+const NULL = nil
 
 ---
 
@@ -42,5 +43,8 @@ const SOME_TEXT = {
     (const_item
       name: (identifier)
       (text_literal))
+    (const_item
+      name: (identifier)
+      (nil_literal))
   )
 )

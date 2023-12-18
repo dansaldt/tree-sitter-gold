@@ -437,6 +437,7 @@ module.exports = grammar({
 		),
 
 		_literal: $ => choice(
+			$.nil_literal,
 			$.string_literal,
 			$.text_literal,
 			$.integer_literal,
@@ -463,6 +464,8 @@ module.exports = grammar({
 		integer_literal: $ => $._integer_literal,
 
 		boolean_literal: _ => choice('true', 'True', 'false', 'False'),
+
+		nil_literal: _ => token('nil'),
 
 	},
 });
