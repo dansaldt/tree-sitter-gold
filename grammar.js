@@ -135,6 +135,7 @@ module.exports = grammar({
 			$.inverse_modifiers,
 			$.visibility_modifiers,
 			$._override_modifiers,
+			$.absolute_modifiers,
 		)),
 
 		memory_modifiers: _ => seq('memory'),
@@ -260,6 +261,11 @@ module.exports = grammar({
 		inverse_modifiers: $ => seq(
 			'inverse',
 			field('backref', $.identifier),
+		),
+
+		absolute_modifiers: $ => seq(
+			'absolute',
+			field('variable', $.identifier),
 		),
 
 		_override_modifiers: _ => choice(
