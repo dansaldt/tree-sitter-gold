@@ -10,6 +10,10 @@ module.exports = grammar({
 		$._literal,
 	],
 
+	conflicts: $ => [
+		[$._type_identifier, $.function_type_item]
+	],
+
 	rules: {
 		source_file: $ => choice(
 			$.module,
@@ -99,7 +103,7 @@ module.exports = grammar({
 			$.enum_item,
 			$.set_item,
 			$.pointer_type_item,
-			// $.record_item,
+			$.function_type_item,
 		),
 
 		_type: $ => choice(
@@ -107,6 +111,7 @@ module.exports = grammar({
 			$.enum_type,
 			$.set_type,
 			$.pointer_type,
+			$.function_type,
 		),
 
 		_variable_item: $ => seq(
@@ -152,6 +157,22 @@ module.exports = grammar({
 			))),
 			optional(','),
 			']',
+		),
+
+		_function_type: $ => seq(
+			choice('func', 'function', 'proc', 'procedure'),
+			field('parameters', optional($.function_parameters)),
+			optional($.function_return_type),
+			// TODO: there shouldn't be anymore modifiers or definition here. to be checked.
+		),
+		function_type: $ => $._function_type,
+
+		function_type_item: $ => seq(
+			optional($.annotation),
+			'type',
+			field('name', $.identifier),
+			':',
+			$._function_type,
 		),
 
 		function_item: $ => seq(
