@@ -37,17 +37,17 @@ module.exports = grammar({
 			'module',
 			field('name', $.identifier),
 			repeat($._module_item_declaration),
-			optional('endModule'),
+			optional(choice('end', 'endModule')),
 		),
 
 		class: $ => seq(
 			$._class,
-			optional('endClass'),
+			optional(choice('end', 'endClass')),
 		),
 
 		class_item: $ => seq(
 			$._class,
-			'endClass',
+			choice('end', 'endClass'),
 		),
 
 		_class: $ => seq(
