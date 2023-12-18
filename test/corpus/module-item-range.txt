@@ -1,0 +1,46 @@
+=====
+Range
+=====
+
+module RangeExample
+
+type tRange0to1024 : 0 to 1024
+type tUppercaseLetter : 'A' to 'Z'
+
+; with const defined MONDAY=1 and FRIDAY=5
+type tWeekday : MONDAY to FRIDAY
+
+; Mixed value type used in range
+; with const defined ZERO=0
+type tZeroToUInt4Max : ZERO to 4294967295L
+
+---
+
+(source_file
+  (module
+    name: (identifier)
+    (range_item
+      name: (type_identifier)
+      begin: (integer_literal)
+      end: (integer_literal)
+    )
+    (range_item
+      name: (type_identifier)
+      begin: (string_literal)
+      end: (string_literal)
+    )
+    (line_comment)
+    (range_item
+      name: (type_identifier)
+      begin: (identifier)
+      end: (identifier)
+    )
+    (line_comment)
+    (line_comment)
+    (range_item
+      name: (type_identifier)
+      begin: (identifier)
+      end: (integer_literal)
+    )
+  )
+)
