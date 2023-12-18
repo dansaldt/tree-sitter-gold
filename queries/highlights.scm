@@ -93,6 +93,7 @@
 (integer_literal) @constant.builtin
 (nil_literal) @constant.builtin
 (sized) @constant.builtin
+(enum_variant_redefine_value) @constant.builtin
 
 (annotation "model" @attribute)
 (annotation_attribute name: (identifier) @attribute)
