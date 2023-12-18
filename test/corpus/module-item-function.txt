@@ -265,7 +265,7 @@ type TheFunction : function (param : Int1) return Boolean
           (annotation_attribute
             name: (identifier)
             (boolean_literal))))
-      name: (identifier)
+      name: (type_identifier)
       parameters: (function_parameters
         (function_parameter_declaration
           name: (identifier)

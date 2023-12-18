@@ -212,7 +212,7 @@ module.exports = grammar({
 		function_type_item: $ => seq(
 			optional($.annotation),
 			'type',
-			field('name', $.identifier),
+			field('name', $._type_identifier),
 			':',
 			$._function_type,
 		),
