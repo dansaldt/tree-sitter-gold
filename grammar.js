@@ -25,7 +25,8 @@ module.exports = grammar({
 	],
 
 	conflicts: $ => [
-		[$._type_identifier, $.function_type_item]
+		[$._type_identifier, $.function_type_item],
+		[$.function_item, $.function_signature_item],
 	],
 
 	rules: {
@@ -91,6 +92,7 @@ module.exports = grammar({
 			$._type_item,
 			$.variable_item,
 			$.function_item,
+			$.function_signature_item,
 		),
 
 		uses_item: $ => seq(
@@ -231,6 +233,15 @@ module.exports = grammar({
 				$.function_modifiers_external,
 				$._function_definition,
 			),
+		),
+
+		function_signature_item: $ => seq(
+			optional($.annotation),
+			choice('func', 'function', 'proc', 'procedure'),
+			field('name', $.identifier),
+			field('parameters', optional($.function_parameters)),
+			optional($.function_return_type),
+			optional($.function_modifiers),
 		),
 
 		// other modifiers except 'forward' and 'external'
