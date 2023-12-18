@@ -12,6 +12,10 @@
         "named": true
       },
       {
+        "type": "nil_literal",
+        "named": true
+      },
+      {
         "type": "string_literal",
         "named": true
       },
@@ -102,6 +106,86 @@
     }
   },
   {
+    "type": "array_item",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      },
+      "size": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "range_type",
+            "named": true
+          },
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "annotation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "array_type",
+    "named": true,
+    "fields": {
+      "size": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "range_type",
+            "named": true
+          },
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "boolean_literal",
     "named": true,
     "fields": {}
@@ -148,6 +232,10 @@
           "named": true
         },
         {
+          "type": "array_item",
+          "named": true
+        },
+        {
           "type": "const_item",
           "named": true
         },
@@ -168,7 +256,15 @@
           "named": true
         },
         {
+          "type": "range_item",
+          "named": true
+        },
+        {
           "type": "record_item",
+          "named": true
+        },
+        {
+          "type": "retyped_item",
           "named": true
         },
         {
@@ -228,6 +324,10 @@
           "named": true
         },
         {
+          "type": "array_item",
+          "named": true
+        },
+        {
           "type": "const_item",
           "named": true
         },
@@ -248,7 +348,15 @@
           "named": true
         },
         {
+          "type": "range_item",
+          "named": true
+        },
+        {
           "type": "record_item",
+          "named": true
+        },
+        {
+          "type": "retyped_item",
           "named": true
         },
         {
@@ -314,6 +422,10 @@
       "required": true,
       "types": [
         {
+          "type": "array_item",
+          "named": true
+        },
+        {
           "type": "enum_item",
           "named": true
         },
@@ -326,7 +438,15 @@
           "named": true
         },
         {
+          "type": "range_item",
+          "named": true
+        },
+        {
           "type": "record_item",
+          "named": true
+        },
+        {
+          "type": "retyped_item",
           "named": true
         },
         {
@@ -724,7 +844,7 @@
         "required": true,
         "types": [
           {
-            "type": "identifier",
+            "type": "type_identifier",
             "named": true
           }
         ]
@@ -805,6 +925,10 @@
           "named": true
         },
         {
+          "type": "array_item",
+          "named": true
+        },
+        {
           "type": "class_item",
           "named": true
         },
@@ -829,7 +953,15 @@
           "named": true
         },
         {
+          "type": "range_item",
+          "named": true
+        },
+        {
           "type": "record_item",
+          "named": true
+        },
+        {
+          "type": "retyped_item",
           "named": true
         },
         {
@@ -897,6 +1029,110 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "range_item",
+    "named": true,
+    "fields": {
+      "begin": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_literal",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          }
+        ]
+      },
+      "end": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_literal",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "annotation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "range_type",
+    "named": true,
+    "fields": {
+      "begin": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_literal",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          }
+        ]
+      },
+      "end": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_literal",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -983,9 +1219,13 @@
         ]
       },
       "type": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "array_type",
+            "named": true
+          },
           {
             "type": "enum_type",
             "named": true
@@ -999,6 +1239,10 @@
             "named": true
           },
           {
+            "type": "range_type",
+            "named": true
+          },
+          {
             "type": "record_type",
             "named": true
           },
@@ -1007,7 +1251,15 @@
             "named": true
           },
           {
+            "type": "sized",
+            "named": true
+          },
+          {
             "type": "type_identifier",
+            "named": true
+          },
+          {
+            "type": "type_primitive",
             "named": true
           }
         ]
@@ -1068,6 +1320,44 @@
     "fields": {}
   },
   {
+    "type": "retyped_item",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "annotation",
+          "named": true
+        },
+        {
+          "type": "sized",
+          "named": true
+        },
+        {
+          "type": "type_identifier",
+          "named": true
+        },
+        {
+          "type": "type_primitive",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "set_item",
     "named": true,
     "fields": {
@@ -1118,6 +1408,11 @@
         ]
       }
     }
+  },
+  {
+    "type": "sized",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "source_file",
@@ -1219,9 +1514,13 @@
         ]
       },
       "type": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "array_type",
+            "named": true
+          },
           {
             "type": "enum_type",
             "named": true
@@ -1232,6 +1531,10 @@
           },
           {
             "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "range_type",
             "named": true
           },
           {
@@ -1247,7 +1550,15 @@
             "named": true
           },
           {
+            "type": "sized",
+            "named": true
+          },
+          {
             "type": "type_identifier",
+            "named": true
+          },
+          {
+            "type": "type_primitive",
             "named": true
           }
         ]
@@ -1353,6 +1664,10 @@
     "named": false
   },
   {
+    "type": "array",
+    "named": false
+  },
+  {
     "type": "class",
     "named": false
   },
@@ -1453,6 +1768,14 @@
     "named": false
   },
   {
+    "type": "nil_literal",
+    "named": true
+  },
+  {
+    "type": "of",
+    "named": false
+  },
+  {
     "type": "override",
     "named": false
   },
@@ -1485,6 +1808,10 @@
     "named": false
   },
   {
+    "type": "to",
+    "named": false
+  },
+  {
     "type": "true",
     "named": false
   },
@@ -1494,6 +1821,10 @@
   },
   {
     "type": "type_identifier",
+    "named": true
+  },
+  {
+    "type": "type_primitive",
     "named": true
   },
   {
