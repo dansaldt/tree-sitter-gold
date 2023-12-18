@@ -436,7 +436,7 @@ module.exports = grammar({
 			'}',
 		),
 
-		_integer_literal: _ => token(seq(/-?[0-9][0-9]*/)),
+		_integer_literal: _ => token(seq(/-?[0-9][0-9]*/, optional('L'))),
 		integer_literal: $ => $._integer_literal,
 
 		boolean_literal: _ => choice('true', 'True', 'false', 'False'),
