@@ -1,3 +1,17 @@
+
+const numeric_types = [
+	'int',
+	'num',
+	'Decimal',
+];
+
+const primitive_types = numeric_types.concat([
+	'boolean',
+	'string',
+	'cstring',
+	'char',
+]);
+
 module.exports = grammar({
 	name: 'gold',
 
