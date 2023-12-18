@@ -273,11 +273,22 @@ module.exports = grammar({
 			')',
 		),
 
-		function_parameter_declaration: $ => seq(
+		function_parameter_declaration: $ =>
+			choice(
+				$._function_parameter_untyped,
+				$._function_parameter_typed,
+			),
+
+		_function_parameter_typed: $ => seq(
 			optional($.function_parameter_modifiers),
 			field('name', $.identifier),
 			':',
 			field('type', $._type_identifier),
+		),
+
+		_function_parameter_untyped: $ => seq(
+			$.function_parameter_modifiers,
+			field('name', $.identifier),
 		),
 
 		function_parameter_modifiers: _ => choice('inOut', 'var', 'const'),
