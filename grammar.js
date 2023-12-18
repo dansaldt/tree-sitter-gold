@@ -288,6 +288,7 @@ module.exports = grammar({
 		enum_type: $ => $._enum_type,
 
 		enum_item: $ => seq(
+			optional($.annotation),
 			'type',
 			field('name', $._type_identifier),
 			':',
@@ -329,6 +330,7 @@ module.exports = grammar({
 		set_type: $ => $._set_type,
 
 		set_item: $ => seq(
+			optional($.annotation),
 			'type',
 			field('name', $._type_identifier),
 			':',
@@ -342,6 +344,7 @@ module.exports = grammar({
 		pointer_type: $ => $._pointer_type,
 
 		pointer_type_item: $ => seq(
+			optional($.annotation),
 			'type',
 			field('name', $._type_identifier),
 			':',
