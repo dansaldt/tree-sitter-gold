@@ -45,6 +45,7 @@
   "end"
   "external"
   "forward"
+  "absolute"
   "private"
   "protected"
   "final"
