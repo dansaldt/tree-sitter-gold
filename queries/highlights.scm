@@ -29,6 +29,10 @@
 [
   "class"
   "endClass"
+  "record"
+  "endRecord"
+  "nativeRecord"
+  "endNativeRecord"
   "module"
   "endModule"
   "uses"
