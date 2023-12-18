@@ -25,6 +25,7 @@
 )
 
 (type_identifier) @type
+(type_primitive) @type
 
 [
   "class"
@@ -90,6 +91,7 @@
 (boolean_literal) @constant.builtin
 (integer_literal) @constant.builtin
 (nil_literal) @constant.builtin
+(sized) @constant.builtin
 
 (annotation "model" @attribute)
 (annotation_attribute name: (identifier) @attribute)

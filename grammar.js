@@ -123,13 +123,27 @@ module.exports = grammar({
 		),
 
 		_type: $ => choice(
-			$._type_identifier,
+			$._type_identifier_or_primitive,
 			$.enum_type,
 			$.set_type,
 			$.pointer_type,
 			$.function_type,
 			$.record_type,
 			$.range_type,
+		),
+
+		_type_identifier_or_primitive: $ => seq(
+			choice(
+				$._type_identifier,
+				alias(choice(...primitive_types), $.type_primitive),
+			),
+			optional($.sized),
+		),
+
+		sized: $ => seq(
+			'(',
+			$._integer_literal,
+			')',
 		),
 
 		_variable_item: $ => seq(
