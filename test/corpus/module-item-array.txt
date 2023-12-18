@@ -1,0 +1,49 @@
+=============
+Array - range
+=============
+
+module ArrayRangeExample
+
+type ArrayOfSize256 : array [0 to 255] of Int1
+
+---
+
+(source_file
+  (module
+    name: (identifier)
+    (array_item
+      name: (type_identifier)
+      size: (range_type
+        begin: (integer_literal)
+        end: (integer_literal))
+      type: (type_identifier)
+    )
+  )
+)
+
+
+========================
+Array - range predefined
+========================
+
+module ArrayRangeExample
+
+; range predefined as
+; `type _256 : 0 to 255`
+type ArrayOfSize256 : array [_256] of Int1
+
+---
+
+(source_file
+  (module
+    name: (identifier)
+    (line_comment)
+    (line_comment)
+    (array_item
+      name: (type_identifier)
+      size: (type_identifier)
+      type: (type_identifier)
+    )
+  )
+)
+
