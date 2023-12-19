@@ -470,42 +470,46 @@
               "name": "_type_identifier"
             },
             {
-              "type": "ALIAS",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": "int"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "num"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "Decimal"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "boolean"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "string"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "cstring"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "char"
-                  }
-                ]
-              },
-              "named": true,
-              "value": "type_primitive"
+              "type": "SYMBOL",
+              "name": "type_primitive"
+            }
+          ]
+        }
+      ]
+    },
+    "type_primitive": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "int"
+            },
+            {
+              "type": "STRING",
+              "value": "num"
+            },
+            {
+              "type": "STRING",
+              "value": "Decimal"
+            },
+            {
+              "type": "STRING",
+              "value": "boolean"
+            },
+            {
+              "type": "STRING",
+              "value": "string"
+            },
+            {
+              "type": "STRING",
+              "value": "cstring"
+            },
+            {
+              "type": "STRING",
+              "value": "char"
             }
           ]
         },
@@ -1400,7 +1404,7 @@
           "name": "type",
           "content": {
             "type": "SYMBOL",
-            "name": "_type_identifier"
+            "name": "_type_identifier_or_primitive"
           }
         }
       ]
@@ -1448,7 +1452,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_type_identifier"
+          "name": "_type_identifier_or_primitive"
         }
       ]
     },
@@ -1488,7 +1492,7 @@
           "name": "type",
           "content": {
             "type": "SYMBOL",
-            "name": "_type_identifier"
+            "name": "_type_identifier_or_primitive"
           }
         }
       ]
@@ -1844,7 +1848,7 @@
           "name": "type",
           "content": {
             "type": "SYMBOL",
-            "name": "_type_identifier"
+            "name": "_type_identifier_or_primitive"
           }
         }
       ]
@@ -2196,7 +2200,7 @@
           "name": "type",
           "content": {
             "type": "SYMBOL",
-            "name": "_type_identifier"
+            "name": "_type_identifier_or_primitive"
           }
         }
       ]
