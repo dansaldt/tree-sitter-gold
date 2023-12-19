@@ -1,0 +1,98 @@
+
+=================
+Reference - basic
+=================
+
+module BasicExample
+
+type BasicRefto : refTo OtherClass
+type BasicListof : listOf AnotherClass
+
+---
+
+(source_file
+  (module
+    name: (identifier)
+    (reference_item
+      name: (type_identifier)
+      (type_identifier))
+    (reference_item
+      name: (type_identifier)
+      (type_identifier))
+  )
+)
+
+
+======================
+Reference - annotation
+======================
+
+module AnnotatedExample
+
+[model(Text:'Ref Annotated Type')]
+type RefAnnotated : refTo OtherClass
+
+---
+
+(source_file
+  (module
+    name: (identifier)
+    (reference_item
+      (annotation
+        (annotation_attribute_list
+          (annotation_attribute
+            name: (identifier)
+            (string_literal))))
+      name: (type_identifier)
+      (type_identifier)))
+)
+
+
+======================
+Reference - modifiers
+======================
+
+module ModifiersExample
+
+type RefMod : refTo [V, T, O, P, I, A] OtherClass
+type RefModFullName : refTo [isVersioned, inTransaction, isOwner, isCurProject, isIntegral, isActive] OtherClass
+
+---
+
+
+(source_file
+  (module
+    name: (identifier)
+    (reference_item
+      name: (type_identifier)
+      (reference_modifiers)
+      (type_identifier))
+    (reference_item
+      name: (type_identifier)
+      (reference_modifiers)
+      (type_identifier))
+  )
+)
+
+
+===================
+Reference - inverse
+===================
+
+module BackRefExample
+
+type BackRef : refTo OtherClass inverse myExample
+
+---
+
+(source_file
+  (module
+    name: (identifier)
+    (reference_item
+      name: (type_identifier)
+      (type_identifier)
+      (reference_inverse_modifiers
+        backref: (identifier))
+    )
+  )
+)
