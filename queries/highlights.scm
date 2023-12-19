@@ -64,6 +64,7 @@
   "array"
   "to"
   "of"
+  "instanceOf"
 ] @keyword
 
 [
