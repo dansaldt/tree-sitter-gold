@@ -23,34 +23,35 @@ memory memVar : refTo OtherClass
     )
     (variable_item
       name: (identifier)
-      type: (reference (type_identifier))
+      type: (reference_type (type_identifier))
     )
     (variable_item
       name: (identifier)
-      type: (reference (type_identifier))
+      type: (reference_type (type_identifier))
     )
     (variable_item
       name: (identifier)
-      type: (reference
+      type: (reference_type
         (reference_modifiers)
         (type_identifier))
     )
     (variable_item
       name: (identifier)
-      type: (reference
+      type: (reference_type
         (reference_modifiers)
         (type_identifier))
     )
     (variable_item
       name: (identifier)
-      type: (reference (type_identifier))
-      (variable_modifiers
-        (inverse_modifiers backref: (identifier)))
+      type: (reference_type
+        (type_identifier)
+        (reference_inverse_modifiers backref: (identifier))
+      )
     )
     (variable_item
       (memory_modifiers)
       name: (identifier)
-      type: (reference (type_identifier))
+      type: (reference_type (type_identifier))
     )
   )
 )
