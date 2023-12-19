@@ -17,7 +17,6 @@ type Int8 : int(8)
       (type_identifier))
     (retyped_item
       name: (type_identifier)
-      (type_primitive)
-      (sized))
+      (type_primitive (sized)))
   )
 )

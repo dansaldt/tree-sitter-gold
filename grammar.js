@@ -144,8 +144,12 @@ module.exports = grammar({
 		_type_identifier_or_primitive: $ => seq(
 			choice(
 				$._type_identifier,
-				alias(choice(...primitive_types), $.type_primitive),
+				$.type_primitive,
 			),
+		),
+
+		type_primitive: $ => seq(
+			choice(...primitive_types),
 			optional($.sized),
 		),
 
