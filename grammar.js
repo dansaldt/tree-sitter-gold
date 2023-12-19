@@ -125,6 +125,7 @@ module.exports = grammar({
 			$.retyped_item,
 			$.array_item,
 			$.instanceof_item,
+			$.reference_item,
 		),
 
 		_type: $ => choice(
@@ -137,6 +138,7 @@ module.exports = grammar({
 			$.range_type,
 			$.array_type,
 			$.instanceof_type,
+			$.reference_type,
 		),
 
 		_type_identifier_or_primitive: $ => seq(
@@ -166,20 +168,14 @@ module.exports = grammar({
 			optional($.memory_modifiers),
 			field('name', $.identifier),
 			':',
-			field('type', $._variable_type),
+			field('type', $._type),
 			optional($.variable_modifiers),
 		),
 
 		variable_item: $ => $._variable_item,
 
-		_variable_type: $ => choice(
-			$._type,
-			$.reference,
-		),
-
 		// all modifiers except `memory`
 		variable_modifiers: $ => repeat1(choice(
-			$.inverse_modifiers,
 			$.visibility_modifiers,
 			$._override_modifiers,
 			$.absolute_modifiers,
@@ -187,12 +183,15 @@ module.exports = grammar({
 
 		memory_modifiers: _ => seq('memory'),
 
-		reference: $ => seq(
+		_reference_type: $ => seq(
 			choice('refTo', 'listOf'),
 			optional($.reference_modifiers),
 			$._type_identifier,
+			optional($.reference_inverse_modifiers),
 		),
+		reference_type: $ => $._reference_type,
 
+		// other modifiers except inverse
 		reference_modifiers: $ => seq(
 			'[',
 			sepBy1(',', token(choice(
@@ -205,6 +204,19 @@ module.exports = grammar({
 			))),
 			optional(','),
 			']',
+		),
+
+		reference_inverse_modifiers: $ => seq(
+			'inverse',
+			field('backref', $.identifier),
+		),
+
+		reference_item: $ => seq(
+			optional($.annotation),
+			'type',
+			field('name', $._type_identifier),
+			':',
+			$._reference_type,
 		),
 
 		_function_type: $ => seq(
@@ -325,11 +337,6 @@ module.exports = grammar({
 		// expression_statement: $ => {
 		//	// TODO: to be implemented
 		//},
-
-		inverse_modifiers: $ => seq(
-			'inverse',
-			field('backref', $.identifier),
-		),
 
 		absolute_modifiers: $ => seq(
 			'absolute',
