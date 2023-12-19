@@ -256,6 +256,10 @@
           "named": true
         },
         {
+          "type": "instanceof_item",
+          "named": true
+        },
+        {
           "type": "pointer_type_item",
           "named": true
         },
@@ -265,6 +269,10 @@
         },
         {
           "type": "record_item",
+          "named": true
+        },
+        {
+          "type": "reference_item",
           "named": true
         },
         {
@@ -352,6 +360,10 @@
           "named": true
         },
         {
+          "type": "instanceof_item",
+          "named": true
+        },
+        {
           "type": "pointer_type_item",
           "named": true
         },
@@ -361,6 +373,10 @@
         },
         {
           "type": "record_item",
+          "named": true
+        },
+        {
+          "type": "reference_item",
           "named": true
         },
         {
@@ -442,6 +458,10 @@
           "named": true
         },
         {
+          "type": "instanceof_item",
+          "named": true
+        },
+        {
           "type": "pointer_type_item",
           "named": true
         },
@@ -451,6 +471,10 @@
         },
         {
           "type": "record_item",
+          "named": true
+        },
+        {
+          "type": "reference_item",
           "named": true
         },
         {
@@ -847,15 +871,46 @@
     }
   },
   {
-    "type": "integer_literal",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "inverse_modifiers",
+    "type": "instanceof_item",
     "named": true,
     "fields": {
-      "backref": {
+      "class": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "annotation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "instanceof_type",
+    "named": true,
+    "fields": {
+      "class": {
         "multiple": false,
         "required": true,
         "types": [
@@ -866,6 +921,11 @@
         ]
       }
     }
+  },
+  {
+    "type": "integer_literal",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "memory_modifiers",
@@ -924,6 +984,10 @@
           "named": true
         },
         {
+          "type": "instanceof_item",
+          "named": true
+        },
+        {
           "type": "pointer_type_item",
           "named": true
         },
@@ -933,6 +997,10 @@
         },
         {
           "type": "record_item",
+          "named": true
+        },
+        {
+          "type": "reference_item",
           "named": true
         },
         {
@@ -1266,6 +1334,10 @@
             "named": true
           },
           {
+            "type": "instanceof_type",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
@@ -1275,6 +1347,10 @@
           },
           {
             "type": "record_type",
+            "named": true
+          },
+          {
+            "type": "reference_type",
             "named": true
           },
           {
@@ -1327,13 +1403,48 @@
     }
   },
   {
-    "type": "reference",
+    "type": "reference_inverse_modifiers",
     "named": true,
-    "fields": {},
+    "fields": {
+      "backref": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "reference_item",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "annotation",
+          "named": true
+        },
+        {
+          "type": "reference_inverse_modifiers",
+          "named": true
+        },
         {
           "type": "reference_modifiers",
           "named": true
@@ -1349,6 +1460,29 @@
     "type": "reference_modifiers",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "reference_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "reference_inverse_modifiers",
+          "named": true
+        },
+        {
+          "type": "reference_modifiers",
+          "named": true
+        },
+        {
+          "type": "type_identifier",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "retyped_item",
@@ -1561,6 +1695,10 @@
             "named": true
           },
           {
+            "type": "instanceof_type",
+            "named": true
+          },
+          {
             "type": "pointer_type",
             "named": true
           },
@@ -1573,7 +1711,7 @@
             "named": true
           },
           {
-            "type": "reference",
+            "type": "reference_type",
             "named": true
           },
           {
@@ -1624,10 +1762,6 @@
       "types": [
         {
           "type": "absolute_modifiers",
-          "named": true
-        },
-        {
-          "type": "inverse_modifiers",
           "named": true
         },
         {
@@ -1764,6 +1898,10 @@
   },
   {
     "type": "inOut",
+    "named": false
+  },
+  {
+    "type": "instanceOf",
     "named": false
   },
   {

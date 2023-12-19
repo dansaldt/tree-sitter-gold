@@ -403,6 +403,14 @@
         {
           "type": "SYMBOL",
           "name": "array_item"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "instanceof_item"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "reference_item"
         }
       ]
     },
@@ -440,6 +448,14 @@
         {
           "type": "SYMBOL",
           "name": "array_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "instanceof_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "reference_type"
         }
       ]
     },
@@ -605,7 +621,7 @@
           "name": "type",
           "content": {
             "type": "SYMBOL",
-            "name": "_variable_type"
+            "name": "_type"
           }
         },
         {
@@ -626,28 +642,11 @@
       "type": "SYMBOL",
       "name": "_variable_item"
     },
-    "_variable_type": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_type"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "reference"
-        }
-      ]
-    },
     "variable_modifiers": {
       "type": "REPEAT1",
       "content": {
         "type": "CHOICE",
         "members": [
-          {
-            "type": "SYMBOL",
-            "name": "inverse_modifiers"
-          },
           {
             "type": "SYMBOL",
             "name": "visibility_modifiers"
@@ -672,7 +671,7 @@
         }
       ]
     },
-    "reference": {
+    "_reference_type": {
       "type": "SEQ",
       "members": [
         {
@@ -703,8 +702,24 @@
         {
           "type": "SYMBOL",
           "name": "_type_identifier"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "reference_inverse_modifiers"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
+    },
+    "reference_type": {
+      "type": "SYMBOL",
+      "name": "_reference_type"
     },
     "reference_modifiers": {
       "type": "SEQ",
@@ -865,6 +880,60 @@
         {
           "type": "STRING",
           "value": "]"
+        }
+      ]
+    },
+    "reference_inverse_modifiers": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "inverse"
+        },
+        {
+          "type": "FIELD",
+          "name": "backref",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        }
+      ]
+    },
+    "reference_item": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "annotation"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "type"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_type_identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_reference_type"
         }
       ]
     },
@@ -1447,23 +1516,6 @@
         {
           "type": "SYMBOL",
           "name": "variable_declaration"
-        }
-      ]
-    },
-    "inverse_modifiers": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "inverse"
-        },
-        {
-          "type": "FIELD",
-          "name": "backref",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
         }
       ]
     },
@@ -2187,6 +2239,64 @@
         {
           "type": "SYMBOL",
           "name": "_array_type"
+        }
+      ]
+    },
+    "_instanceof_type": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "instanceOf"
+        },
+        {
+          "type": "FIELD",
+          "name": "class",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        }
+      ]
+    },
+    "instanceof_type": {
+      "type": "SYMBOL",
+      "name": "_instanceof_type"
+    },
+    "instanceof_item": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "annotation"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "type"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_type_identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_instanceof_type"
         }
       ]
     },
