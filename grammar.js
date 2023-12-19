@@ -504,6 +504,7 @@ module.exports = grammar({
 		instanceof_type: $ => $._instanceof_type,
 
 		instanceof_item: $ => seq(
+			optional($.annotation),
 			'type',
 			field('name', $._type_identifier),
 			':',
