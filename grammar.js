@@ -38,6 +38,7 @@ module.exports = grammar({
 		identifier: _ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
 
 		_type_identifier: $ => alias($.identifier, $.type_identifier),
+		_variable_identifier: $ => alias($.identifier, $.variable_identifier),
 
 		comment: $ => choice(
 			$.line_comment,
@@ -170,7 +171,7 @@ module.exports = grammar({
 		_variable_item: $ => seq(
 			optional($.annotation),
 			optional($.memory_modifiers),
-			field('name', $.identifier),
+			field('name', $._variable_identifier),
 			':',
 			field('type', $._type),
 			optional($.variable_modifiers),
@@ -212,7 +213,7 @@ module.exports = grammar({
 
 		reference_inverse_modifiers: $ => seq(
 			'inverse',
-			field('backref', $.identifier),
+			field('backref', $._variable_identifier),
 		),
 
 		reference_item: $ => seq(
@@ -299,14 +300,14 @@ module.exports = grammar({
 
 		_parameter_typed: $ => seq(
 			optional($.parameter_modifiers),
-			field('name', $.identifier),
+			field('name', $._variable_identifier),
 			':',
 			field('type', $._type_identifier_or_primitive),
 		),
 
 		_parameter_untyped: $ => seq(
 			$.parameter_modifiers,
-			field('name', $.identifier),
+			field('name', $._variable_identifier),
 		),
 
 		parameter_modifiers: _ => choice('inOut', 'var', 'const'),
@@ -322,7 +323,7 @@ module.exports = grammar({
 
 		variable_declaration: $ => seq(
 			'var',
-			field('name', $.identifier),
+			field('name', $._variable_identifier),
 			':',
 			field('type', $._type_identifier_or_primitive),
 		),
@@ -344,7 +345,7 @@ module.exports = grammar({
 
 		absolute_modifiers: $ => seq(
 			'absolute',
-			field('variable', $.identifier),
+			$._variable_identifier,
 		),
 
 		_override_modifiers: _ => choice(

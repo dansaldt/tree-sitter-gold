@@ -10,20 +10,13 @@
   (identifier) @function
 )
 
-(parameter
-  name: (identifier) @variable
-)
-
 (function_modifiers_external) @string
 
 (const_item
   name: (identifier) @constant
 )
 
-(variable_item
-  name: (identifier) @variable
-)
-
+(variable_identifier) @variable
 (type_identifier) @type
 (type_primitive) @type
 

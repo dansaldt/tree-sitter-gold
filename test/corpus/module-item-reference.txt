@@ -92,7 +92,7 @@ type BackRef : refTo OtherClass inverse myExample
       name: (type_identifier)
       (type_identifier)
       (reference_inverse_modifiers
-        backref: (identifier))
+        backref: (variable_identifier))
     )
   )
 )

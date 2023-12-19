@@ -203,7 +203,7 @@ endRecord
               )))
           (variable_modifiers
             (absolute_modifiers
-              variable: (identifier)))
+              (variable_identifier)))
         )
       )
     )

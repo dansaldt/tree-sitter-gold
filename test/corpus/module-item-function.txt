@@ -238,17 +238,17 @@ endProc
       name: (identifier)
       (parameter_list
         (parameter
-          name: (identifier)
+          name: (variable_identifier)
           type: (type_identifier)))
     )
     (function_item
       name: (identifier)
       (parameter_list
         (parameter
-          name: (identifier)
+          name: (variable_identifier)
           type: (type_identifier))
         (parameter
-          name: (identifier)
+          name: (variable_identifier)
           type: (type_primitive (sized)))
       )
     )
@@ -256,7 +256,7 @@ endProc
       name: (identifier)
       (parameter_list
         (parameter
-          name: (identifier)
+          name: (variable_identifier)
           type: (type_identifier)))
     )
     (function_item
@@ -264,18 +264,18 @@ endProc
       (parameter_list
         (parameter
           (parameter_modifiers)
-          name: (identifier)
+          name: (variable_identifier)
           type: (type_identifier))
         (parameter
-          name: (identifier)
-          type: (type_identifier))
-        (parameter
-          (parameter_modifiers)
-          name: (identifier)
+          name: (variable_identifier)
           type: (type_identifier))
         (parameter
           (parameter_modifiers)
-          name: (identifier)
+          name: (variable_identifier)
+          type: (type_identifier))
+        (parameter
+          (parameter_modifiers)
+          name: (variable_identifier)
           type: (type_identifier))
       )
     )
@@ -284,10 +284,10 @@ endProc
       (parameter_list
         (parameter
           (parameter_modifiers)
-          name: (identifier))
+          name: (variable_identifier))
         (parameter
           (parameter_modifiers)
-          name: (identifier))
+          name: (variable_identifier))
       )
     )
   )
@@ -317,7 +317,7 @@ type TheFunction : function (param : Int1) return Boolean
       name: (type_identifier)
       (parameter_list
         (parameter
-          name: (identifier)
+          name: (variable_identifier)
           type: (type_identifier))
       )
       (function_return_type (type_identifier))
