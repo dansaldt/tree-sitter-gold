@@ -76,6 +76,8 @@
 ] @punctuation.delimiter
 
 [
+  "+="
+  "-="
   "="
   "+"
 ] @operator
@@ -90,6 +92,9 @@
 (nil_literal) @constant.builtin
 (sized) @constant.builtin
 (enum_variant_redefine_value) @constant.builtin
+
+(self) @variable.builtin
+(result) @variable.builtin
 
 (annotation "model" @attribute)
 (annotation_attribute name: (identifier) @attribute)

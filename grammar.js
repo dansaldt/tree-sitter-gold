@@ -1,4 +1,9 @@
 
+const PREC = {
+	variable: 1,
+	assign: 0,
+};
+
 const numeric_types = [
 	'int',
 	'num',
@@ -272,7 +277,7 @@ module.exports = grammar({
 		forward_modifiers: _ => seq('forward'),
 
 		_function_definition: $ => seq(
-			optional($.function_body_statements),
+			optional($.function_body),
 			choice('endFunc', 'endProc', 'end'),
 		),
 
@@ -317,8 +322,8 @@ module.exports = grammar({
 			$._type_identifier_or_primitive,
 		),
 
-		function_body_statements: $ => seq(
-			repeat1($.statement)
+		function_body: $ => seq(
+			repeat1($._statement)
 		),
 
 		variable_declaration: $ => seq(
@@ -328,20 +333,57 @@ module.exports = grammar({
 			field('type', $._type_identifier_or_primitive),
 		),
 
-		statement: $ => choice(
+		_statement: $ => choice(
 			$.declaration_statement,
-			// $.expression_statement,
+			$.expression_statement,
 		),
+
+		self: _ => 'self',
+		result: _ => '_Result',
+
+		expression_statement: $ => $._expression,
+
+		_expression: $ => choice(
+			$.result_expression,
+			$.assignment_expression,
+			$.compound_assignment_expression,
+			$._literal,
+			prec.left($.identifier),
+			$.self,
+			$.variable_expression,
+		),
+
+		// special assignment to _Result variable
+		result_expression: $ => prec.left(PREC.assign, seq(
+			field('left', $.result),
+			'=',
+			field('right', $._expression),
+		)),
+
+		// any assignment except to _Result
+		assignment_expression: $ => prec.left(PREC.assign, seq(
+			field('left', $._expression),
+			'=',
+			field('right', $._expression),
+		)),
+
+		compound_assignment_expression: $ => prec.left(PREC.assign, seq(
+			field('left', $._expression),
+			field('operator', choice('+=', '-=')),
+			field('right', $._expression),
+		)),
+
+		variable_expression: $ => prec.left(PREC.variable, seq(
+			field('value', $._expression),
+			'.',
+			field('variable', $._variable_identifier),
+		)),
 
 		declaration_statement: $ => choice(
 			$.uses_item,
 			$._type_item,
 			$.variable_declaration,
 		),
-
-		// expression_statement: $ => {
-		//	// TODO: to be implemented
-		//},
 
 		absolute_modifiers: $ => seq(
 			'absolute',
