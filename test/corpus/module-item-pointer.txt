@@ -5,6 +5,7 @@ Pointer type
 module PointerTypeExample
 
 type tpSomeType : .tSomeType
+type tpInt4 : .int(4)
 
 ---
 
@@ -14,5 +15,8 @@ type tpSomeType : .tSomeType
     (pointer_type_item
       name: (type_identifier)
       type: (type_identifier))
+    (pointer_type_item
+      name: (type_identifier)
+      type: (type_primitive (sized)))
   )
 )

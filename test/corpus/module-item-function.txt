@@ -10,6 +10,12 @@ end
 func MyFunction2 return Boolean
 end
 
+func MyFunction3 return char
+end
+
+func MyFunction4 return int(4)
+end
+
 ---
 
 (source_file
@@ -22,6 +28,16 @@ end
       name: (identifier)
       (function_return_type
         (type_identifier))
+    )
+    (function_item
+      name: (identifier)
+      (function_return_type
+        (type_primitive))
+    )
+    (function_item
+      name: (identifier)
+      (function_return_type
+        (type_primitive (sized)))
     )
   )
 )
@@ -39,6 +55,12 @@ endProc
 function MyFunction2 return Boolean
 endFunc
 
+function MyFunction3 return char
+endFunc
+
+function MyFunction4 return int(4)
+endFunc
+
 ---
 
 (source_file
@@ -51,6 +73,16 @@ endFunc
       name: (identifier)
       (function_return_type
         (type_identifier))
+    )
+    (function_item
+      name: (identifier)
+      (function_return_type
+        (type_primitive))
+    )
+    (function_item
+      name: (identifier)
+      (function_return_type
+        (type_primitive (sized)))
     )
   )
 )
@@ -174,7 +206,7 @@ endProc
 
 procedure FunctionWithMultiParam(
   param0: Int1,
-  param1: Int4
+  param1: int(4)
 )
 endProc
 
@@ -217,7 +249,7 @@ endProc
           type: (type_identifier))
         (parameter
           name: (identifier)
-          type: (type_identifier))
+          type: (type_primitive (sized)))
       )
     )
     (function_item

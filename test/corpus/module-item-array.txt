@@ -5,6 +5,8 @@ Array - range
 module ArrayRangeExample
 
 type ArrayOfSize256 : array [0 to 255] of Int1
+type ArrayOf32xChar : array [0 to 31] of char
+type ArrayOf4xInt2 : array [0 to 3] of int(2)
 
 ---
 
@@ -17,6 +19,20 @@ type ArrayOfSize256 : array [0 to 255] of Int1
         begin: (integer_literal)
         end: (integer_literal))
       type: (type_identifier)
+    )
+    (array_item
+      name: (type_identifier)
+      size: (range_type
+        begin: (integer_literal)
+        end: (integer_literal))
+      type: (type_primitive)
+    )
+    (array_item
+      name: (type_identifier)
+      size: (range_type
+        begin: (integer_literal)
+        end: (integer_literal))
+      type: (type_primitive (sized))
     )
   )
 )

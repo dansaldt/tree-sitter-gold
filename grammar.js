@@ -301,7 +301,7 @@ module.exports = grammar({
 			optional($.parameter_modifiers),
 			field('name', $.identifier),
 			':',
-			field('type', $._type_identifier),
+			field('type', $._type_identifier_or_primitive),
 		),
 
 		_parameter_untyped: $ => seq(
@@ -313,7 +313,7 @@ module.exports = grammar({
 
 		function_return_type: $ => seq(
 			'return',
-			$._type_identifier,
+			$._type_identifier_or_primitive,
 		),
 
 		function_body_statements: $ => seq(
@@ -324,7 +324,7 @@ module.exports = grammar({
 			'var',
 			field('name', $.identifier),
 			':',
-			field('type', $._type_identifier),
+			field('type', $._type_identifier_or_primitive),
 		),
 
 		statement: $ => choice(
@@ -416,7 +416,7 @@ module.exports = grammar({
 
 		_pointer_type: $ => seq(
 			'.',
-			field('type', $._type_identifier),
+			field('type', $._type_identifier_or_primitive),
 		),
 		pointer_type: $ => $._pointer_type,
 
@@ -489,7 +489,7 @@ module.exports = grammar({
 			field('size', choice($.range_type, $._type_identifier)),
 			']',
 			'of',
-			field('type', $._type_identifier),
+			field('type', $._type_identifier_or_primitive),
 		),
 		array_type: $ => $._array_type,
 
