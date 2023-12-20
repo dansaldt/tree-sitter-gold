@@ -326,11 +326,13 @@ module.exports = grammar({
 			repeat1($._statement)
 		),
 
-		variable_declaration: $ => seq(
+		local_variable_item: $ => seq(
+			optional($.annotation),
 			'var',
 			field('name', $._variable_identifier),
 			':',
-			field('type', $._type_identifier_or_primitive),
+			field('type', $._type),
+			optional($.variable_modifiers)
 		),
 
 		_statement: $ => choice(
@@ -382,7 +384,7 @@ module.exports = grammar({
 		declaration_statement: $ => choice(
 			$.uses_item,
 			$._type_item,
-			$.variable_declaration,
+			$.local_variable_item,
 		),
 
 		absolute_modifiers: $ => seq(
