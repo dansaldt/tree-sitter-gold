@@ -33,6 +33,9 @@ const NULL = nil
       (string_literal))
     (const_item
       name: (identifier)
+      (string_literal))
+    (const_item
+      name: (identifier)
       (string_literal)
       (const_modifiers))
     (const_item
