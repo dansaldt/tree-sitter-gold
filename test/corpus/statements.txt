@@ -1,0 +1,172 @@
+==========================
+Statement - local variable
+==========================
+
+class Example
+
+procedure TheFunction
+    var vint4 : Int4
+    var vint4x1 : array [0 to 3] of Int1 absolute vint4
+endProc
+
+---
+
+(source_file
+  (class
+    name: (identifier)
+    (function_item
+      name: (identifier)
+      (function_body
+        (declaration_statement
+          (local_variable_item
+            name: (variable_identifier)
+            type: (type_identifier)))
+        (declaration_statement
+          (local_variable_item
+            name: (variable_identifier)
+            type: (array_type
+              size: (range_type
+                begin: (integer_literal)
+                end: (integer_literal))
+              type: (type_identifier))
+            (variable_modifiers
+              (absolute_modifiers (variable_identifier)))))
+      )
+    )
+  )
+)
+
+
+=================================================
+Statement - assignment local_var self.var _Result
+=================================================
+
+class Example
+
+my_variable: Int4
+
+function LiteralValueAssignOn_LocalVar_Result_SelfVar return Boolean
+    uses aClass
+
+    type UnionOf2xInt2 : record
+        as_i4: Int4
+        as_i2x2: record
+            _0: Int2
+            _1: Int2
+        endRecord absolute __value
+    endRecord
+
+    ; vstr, vint, vobj, vtext declarations are omitted
+    ; because type of variable declaration is not relevant here
+    var vunion : UnionOf2xInt2
+
+    self.my_variable = 10000
+    vstr = 'Some string value'
+    vint = 100
+    vint += 10
+    vint -= 3
+    vobj = nil
+    vtext = {
+        '1st line',
+        '2nd line',
+    }
+    vunion.as_i4 = 1
+    vunion.as_i2x2._0 = 0
+    _Result = true
+endFunc
+
+---
+
+(source_file
+  (class
+    name: (identifier)
+    (variable_item
+      name: (variable_identifier)
+      type: (type_identifier))
+    (function_item
+      name: (identifier)
+      (function_return_type (type_identifier))
+      (function_body
+        (declaration_statement
+          (uses_item (identifier)))
+        (declaration_statement
+          (record_item
+            name: (type_identifier)
+            (record_variable_list
+              (record_variable
+                name: (identifier)
+                type: (type_identifier))
+              (record_variable
+                name: (identifier)
+                type: (record_type
+                  (record_variable_list
+                    (record_variable
+                      name: (identifier)
+                      type: (type_identifier))
+                    (record_variable
+                      name: (identifier)
+                      type: (type_identifier))))
+                (variable_modifiers
+                  (absolute_modifiers (variable_identifier))))
+            )
+          )
+        )
+        (line_comment)
+        (line_comment)
+        (declaration_statement
+          (local_variable_item
+            name: (variable_identifier)
+            type: (type_identifier)))
+        (expression_statement
+          (assignment_expression
+            left: (variable_expression
+              value: (self)
+              variable: (variable_identifier))
+            right: (integer_literal)))
+        (expression_statement
+          (assignment_expression
+            left: (identifier)
+            right: (string_literal)))
+        (expression_statement
+          (assignment_expression
+            left: (identifier)
+            right: (integer_literal)))
+        (expression_statement
+          (compound_assignment_expression
+            left: (identifier)
+            right: (integer_literal)))
+        (expression_statement
+          (compound_assignment_expression
+            left: (identifier)
+            right: (integer_literal)))
+        (expression_statement
+          (assignment_expression
+            left: (identifier)
+            right: (nil_literal)))
+        (expression_statement
+          (assignment_expression
+            left: (identifier)
+            right: (text_literal)))
+        (expression_statement
+          (assignment_expression
+            left: (variable_expression
+              value: (identifier)
+              variable: (variable_identifier)
+            )
+            right: (integer_literal)))
+        (expression_statement
+          (assignment_expression
+            left: (variable_expression
+              value: (variable_expression
+                value: (identifier)
+                variable: (variable_identifier))
+              variable: (variable_identifier))
+            right: (integer_literal)))
+        (expression_statement
+          (result_expression
+            left: (result)
+            right: (boolean_literal)))
+      )
+    )
+  )
+)
