@@ -170,3 +170,29 @@ endFunc
     )
   )
 )
+
+
+==================
+Statement - return
+==================
+
+module Example
+
+func GetValue return Boolean
+  return true
+end
+
+---
+
+(source_file
+  (module
+    name: (identifier)
+    (function_item
+      name: (identifier)
+      (function_return_type (type_identifier))
+      (function_body
+        (expression_statement
+          (return_expression (boolean_literal))))
+    )
+  )
+)

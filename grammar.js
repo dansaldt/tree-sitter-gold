@@ -389,11 +389,17 @@ module.exports = grammar({
 		_expression: $ => choice(
 			$.assignment_expression,
 			$.compound_assignment_expression,
+			$.return_expression,
 			$._literal,
 			prec.left($.identifier),
 			$.self,
 			$.result,
 			$.variable_expression,
+		),
+
+		return_expression: $ => choice(
+			'exit',
+			prec.left(seq('return', $._expression)),
 		),
 
 		// any assignment except to _Result
