@@ -28,17 +28,16 @@
   {
     "type": "absolute_modifiers",
     "named": true,
-    "fields": {
-      "variable": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "variable_identifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -187,6 +186,88 @@
           },
           {
             "type": "type_primitive",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "assignment_expression",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_literal",
+            "named": true
+          },
+          {
+            "type": "assignment_expression",
+            "named": true
+          },
+          {
+            "type": "compound_assignment_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "result",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          },
+          {
+            "type": "self",
+            "named": true
+          },
+          {
+            "type": "variable_expression",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_literal",
+            "named": true
+          },
+          {
+            "type": "assignment_expression",
+            "named": true
+          },
+          {
+            "type": "compound_assignment_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "result",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          },
+          {
+            "type": "self",
+            "named": true
+          },
+          {
+            "type": "variable_expression",
             "named": true
           }
         ]
@@ -407,6 +488,102 @@
     }
   },
   {
+    "type": "compound_assignment_expression",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_literal",
+            "named": true
+          },
+          {
+            "type": "assignment_expression",
+            "named": true
+          },
+          {
+            "type": "compound_assignment_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "result",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          },
+          {
+            "type": "self",
+            "named": true
+          },
+          {
+            "type": "variable_expression",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "+=",
+            "named": false
+          },
+          {
+            "type": "-=",
+            "named": false
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_literal",
+            "named": true
+          },
+          {
+            "type": "assignment_expression",
+            "named": true
+          },
+          {
+            "type": "compound_assignment_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "result",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          },
+          {
+            "type": "self",
+            "named": true
+          },
+          {
+            "type": "variable_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "const_item",
     "named": true,
     "fields": {
@@ -470,6 +647,10 @@
           "named": true
         },
         {
+          "type": "local_variable_item",
+          "named": true
+        },
+        {
           "type": "pointer_type_item",
           "named": true
         },
@@ -495,10 +676,6 @@
         },
         {
           "type": "uses_item",
-          "named": true
-        },
-        {
-          "type": "variable_declaration",
           "named": true
         }
       ]
@@ -662,12 +839,55 @@
     "fields": {}
   },
   {
+    "type": "expression_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "_literal",
+          "named": true
+        },
+        {
+          "type": "assignment_expression",
+          "named": true
+        },
+        {
+          "type": "compound_assignment_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "result",
+          "named": true
+        },
+        {
+          "type": "return_expression",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "variable_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "forward_modifiers",
     "named": true,
     "fields": {}
   },
   {
-    "type": "function_body_statements",
+    "type": "function_body",
     "named": true,
     "fields": {},
     "children": {
@@ -675,7 +895,11 @@
       "required": true,
       "types": [
         {
-          "type": "statement",
+          "type": "declaration_statement",
+          "named": true
+        },
+        {
+          "type": "expression_statement",
           "named": true
         }
       ]
@@ -709,7 +933,7 @@
           "named": true
         },
         {
-          "type": "function_body_statements",
+          "type": "function_body",
           "named": true
         },
         {
@@ -940,6 +1164,86 @@
     "fields": {}
   },
   {
+    "type": "local_variable_item",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "variable_identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "enum_type",
+            "named": true
+          },
+          {
+            "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "instanceof_type",
+            "named": true
+          },
+          {
+            "type": "pointer_type",
+            "named": true
+          },
+          {
+            "type": "range_type",
+            "named": true
+          },
+          {
+            "type": "record_type",
+            "named": true
+          },
+          {
+            "type": "reference_type",
+            "named": true
+          },
+          {
+            "type": "set_type",
+            "named": true
+          },
+          {
+            "type": "type_identifier",
+            "named": true
+          },
+          {
+            "type": "type_primitive",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "annotation",
+          "named": true
+        },
+        {
+          "type": "variable_modifiers",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "memory_modifiers",
     "named": true,
     "fields": {}
@@ -1043,7 +1347,7 @@
         "required": true,
         "types": [
           {
-            "type": "identifier",
+            "type": "variable_identifier",
             "named": true
           }
         ]
@@ -1431,7 +1735,7 @@
         "required": true,
         "types": [
           {
-            "type": "identifier",
+            "type": "variable_identifier",
             "named": true
           }
         ]
@@ -1499,6 +1803,49 @@
         },
         {
           "type": "type_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "return_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "_literal",
+          "named": true
+        },
+        {
+          "type": "assignment_expression",
+          "named": true
+        },
+        {
+          "type": "compound_assignment_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "result",
+          "named": true
+        },
+        {
+          "type": "return_expression",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "variable_expression",
           "named": true
         }
       ]
@@ -1615,21 +1962,6 @@
     }
   },
   {
-    "type": "statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "declaration_statement",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "string_literal",
     "named": true,
     "fields": {}
@@ -1670,29 +2002,53 @@
     }
   },
   {
-    "type": "variable_declaration",
+    "type": "variable_expression",
     "named": true,
     "fields": {
-      "name": {
+      "value": {
         "multiple": false,
         "required": true,
         "types": [
           {
+            "type": "_literal",
+            "named": true
+          },
+          {
+            "type": "assignment_expression",
+            "named": true
+          },
+          {
+            "type": "compound_assignment_expression",
+            "named": true
+          },
+          {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "result",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          },
+          {
+            "type": "self",
+            "named": true
+          },
+          {
+            "type": "variable_expression",
             "named": true
           }
         ]
       },
-      "type": {
+      "variable": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "type_identifier",
-            "named": true
-          },
-          {
-            "type": "type_primitive",
+            "type": "variable_identifier",
             "named": true
           }
         ]
@@ -1708,7 +2064,7 @@
         "required": true,
         "types": [
           {
-            "type": "identifier",
+            "type": "variable_identifier",
             "named": true
           }
         ]
@@ -1824,7 +2180,15 @@
     "named": false
   },
   {
+    "type": "+=",
+    "named": false
+  },
+  {
     "type": ",",
+    "named": false
+  },
+  {
+    "type": "-=",
     "named": false
   },
   {
@@ -1913,6 +2277,10 @@
   },
   {
     "type": "endRecord",
+    "named": false
+  },
+  {
+    "type": "exit",
     "named": false
   },
   {
@@ -2028,8 +2396,16 @@
     "named": false
   },
   {
+    "type": "result",
+    "named": true
+  },
+  {
     "type": "return",
     "named": false
+  },
+  {
+    "type": "self",
+    "named": true
   },
   {
     "type": "string",
@@ -2058,6 +2434,10 @@
   {
     "type": "var",
     "named": false
+  },
+  {
+    "type": "variable_identifier",
+    "named": true
   },
   {
     "type": "{",
