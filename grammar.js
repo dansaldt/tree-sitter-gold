@@ -31,7 +31,8 @@ module.exports = grammar({
 
 	conflicts: $ => [
 		[$._type_identifier, $.function_type_item],
-		[$.function_item, $.function_signature_item],
+		[$._function_func_item, $._function_signature_func_item],
+		[$._function_proc_item, $._function_signature_proc_item],
 	],
 
 	rules: {
@@ -229,11 +230,20 @@ module.exports = grammar({
 			$._reference_type,
 		),
 
-		_function_type: $ => seq(
-			choice('func', 'function', 'proc', 'procedure'),
+		_function_func_type: $ => seq(
+			choice('func', 'function'),
 			optional($.parameter_list),
-			optional($.function_return_type),
-			// TODO: there shouldn't be anymore modifiers or definition here. to be checked.
+			$.function_return_type,
+		),
+
+		_function_proc_type: $ => seq(
+			choice('proc', 'procedure'),
+			optional($.parameter_list),
+		),
+
+		_function_type: $ => choice(
+			$._function_func_type,
+			$._function_proc_type,
 		),
 		function_type: $ => $._function_type,
 
@@ -245,12 +255,12 @@ module.exports = grammar({
 			$._function_type,
 		),
 
-		function_item: $ => seq(
+		_function_func_item: $ => seq(
 			optional($.annotation),
-			choice('func', 'function', 'proc', 'procedure'),
+			choice('func', 'function'),
 			field('name', $.identifier),
 			optional($.parameter_list),
-			optional($.function_return_type),
+			$.function_return_type,
 			optional($.function_modifiers),
 			choice(
 				$.forward_modifiers,
@@ -259,13 +269,44 @@ module.exports = grammar({
 			),
 		),
 
-		function_signature_item: $ => seq(
+		_function_proc_item: $ => seq(
 			optional($.annotation),
-			choice('func', 'function', 'proc', 'procedure'),
+			choice('proc', 'procedure'),
 			field('name', $.identifier),
 			optional($.parameter_list),
-			optional($.function_return_type),
 			optional($.function_modifiers),
+			choice(
+				$.forward_modifiers,
+				$.function_modifiers_external,
+				$._function_definition,
+			),
+		),
+
+		function_item: $ => choice(
+			$._function_func_item,
+			$._function_proc_item,
+		),
+
+		_function_signature_func_item: $ => seq(
+			optional($.annotation),
+			choice('func', 'function'),
+			field('name', $.identifier),
+			optional($.parameter_list),
+			$.function_return_type,
+			optional($.function_modifiers),
+		),
+
+		_function_signature_proc_item: $ => seq(
+			optional($.annotation),
+			choice('proc', 'procedure'),
+			field('name', $.identifier),
+			optional($.parameter_list),
+			optional($.function_modifiers),
+		),
+
+		function_signature_item: $ => choice(
+			$._function_signature_func_item,
+			$._function_signature_proc_item
 		),
 
 		// other modifiers except 'forward' and 'external'
