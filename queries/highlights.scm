@@ -20,6 +20,9 @@
 (type_identifier) @type
 (type_primitive) @type
 
+(pointer_type "." @operator)
+(pointer_type_item "." @operator)
+
 [
   "class"
   "endClass"
