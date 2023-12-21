@@ -1,6 +1,7 @@
 
 const PREC = {
-	variable: 1,
+	variable: 2,
+	memaddress: 1,
 	assign: 0,
 };
 
@@ -387,6 +388,7 @@ module.exports = grammar({
 		expression_statement: $ => $._expression,
 
 		_expression: $ => choice(
+			$.memaddress_expression,
 			$.assignment_expression,
 			$.compound_assignment_expression,
 			$.return_expression,
@@ -401,6 +403,11 @@ module.exports = grammar({
 			'exit',
 			prec.left(seq('return', $._expression)),
 		),
+
+		memaddress_expression: $ => prec.left(PREC.memaddress, seq(
+			'@',
+			field('value', $._expression),
+		)),
 
 		// any assignment except to _Result
 		assignment_expression: $ => prec.left(PREC.assign, seq(

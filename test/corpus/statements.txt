@@ -196,3 +196,35 @@ end
     )
   )
 )
+
+
+======================
+Statement - memaddress
+======================
+
+module MemAddrExample
+
+func AddrOfMyVar return Pointer
+    return @self.MyVar
+end
+
+---
+
+(source_file
+  (module
+    name: (identifier)
+    (function_item
+      name: (identifier)
+      (function_return_type (type_identifier))
+      (function_body
+        (expression_statement
+          (return_expression
+            (memaddress_expression
+              value: (variable_expression
+                value: (self)
+                variable: (variable_identifier))))
+        )
+      )
+    )
+  )
+)

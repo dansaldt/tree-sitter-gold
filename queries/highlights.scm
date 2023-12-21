@@ -83,6 +83,7 @@
   "-="
   "="
   "+"
+  "@"
 ] @operator
 
 (line_comment) @comment
