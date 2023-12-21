@@ -387,21 +387,14 @@ module.exports = grammar({
 		expression_statement: $ => $._expression,
 
 		_expression: $ => choice(
-			$.result_expression,
 			$.assignment_expression,
 			$.compound_assignment_expression,
 			$._literal,
 			prec.left($.identifier),
 			$.self,
+			$.result,
 			$.variable_expression,
 		),
-
-		// special assignment to _Result variable
-		result_expression: $ => prec.left(PREC.assign, seq(
-			field('left', $.result),
-			'=',
-			field('right', $._expression),
-		)),
 
 		// any assignment except to _Result
 		assignment_expression: $ => prec.left(PREC.assign, seq(

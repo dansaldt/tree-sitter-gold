@@ -163,7 +163,7 @@ endFunc
               variable: (variable_identifier))
             right: (integer_literal)))
         (expression_statement
-          (result_expression
+          (assignment_expression
             left: (result)
             right: (boolean_literal)))
       )
