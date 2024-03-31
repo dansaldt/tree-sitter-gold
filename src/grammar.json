@@ -36,6 +36,15 @@
       "named": true,
       "value": "variable_identifier"
     },
+    "_variable_or_function_identifier": {
+      "type": "ALIAS",
+      "content": {
+        "type": "SYMBOL",
+        "name": "identifier"
+      },
+      "named": true,
+      "value": "variable_or_function_identifier"
+    },
     "comment": {
       "type": "CHOICE",
       "members": [
@@ -1722,11 +1731,19 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "memaddress_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "assignment_expression"
         },
         {
           "type": "SYMBOL",
           "name": "compound_assignment_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_call_expression"
         },
         {
           "type": "SYMBOL",
@@ -1754,7 +1771,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "variable_expression"
+          "name": "_variable_or_callnoarg_expression"
         }
       ]
     },
@@ -1783,6 +1800,27 @@
           }
         }
       ]
+    },
+    "memaddress_expression": {
+      "type": "PREC_LEFT",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "@"
+          },
+          {
+            "type": "FIELD",
+            "name": "value",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          }
+        ]
+      }
     },
     "assignment_expression": {
       "type": "PREC_LEFT",
@@ -1855,9 +1893,300 @@
         ]
       }
     },
-    "variable_expression": {
+    "inherited_call_expression": {
+      "type": "PREC",
+      "value": 4,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "pass"
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "inherited"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "call_expression": {
+      "type": "PREC",
+      "value": 4,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "function",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "intrinsic"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                }
+              ]
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "arguments",
+            "content": {
+              "type": "SYMBOL",
+              "name": "arguments"
+            }
+          }
+        ]
+      }
+    },
+    "call_noarg_expression": {
+      "type": "PREC",
+      "value": 4,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "function",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "intrinsic_noarg"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "_call_expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "inherited_call_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "call_expression"
+        }
+      ]
+    },
+    "intrinsic": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "_move"
+        },
+        {
+          "type": "STRING",
+          "value": "chr"
+        },
+        {
+          "type": "STRING",
+          "value": "Concat"
+        },
+        {
+          "type": "STRING",
+          "value": "dispose"
+        },
+        {
+          "type": "STRING",
+          "value": "first"
+        },
+        {
+          "type": "STRING",
+          "value": "last"
+        },
+        {
+          "type": "STRING",
+          "value": "length"
+        },
+        {
+          "type": "STRING",
+          "value": "member"
+        },
+        {
+          "type": "STRING",
+          "value": "MetaModelEntity"
+        },
+        {
+          "type": "STRING",
+          "value": "new"
+        },
+        {
+          "type": "STRING",
+          "value": "ord"
+        },
+        {
+          "type": "STRING",
+          "value": "pred"
+        },
+        {
+          "type": "STRING",
+          "value": "sizeof"
+        },
+        {
+          "type": "STRING",
+          "value": "str"
+        },
+        {
+          "type": "STRING",
+          "value": "succ"
+        },
+        {
+          "type": "STRING",
+          "value": "Upcase"
+        },
+        {
+          "type": "STRING",
+          "value": "Write"
+        },
+        {
+          "type": "STRING",
+          "value": "Writeln"
+        },
+        {
+          "type": "STRING",
+          "value": "_MethodName"
+        },
+        {
+          "type": "STRING",
+          "value": "_ModuleName"
+        },
+        {
+          "type": "STRING",
+          "value": "Scenario"
+        },
+        {
+          "type": "STRING",
+          "value": "type"
+        },
+        {
+          "type": "STRING",
+          "value": "OQLClassId"
+        },
+        {
+          "type": "STRING",
+          "value": "OQLCount"
+        },
+        {
+          "type": "STRING",
+          "value": "OQLMax"
+        },
+        {
+          "type": "STRING",
+          "value": "OQLMin"
+        },
+        {
+          "type": "STRING",
+          "value": "OQLSum"
+        },
+        {
+          "type": "STRING",
+          "value": "OQLUpdateDate"
+        },
+        {
+          "type": "STRING",
+          "value": "OQLUpdateTime"
+        }
+      ]
+    },
+    "intrinsic_noarg": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "_MethodName"
+        },
+        {
+          "type": "STRING",
+          "value": "_ModuleName"
+        },
+        {
+          "type": "STRING",
+          "value": "Scenario"
+        },
+        {
+          "type": "STRING",
+          "value": "type"
+        }
+      ]
+    },
+    "arguments": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_expression"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": ","
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_expression"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": ","
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "variable_or_callnoarg_expression": {
       "type": "PREC_LEFT",
-      "value": 1,
+      "value": 3,
       "content": {
         "type": "SEQ",
         "members": [
@@ -1878,7 +2207,40 @@
             "name": "variable",
             "content": {
               "type": "SYMBOL",
-              "name": "_variable_identifier"
+              "name": "_variable_or_function_identifier"
+            }
+          }
+        ]
+      }
+    },
+    "_variable_or_callnoarg_expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "variable_or_callnoarg_expression"
+        }
+      ]
+    },
+    "deref_expression": {
+      "type": "PREC",
+      "value": 2,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "value",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          },
+          {
+            "type": "IMMEDIATE_TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "."
             }
           }
         ]
@@ -2833,6 +3195,10 @@
         {
           "type": "SYMBOL",
           "name": "boolean_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ascii_literal"
         }
       ]
     },
@@ -2969,6 +3335,13 @@
           "value": "False"
         }
       ]
+    },
+    "ascii_literal": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "#(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)"
+      }
     },
     "nil_literal": {
       "type": "TOKEN",

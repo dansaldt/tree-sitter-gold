@@ -1,0 +1,11 @@
+; class aOcsMobilePersoCustomerOffer(aOcsPersoCustomerOffer)
+
+;SNO 19/05/2005 moved to CustomerOffer
+;function GetPrintingDomain return tOcsCardGraph override
+;   _Result = MobileGraph
+;endFunc 
+;
+[model(Text:'Mobile Customer Offer',DefaultModifyScenario:MobilePersoCustomerOfferNewMainScen,
+        DefaultCreateScenario:MobilePersoCustomerOfferNewMainScen,DefaultPickerClass:aOcsMobilePersoCustomerOfferOQLPicker,
+        DefaultConsultScenario:MobilePersoCustomerOfferNewMainScen)]
+class aOcsMobilePersoCustomerOffer (aOcsPersoCustomerOffer)

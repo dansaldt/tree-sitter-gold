@@ -1,0 +1,12 @@
+module ModuleWithClassItemExample
+
+class InnerClass1 (BaseClass)
+endClass
+
+class InnerClass2 (BaseClass)
+endClass
+
+MyVar1: Boolean
+MyVar2: Int2
+
+endModule

@@ -1,0 +1,3 @@
+# To copy hihglights.scm file from development dir to helix editor runtime dir
+# helix runtime path as pwd: /Users/danielsaldinata/.config/helix/runtime
+cp /Users/danielsaldinata/Projects/tree-sitter-gold/queries/highlights.scm queries/gold/highlights.scm

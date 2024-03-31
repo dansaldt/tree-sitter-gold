@@ -1,6 +1,8 @@
 
 const PREC = {
-	variable: 2,
+	call: 4,
+	variable: 3,
+	deref: 2,
 	memaddress: 1,
 	assign: 0,
 };
@@ -18,6 +20,89 @@ const primitive_types = numeric_types.concat([
 	'char',
 ]);
 
+// const primitive_types_sized = numeric_types.concat([
+// 	'string',
+// 	'cstring',
+// ]);
+
+// const intrinsic_values = [
+// 	'_MethodName',
+// 	'_ModuleName',
+// ];
+
+const oql_functions = [
+	'OQLClassId',
+	'OQLCount',
+	'OQLMax',
+	'OQLMin',
+	'OQLSum',
+	'OQLUpdateDate',
+	'OQLUpdateTime',
+];
+
+const intrinsic_noarg_functions = [
+	'_MethodName',
+	'_ModuleName',
+	'Scenario',
+	'type',
+];
+
+const intrinsic_arg_functions = [
+	'_move',
+	'chr',
+	'Concat',
+	'dispose',
+	'first',
+	'last',
+	'length',
+	'member',
+	'MetaModelEntity',
+	'new',
+	'ord',
+	'pred',
+	'sizeof',
+	'str',
+	'succ',
+	'Upcase', // LoCaseCH, LoCaseCStr, LoCasePStr, LoCaseStr, UpcaseCH, UpCaseCStr, UpCasePStr, UpCaseStr
+	'Write',
+	'Writeln',
+];
+
+const intrinsic_functions = [
+	...intrinsic_arg_functions,
+	...intrinsic_noarg_functions,
+	...oql_functions,
+];
+
+// and
+// bOr
+// CString
+// downTo
+// for|forEach .. endFor
+// exit
+// instanceOf
+// length
+// not
+// OQLClassId
+// OQLCount
+// OqlUpdateDate
+// reimplem
+// step
+// where
+// array
+// break
+// if .. elseif .. else .. endIf
+// switch .. when .. endWhen .. else .. endSwitch
+// like
+// MetaModelEntity
+// 
+
+// [Reserved keywords]
+// Group
+// Group by
+
+
+
 module.exports = grammar({
 	name: 'gold',
 
@@ -34,6 +119,7 @@ module.exports = grammar({
 		[$._type_identifier, $.function_type_item],
 		[$._function_func_item, $._function_signature_func_item],
 		[$._function_proc_item, $._function_signature_proc_item],
+		// [$.variable_or_callnoarg_expression, $.deref_expression],
 	],
 
 	rules: {
@@ -44,8 +130,15 @@ module.exports = grammar({
 
 		identifier: _ => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
 
+		// TODO: fix if: every _type_identifier should have been _type_identifier_or_primitive
+		//  as in (example)
+		//    type ZeroTo255Int1 : array [0 to 255] of int(1)
+		//  instead of
+		//    type ZeroTo255Int1 : array [0 to 255] of Int1
+		//
 		_type_identifier: $ => alias($.identifier, $.type_identifier),
 		_variable_identifier: $ => alias($.identifier, $.variable_identifier),
+		_variable_or_function_identifier: $ => alias($.identifier, $.variable_or_function_identifier),
 
 		comment: $ => choice(
 			$.line_comment,
@@ -135,6 +228,13 @@ module.exports = grammar({
 			$.instanceof_item,
 			$.reference_item,
 		),
+
+		// type_item: $ => seq(
+		// 	'type',
+		// 	field('name', $.identifier),
+		// 	':',
+		// 	$._type,
+		// ),
 
 		_type: $ => choice(
 			$._type_identifier_or_primitive,
@@ -388,15 +488,18 @@ module.exports = grammar({
 		expression_statement: $ => $._expression,
 
 		_expression: $ => choice(
+			// $.deref_expression, // TODO: need external parser to distinguish it from variable_or_callnoarg_expression
 			$.memaddress_expression,
 			$.assignment_expression,
 			$.compound_assignment_expression,
+			$._call_expression,
+			// TODO: call_inherited_expression
 			$.return_expression,
 			$._literal,
 			prec.left($.identifier),
 			$.self,
 			$.result,
-			$.variable_expression,
+			$._variable_or_callnoarg_expression,
 		),
 
 		return_expression: $ => choice(
@@ -418,14 +521,68 @@ module.exports = grammar({
 
 		compound_assignment_expression: $ => prec.left(PREC.assign, seq(
 			field('left', $._expression),
-			field('operator', choice('+=', '-=')),
+			field('operator', choice('+=', '-=')), // missing *= /= %= ^= <<= >>=, really?
+			// '&=' is 'bAnd'
+			// '|=' is 'bOr'
 			field('right', $._expression),
 		)),
 
-		variable_expression: $ => prec.left(PREC.variable, seq(
+		inherited_call_expression: $ => prec(PREC.call, choice(
+			'pass',
+			seq(
+				'inherited',
+				// TODO: how to make it produces less noise 
+				//   ie no self, identifier, argumets nodes
+			)
+		)),
+
+		call_expression: $ => prec(PREC.call, seq(
+			field('function', choice(
+				$.intrinsic,
+				$._expression,
+			)),
+			field('arguments', $.arguments),
+		)),
+
+		// TODO: not yet working
+		call_noarg_expression: $ => prec(PREC.call, seq(
+			field('function', choice(
+				$.intrinsic_noarg,
+			))
+		)),
+
+		_call_expression: $ => choice(
+			$.inherited_call_expression,
+			$.call_expression,
+		),
+
+		intrinsic: $ => choice(...intrinsic_functions),
+		intrinsic_noarg: $ => choice(...intrinsic_noarg_functions),
+
+		arguments: $ => seq(
+			'(',
+			sepBy(',', $._expression),
+			optional(','),
+			')',
+		),
+
+		// cannot distinguish between a field or call of no arguments expression
+		// because call of no argument doesnt have the parenthesis
+		// TODO: probably use external parser to distinguish it from variable, call of no arg, and deref
+		variable_or_callnoarg_expression: $ => prec.left(PREC.variable, seq(
 			field('value', $._expression),
 			'.',
-			field('variable', $._variable_identifier),
+			field('variable', $._variable_or_function_identifier),
+		)),
+
+		_variable_or_callnoarg_expression: $ => choice(
+			// $.call_noarg_expression,
+			$.variable_or_callnoarg_expression,
+		),
+
+		deref_expression: $ => prec(PREC.deref, seq(
+			field('value', $._expression),
+			token.immediate('.'),
 		)),
 
 		declaration_statement: $ => choice(
@@ -640,6 +797,7 @@ module.exports = grammar({
 			$.text_literal,
 			$.integer_literal,
 			$.boolean_literal,
+			$.ascii_literal, // ex. #13#10 for CRLF
 			// TODO: to be added
 		),
 
@@ -662,6 +820,8 @@ module.exports = grammar({
 		integer_literal: $ => $._integer_literal,
 
 		boolean_literal: _ => choice('true', 'True', 'false', 'False'),
+
+		ascii_literal: _ => token(/#(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)/),
 
 		nil_literal: _ => token('nil'),
 

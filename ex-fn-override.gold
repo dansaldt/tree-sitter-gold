@@ -1,0 +1,4 @@
+module Example
+
+procedure myFunction override
+endProc

@@ -4,6 +4,10 @@
     "named": true,
     "subtypes": [
       {
+        "type": "ascii_literal",
+        "named": true
+      },
+      {
         "type": "boolean_literal",
         "named": true
       },
@@ -99,6 +103,61 @@
       "types": [
         {
           "type": "annotation_attribute",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arguments",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "_literal",
+          "named": true
+        },
+        {
+          "type": "assignment_expression",
+          "named": true
+        },
+        {
+          "type": "call_expression",
+          "named": true
+        },
+        {
+          "type": "compound_assignment_expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "inherited_call_expression",
+          "named": true
+        },
+        {
+          "type": "memaddress_expression",
+          "named": true
+        },
+        {
+          "type": "result",
+          "named": true
+        },
+        {
+          "type": "return_expression",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "variable_or_callnoarg_expression",
           "named": true
         }
       ]
@@ -209,11 +268,23 @@
             "named": true
           },
           {
+            "type": "call_expression",
+            "named": true
+          },
+          {
             "type": "compound_assignment_expression",
             "named": true
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "inherited_call_expression",
+            "named": true
+          },
+          {
+            "type": "memaddress_expression",
             "named": true
           },
           {
@@ -229,7 +300,7 @@
             "named": true
           },
           {
-            "type": "variable_expression",
+            "type": "variable_or_callnoarg_expression",
             "named": true
           }
         ]
@@ -247,11 +318,23 @@
             "named": true
           },
           {
+            "type": "call_expression",
+            "named": true
+          },
+          {
             "type": "compound_assignment_expression",
             "named": true
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "inherited_call_expression",
+            "named": true
+          },
+          {
+            "type": "memaddress_expression",
             "named": true
           },
           {
@@ -267,7 +350,7 @@
             "named": true
           },
           {
-            "type": "variable_expression",
+            "type": "variable_or_callnoarg_expression",
             "named": true
           }
         ]
@@ -278,6 +361,76 @@
     "type": "boolean_literal",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "call_expression",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arguments",
+            "named": true
+          }
+        ]
+      },
+      "function": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_literal",
+            "named": true
+          },
+          {
+            "type": "assignment_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "compound_assignment_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "inherited_call_expression",
+            "named": true
+          },
+          {
+            "type": "intrinsic",
+            "named": true
+          },
+          {
+            "type": "memaddress_expression",
+            "named": true
+          },
+          {
+            "type": "result",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          },
+          {
+            "type": "self",
+            "named": true
+          },
+          {
+            "type": "variable_or_callnoarg_expression",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "class",
@@ -504,11 +657,23 @@
             "named": true
           },
           {
+            "type": "call_expression",
+            "named": true
+          },
+          {
             "type": "compound_assignment_expression",
             "named": true
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "inherited_call_expression",
+            "named": true
+          },
+          {
+            "type": "memaddress_expression",
             "named": true
           },
           {
@@ -524,7 +689,7 @@
             "named": true
           },
           {
-            "type": "variable_expression",
+            "type": "variable_or_callnoarg_expression",
             "named": true
           }
         ]
@@ -556,11 +721,23 @@
             "named": true
           },
           {
+            "type": "call_expression",
+            "named": true
+          },
+          {
             "type": "compound_assignment_expression",
             "named": true
           },
           {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "inherited_call_expression",
+            "named": true
+          },
+          {
+            "type": "memaddress_expression",
             "named": true
           },
           {
@@ -576,7 +753,7 @@
             "named": true
           },
           {
-            "type": "variable_expression",
+            "type": "variable_or_callnoarg_expression",
             "named": true
           }
         ]
@@ -855,11 +1032,23 @@
           "named": true
         },
         {
+          "type": "call_expression",
+          "named": true
+        },
+        {
           "type": "compound_assignment_expression",
           "named": true
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "inherited_call_expression",
+          "named": true
+        },
+        {
+          "type": "memaddress_expression",
           "named": true
         },
         {
@@ -875,7 +1064,7 @@
           "named": true
         },
         {
-          "type": "variable_expression",
+          "type": "variable_or_callnoarg_expression",
           "named": true
         }
       ]
@@ -1107,6 +1296,11 @@
     }
   },
   {
+    "type": "inherited_call_expression",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "instanceof_item",
     "named": true,
     "fields": {
@@ -1160,6 +1354,16 @@
   },
   {
     "type": "integer_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "intrinsic",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "intrinsic_noarg",
     "named": true,
     "fields": {}
   },
@@ -1241,6 +1445,62 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "memaddress_expression",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_literal",
+            "named": true
+          },
+          {
+            "type": "assignment_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "compound_assignment_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "inherited_call_expression",
+            "named": true
+          },
+          {
+            "type": "memaddress_expression",
+            "named": true
+          },
+          {
+            "type": "result",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          },
+          {
+            "type": "self",
+            "named": true
+          },
+          {
+            "type": "variable_or_callnoarg_expression",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1825,11 +2085,23 @@
           "named": true
         },
         {
+          "type": "call_expression",
+          "named": true
+        },
+        {
           "type": "compound_assignment_expression",
           "named": true
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "inherited_call_expression",
+          "named": true
+        },
+        {
+          "type": "memaddress_expression",
           "named": true
         },
         {
@@ -1845,7 +2117,7 @@
           "named": true
         },
         {
-          "type": "variable_expression",
+          "type": "variable_or_callnoarg_expression",
           "named": true
         }
       ]
@@ -2002,60 +2274,6 @@
     }
   },
   {
-    "type": "variable_expression",
-    "named": true,
-    "fields": {
-      "value": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "_literal",
-            "named": true
-          },
-          {
-            "type": "assignment_expression",
-            "named": true
-          },
-          {
-            "type": "compound_assignment_expression",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "result",
-            "named": true
-          },
-          {
-            "type": "return_expression",
-            "named": true
-          },
-          {
-            "type": "self",
-            "named": true
-          },
-          {
-            "type": "variable_expression",
-            "named": true
-          }
-        ]
-      },
-      "variable": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "variable_identifier",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "variable_item",
     "named": true,
     "fields": {
@@ -2159,6 +2377,72 @@
     }
   },
   {
+    "type": "variable_or_callnoarg_expression",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_literal",
+            "named": true
+          },
+          {
+            "type": "assignment_expression",
+            "named": true
+          },
+          {
+            "type": "call_expression",
+            "named": true
+          },
+          {
+            "type": "compound_assignment_expression",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "inherited_call_expression",
+            "named": true
+          },
+          {
+            "type": "memaddress_expression",
+            "named": true
+          },
+          {
+            "type": "result",
+            "named": true
+          },
+          {
+            "type": "return_expression",
+            "named": true
+          },
+          {
+            "type": "self",
+            "named": true
+          },
+          {
+            "type": "variable_or_callnoarg_expression",
+            "named": true
+          }
+        ]
+      },
+      "variable": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "variable_or_function_identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "visibility_modifiers",
     "named": true,
     "fields": {}
@@ -2204,6 +2488,14 @@
     "named": false
   },
   {
+    "type": "@",
+    "named": false
+  },
+  {
+    "type": "Concat",
+    "named": false
+  },
+  {
     "type": "Decimal",
     "named": false
   },
@@ -2212,7 +2504,55 @@
     "named": false
   },
   {
+    "type": "MetaModelEntity",
+    "named": false
+  },
+  {
+    "type": "OQLClassId",
+    "named": false
+  },
+  {
+    "type": "OQLCount",
+    "named": false
+  },
+  {
+    "type": "OQLMax",
+    "named": false
+  },
+  {
+    "type": "OQLMin",
+    "named": false
+  },
+  {
+    "type": "OQLSum",
+    "named": false
+  },
+  {
+    "type": "OQLUpdateDate",
+    "named": false
+  },
+  {
+    "type": "OQLUpdateTime",
+    "named": false
+  },
+  {
+    "type": "Scenario",
+    "named": false
+  },
+  {
     "type": "True",
+    "named": false
+  },
+  {
+    "type": "Upcase",
+    "named": false
+  },
+  {
+    "type": "Write",
+    "named": false
+  },
+  {
+    "type": "Writeln",
     "named": false
   },
   {
@@ -2224,6 +2564,18 @@
     "named": false
   },
   {
+    "type": "_MethodName",
+    "named": false
+  },
+  {
+    "type": "_ModuleName",
+    "named": false
+  },
+  {
+    "type": "_move",
+    "named": false
+  },
+  {
     "type": "absolute",
     "named": false
   },
@@ -2232,11 +2584,19 @@
     "named": false
   },
   {
+    "type": "ascii_literal",
+    "named": true
+  },
+  {
     "type": "boolean",
     "named": false
   },
   {
     "type": "char",
+    "named": false
+  },
+  {
+    "type": "chr",
     "named": false
   },
   {
@@ -2249,6 +2609,10 @@
   },
   {
     "type": "cstring",
+    "named": false
+  },
+  {
+    "type": "dispose",
     "named": false
   },
   {
@@ -2296,6 +2660,10 @@
     "named": false
   },
   {
+    "type": "first",
+    "named": false
+  },
+  {
     "type": "forward",
     "named": false
   },
@@ -2316,6 +2684,10 @@
     "named": false
   },
   {
+    "type": "inherited",
+    "named": false
+  },
+  {
     "type": "instanceOf",
     "named": false
   },
@@ -2328,11 +2700,23 @@
     "named": false
   },
   {
+    "type": "last",
+    "named": false
+  },
+  {
+    "type": "length",
+    "named": false
+  },
+  {
     "type": "line_comment",
     "named": true
   },
   {
     "type": "listOf",
+    "named": false
+  },
+  {
+    "type": "member",
     "named": false
   },
   {
@@ -2356,6 +2740,10 @@
     "named": false
   },
   {
+    "type": "new",
+    "named": false
+  },
+  {
     "type": "nil_literal",
     "named": true
   },
@@ -2368,7 +2756,19 @@
     "named": false
   },
   {
+    "type": "ord",
+    "named": false
+  },
+  {
     "type": "override",
+    "named": false
+  },
+  {
+    "type": "pass",
+    "named": false
+  },
+  {
+    "type": "pred",
     "named": false
   },
   {
@@ -2408,7 +2808,19 @@
     "named": true
   },
   {
+    "type": "sizeof",
+    "named": false
+  },
+  {
+    "type": "str",
+    "named": false
+  },
+  {
     "type": "string",
+    "named": false
+  },
+  {
+    "type": "succ",
     "named": false
   },
   {
@@ -2437,6 +2849,10 @@
   },
   {
     "type": "variable_identifier",
+    "named": true
+  },
+  {
+    "type": "variable_or_function_identifier",
     "named": true
   },
   {

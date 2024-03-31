@@ -1,0 +1,6 @@
+module Example
+
+uses One, Two, Three, Four
+
+Var1 : refTo AnotherExample
+Var2 : refTo AnotherExample

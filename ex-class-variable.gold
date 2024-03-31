@@ -1,0 +1,16 @@
+class ClassVariableExample
+
+simpleVarPrimitive : Int4
+simpleVarRefto: refTo OtherClass
+simpleVarListof: listOf AnotherClass
+withRefMod : refTo [V, T, O, P, I, A] OtherClass
+withRefModFullName : refTo [isVersioned, inTransaction, isOwner, isCurProject, isIntegral, isActive] OtherClass
+withBackRef : refTo OtherClass inverse myExample
+memory memVar : refTo OtherClass
+
+[type:model(
+        SingleRole:(
+            WhatCanIDo:(CanModif:false,CanCreate:false,CanSearch:false,CanReceive:false)
+        )
+    )]
+withAnnotation : refTo AnotherClass

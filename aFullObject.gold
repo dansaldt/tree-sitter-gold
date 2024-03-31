@@ -1,0 +1,65 @@
+; aFullObject (aLightObject) (Def Version:XXX) (Implem Version:XXX)
+
+class aFullObject (aLightObject)
+
+NSId : Int4
+Id : Int8
+Version : ReversInt4
+memory myImageM : TypePtoImageM
+
+function StringExtract(Kind : tExtractKind, Param : Int1, MaxSize : Int4) return CString override
+function ClassName return IDEName override
+function ClassId return Int8 override
+function VarAgent return Pointer override
+function ActionValid(theUIAgent : aUIAgent) override
+function ActionCancel(theUIAgent : aUIAgent) override
+function Save(mustAskConfirmation : Boolean, mustRefresh : Boolean, mustForceSave : Boolean) override
+function ActionSaveAndClose(theUIAgent : aUIAgent) override
+procedure Accept override
+function IsAcceptable(inOut VarAddressInError : Pointer, inOut Message : CString, inOut MessageDisplayed : Boolean, MessageCanBeDisplayed : Boolean) return Boolean override
+procedure Kill(inOut mySelf) override
+procedure CancelObject(inOut mySelf) override
+procedure RecastToClassId (inOut mySelf : aLightObject, theNewClassId : Int8) override
+function HasBeenStored return Boolean override
+procedure Store(inOut PP : tFullId) override
+function Clone return Pointer override
+procedure Browse override
+procedure SaveEx(mustAskConfirmation : Boolean, mustRefresh : Boolean, mustForceSave : Boolean, MakeNewVersion : Boolean) override
+procedure ActionSuspend(theUIAgent : aUIAgent)
+procedure ActionUndo(theUIAgent : aUIAgent)
+procedure ActionFormer(theUIAgent : aUIAgent)
+procedure ShowTransaction(theUIAgent : aUIAgent)
+function IdNameSpaceId return Int4
+function NameNameSpaceId return Int4
+function HasChanged return Boolean
+procedure BeforeAccept
+procedure AfterAccept
+procedure AfterStore
+procedure AfterDelete
+procedure AfterPhantom(Phantomized : Boolean)
+procedure AfterAppendInTransaction
+function BeforeCommitStore return Boolean
+function BeforeCommitPhantom(Phantomize : Boolean) return Boolean
+function BeforeCommitDelete return Boolean
+function NewVersion return Boolean
+function Project return Pointer final
+procedure InitAfterLoad
+procedure InitAfterNewVersion
+procedure BuildFullId protected
+procedure AllocateFullId final
+procedure Freeze(unFreeze : Boolean) final
+function Versionning(inOut Freezingstyle, forThisDBDef : Pointer) return Int2
+function RemoteServiceName return IDEName private
+function isDistributable return Boolean private
+procedure SwitchUIToLastVersion final
+function myNameSpace return Pointer
+function LockKind return tLockKind
+function NewPB return Pointer
+function getMainAccessPlans(forThisDBDef : Pointer) return Pointer
+procedure InitTransientVars(OfThisPerspectiveId : Int8)
+function OneVersionHasBeenStored return Boolean
+function Authorize(ActionKind : tActionKind) return Boolean
+function MainTransaction return Pointer
+function MustBeSharedBetweenThreads return Boolean
+function NewTransaction return aTransaction
+procedure BeforeStore

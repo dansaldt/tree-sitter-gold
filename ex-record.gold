@@ -1,0 +1,132 @@
+class Example
+
+
+; base record
+type MSMQTransactionCoClass : record
+    pIMSMQTransaction : LPIMSMQTransaction
+    pIMSMQTransaction2 : LPIMSMQTransaction2
+    pIMSMQTransaction3 : LPIMSMQTransaction3
+endRecord
+
+; with derived from other record
+type tClass : record (tObjectImage)
+   ClassId : IDEid
+   ClassVersion : IDEversion
+   ClassName : IDEName
+   oneInstance : Pointer
+   Status : Int1
+endRecord
+
+; with var of function type
+type IMSMQQuery4Vtbl : record (IDispatchVtbl)
+    LookupQueue_v2 : function (    
+        this : Pointer, 
+        QueueGuid : LPVARIANT, 
+        ServiceTypeGuid : LPVARIANT, 
+        COMLabel : LPVARIANT, 
+        CreateTime : LPVARIANT, 
+        ModifyTime : LPVARIANT, 
+        RelServiceType : LPVARIANT, 
+        RelLabel : LPVARIANT, 
+        RelCreateTime : LPVARIANT, 
+        RelModifyTime : LPVARIANT, 
+        inOut ppqinfos : LPIMSMQQueueInfos4
+    ) return HRESULT
+    GetProperties : function (    
+        this : Pointer, 
+        inOut ppcolProperties : LPIDispatch
+    ) return HRESULT
+    LookupQueue : function (    
+        this : Pointer, 
+        QueueGuid : LPVARIANT, 
+        ServiceTypeGuid : LPVARIANT, 
+        COMLabel : LPVARIANT, 
+        CreateTime : LPVARIANT, 
+        ModifyTime : LPVARIANT, 
+        RelServiceType : LPVARIANT, 
+        RelLabel : LPVARIANT, 
+        RelCreateTime : LPVARIANT, 
+        RelModifyTime : LPVARIANT, 
+        MulticastAddress : LPVARIANT, 
+        RelMulticastAddress : LPVARIANT, 
+        inOut ppqinfos : LPIMSMQQueueInfos4
+    ) return HRESULT
+endRecord
+
+; ; with inner record
+[model(Text:'Log Info')]
+type curTypeLogInfo : record
+    LastUser : record
+        NSId : Int4
+        Id : Int8
+    endRecord
+    TheDate : tDCSDate
+    StoredTime : tWFTime
+endRecord
+
+[model(Text:'GUID')]
+type GUID : nativeRecord
+    Data1 : ULONG
+    Data2 : USHORT
+    Data3 : USHORT
+    Data4 : array [0 to 7] of BYTE ;// TODO: implement array type
+endNativeRecord
+
+
+; test from wCOM.god
+type VARIANT_NAME_3 : nativeRecord
+    dblVal : DOUBLE
+    lVal : LONG absolute dblVal
+    bVal : BYTE absolute dblVal
+    iVal : SHORT absolute dblVal
+    fltVal : FLOAT absolute dblVal
+    boolVal : VARIANT_BOOL absolute dblVal
+    bool : _VARIANT_BOOL absolute dblVal
+    scde : SCODE absolute dblVal
+    cyVal : CY absolute dblVal
+    dte : DATE absolute dblVal
+    bstrVal : BSTR absolute dblVal
+    punkVal : LPIUnknown absolute dblVal
+    pdispVal : LPIDispatch absolute dblVal
+    parray : LPSAFEARRAY absolute dblVal
+    pbVal : .BYTE absolute dblVal
+    piVal : .SHORT absolute dblVal
+    plVal : .LONG absolute dblVal
+    pfltVal : .FLOAT absolute dblVal
+    pdblVal : .DOUBLE absolute dblVal
+    pboolVal : .VARIANT_BOOL absolute dblVal
+    pbool : ._VARIANT_BOOL absolute dblVal
+    pscode : .SCODE absolute dblVal
+    pcyVal : .CY absolute dblVal
+    pdate : .DATE absolute dblVal
+    pbstrVal : .BSTR absolute dblVal
+    ppunkVal : .LPIUnknown absolute dblVal
+    ppdispVal : .LPIDispatch absolute dblVal
+    pparray : .LPSAFEARRAY absolute dblVal
+    pvarVal : LPVARIANT absolute dblVal
+    byref : Pointer absolute dblVal
+    cVal : Char absolute dblVal
+    uiVal : USHORT absolute dblVal
+    ulVal : ULONG absolute dblVal
+    intVal : Int4 absolute dblVal
+    uintVal : UINT absolute dblVal
+    pdecVal : .DECIMAL absolute dblVal
+    pcVal : .Char absolute dblVal
+    puiVal : .USHORT absolute dblVal
+    pulVal : .ULONG absolute dblVal
+    pintVal : .Int4 absolute dblVal
+    puintVal : .UINT absolute dblVal
+endNativeRecord
+
+type VARIANT_NAME_3 : nativeRecord
+    dblVal: DOUBLE
+    lVal : LONG absolute dblVal
+endNativeRecord
+
+type UnionDataRecord : record
+    data_i8: Int8
+    data_i4x2: record
+        _0: Int4
+        _1: Int4
+    endRecord absolute data_i8
+endRecord

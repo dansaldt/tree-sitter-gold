@@ -1,0 +1,111 @@
+module AssignmentExample
+
+my_variable: Int4
+
+proc Add(
+    inOut lhs: Int4
+    inOut rhs: Int4
+)
+    lhs += rhs
+endProc
+
+proc Sub(
+    inOut lhs: Int4
+    inOut rhs: Int4
+)
+    lhs -= rhs
+endProc
+
+proc Add100(inOut value: Int4)
+    self.Add(value, 100)
+end
+
+func Get1000 return Int4
+    return 1000
+end
+
+function LiteralValueAssignOn_LocalVar_Result_SelfVar return Boolean
+    uses aClass
+
+    type Array4ofInt1 : record
+        __value : Int4
+        as_i4: Int4 absolute __value
+        as_i2x2: record
+            _0: Int2
+            _1: Int2
+        endRecord absolute __value
+        as_i1x4:record
+            _0: Int1
+            _1: Int1
+            _2: Int1
+            _3: Int1
+        endRecord absolute __value
+    endRecord
+    type pArray4OfInt1 : .Array4OfInt1
+
+    var vstr: string
+    var vint: Int4
+    var vint2: Int4
+    var vobj: aClass
+    var vtext: Text
+    var varr4int1 : Array4ofInt1
+    var varr4int1_ptr : pArray4OfInt1
+    var vchr : char
+    var vptr: Pointer
+    var result_ptr : .bool
+
+    self.my_variable = 10000
+    vstr = 'Some string value'
+    vint = 100
+    vint += 10
+    vint -= 3
+    Add100(vint)
+    vint += self.Get1000
+    Add(vint, vint2)
+    vobj = nil
+    vtext = {
+        '1st line',
+        '2nd line',
+    }
+    varr4int1.as_i4 = 1
+    varr4int1.as_i2x2._0 = 0
+    varr4int1.as_i2x2._1 = 1
+    vchr = #10 ; char LF
+    ; check src/DBUpdater/main/aDBUpdater_SQLGenerator::ProduceHeader
+    ; how can this line work?
+    ;     `WriteLn(_Result, '*******'#9#9#9#9#9#9#9'*******')`
+
+    ; src/OcsAppletModeler/Modeler/OcsServiceModelerUtils.god
+    ;     `WriteLn(_Result, #9#9#9'<xs:element name="Group" minOccurs="1" maxOccurs="unbounded"/>')`
+
+    ; src/OcsArchi/Base/aOcsMicrosoftForms20LabelAgent::Finalize
+    ;     `self.SetEventHook(3, 'CC'#5#5#3'C'#2, Motor.MethodAddressFromName(self, 'BeforeDragOver'), self)`
+
+    ; src/OcsArchi/Primary Types/aOcsTSMDataGenerator::GenerateWirecardInputFilesAndPushSD
+    ; const cWireCardInput of text type
+
+    ; src/OcsBankCards/Base/aOcs_Solvo_42_CardTechnicalDesc::ReplaceStatusWordsInText
+    ;     ```
+    ;     var Separators : CString
+    ;     var EndLineSeparators : CString
+    ;     Separators = #9#10#13' *;(\'
+    ;     EndLineSeparators = #10#13
+    ;     ```
+
+    ; src/OcsCardsArchi/Personalisations/aOcsVascoActiveXControlAgent::COMInterpreteApdu
+    ;     `self.Invoke(7, 1, 0, Nil, #8#8, @sApduCommand)`
+
+    ; assign to casted variable_identifier
+    ; src/OcsIntegrationTools/MentorTool/aOcsCopyVarTool::SimulateMPR
+    ;     `Int8(bufferinInit.BatchID) = SaI(OcsUtil.GetValueInFile(fileName, 'DATA', 'BatchID'#9#9#9))`
+
+    ; string literal built inline with addition `+`
+    ; src/OcsProd/Ressource/aOcsMPR::WriteDeviceFile
+    ;     `WriteLn(FileContent, 'Logo' + #9#9#9 + '=' + self.GetLogo(fromWO))`
+    varr4int1_ptr = @varr4int1
+    varr4int1 = varr4int1_ptr.
+    result_ptr = @_Result
+    Writeln('This is some string', 'and another string')
+    _Result = true
+    return _Result
+endFunc

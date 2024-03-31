@@ -1,0 +1,143 @@
+; Example (Def Version:1) (Implem Version:1)
+
+; Comments for this module
+module Example
+
+; uses AAA, BBB, CCC
+
+; const INT1_MAX = 127
+; const INT1_MIN = -128
+; const SOME_STRING = 'abc'
+; const EMPTY_STRING = ''
+; const MESSAGE = 'This is a test message' multiLang
+; const TRUE = true
+; const FALSE = False
+; ; const STRING_COMMENT = 'Next is a comment ;a comment but should not be highlighted'
+; const SOME_TEXT = {
+; 	'1st line',
+; 	'2nd line',
+; 	'3rd line',
+; }
+; const OTHER_TEXT = {
+; 	'only one line'
+; }
+; type tSocketCallBack : function (    
+;     Socket : Pointer, 
+;     Operation : Int4, 
+;     Param1 : Int4, 
+;     Param2 : Int4
+; ) return Boolean
+; type tSerde : (
+; 	[model(Text:'Serialize')] sdSerialize,
+; 	[model(Text:'Deserialize')] sdDeserialize,
+; )
+; type tExtended : tBase + (
+; 	exNewVariant,
+; ) multiLang
+; type tpExtended : .tExtended
+; type tExtendedSet : [tExtended]
+
+; simpleVar : OtherExample
+; simpleVarRefto : refTo OtherExample
+; simpleVarListof: listOf OtherExample
+; withRefMod : refTo [P, A] OtherExample
+; withRefModFullName : refTo [isCurProject, isActive] OtherExample
+; withBackRef : refTo OtherExample inverse myExample
+; memory memVar : refTo OtherExample
+
+
+; ; Comments for this function
+; procedure MyFunction
+; 	; Comment in function body
+; endProc
+
+; class SomeClass (BaseClass)
+; endClass
+
+; func MyFunction3 return char
+; end
+
+; func MyFunction4 return int(4)
+; end
+
+; procedure FunctionWithMultiParam(
+;   param0: Int1,
+;   param1: int(4)
+; )
+; endProc
+
+; const UINT8_MAX = 4294967295L
+
+; type Boolean : boolean
+; type CString : cstring(255)
+; type String : string(255)
+; type Int8 : int(8)
+; type Num8 : num(8)
+; type ZeroToMaxUInt1 : 0 to 256
+; type ZeroToMaxUInt2 : Zero to 65535
+; type File : File
+; type TextFile : file of Char
+; type Char : char
+; type Text : Pointer
+; type ResizablePointer : Pointer
+; type JavaString : Pointer
+; type tArray0to255OfPointers : array [t0to255] of Pointer
+; type tDevelopperVisibility : array [0 to 7] of tDevelopperActionKindSet
+; type tArray0to1024OfPointers : array [t0to1024] of Pointer
+; type TypeOfStandardProcedure : procedure (theUIAgent : aUIAgent)
+; type NSIdContext : (
+;    NoContext, 
+;    Wyde = 2, 
+;    WydeBis, 
+;    Dev = 13, 
+;    DevBis, 
+;    DevRef = 12, 
+;    RunTimeKernel = 5, 
+;    RunTimeAppli = 7, 
+;    Test = 19, 
+;    TestBis, 
+;    MaxContext = 127
+; )
+; type TypeListOfThings : 
+; type Any : 
+; type TypeListOfReftos : listOf aFullObject
+; type ReversInt2 : int(2)
+; type ReversInt4 : int(4)
+; type TypeNotInTReftoNotLoadRefObject : refTo [P, A] aFullObject
+; type tModifiers : (
+;    mFinal, 
+;    mAbstract, 
+;    mMultiLang, 
+;    mPrivate, 
+;    mProtected, 
+;    mDefault, 
+;    mInterface, 
+;    mOverloaded
+; )
+; type tModifiersSet : [tModifiers]
+; type TypeNotInTRefto : refTo [P, A] aFullObject
+; type TypeNotInTPTVListofReftos : listOf [V, P, A] aFullObject
+; type DBString : DBString(255)
+; type DynDBString : DynDBString
+; type tpDBString : .DBString
+; type tpDynDBString : .DynDBString
+; type DBChar : DBChar
+; type tpDBChar : .DBChar
+; type tpInt4 : .int(4)
+; type ArrayOf32xChar : array [0 to 31] of char
+; type ArrayOf4xInt2 : array [0 to 3] of int(2)
+
+; function NewDeserializerFromContext(    
+;     Context : aOcsSerDeContext
+; ) return aOcsSerDeDeserializer
+;     _Result = NewDeserializer(Context.DataFmtDesc)
+; endFunc 
+
+function DataAsStr(    
+    Kind : tSerDeDataKind
+) return CString
+    uses aEnumType
+       
+    _Result = Kind.type.AsCString(@Kind)
+    ; _Result = self.SomeResultPtr.
+endFunc 
